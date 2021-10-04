@@ -1,0 +1,32 @@
+# for creation of necessary conda environment
+name: sdo_hmi_rvs  # environment name
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  # - aiapy
+  # - astropy
+  # - barycorrpy
+  # - corner
+  # - glob2
+  - jupyter
+  - matplotlib
+  - mkdocs
+  - mkdocs-jupyter
+  - mkdocs-material
+  - numpy
+  - pathlib
+  - pandas
+  # - plotly
+  - pymdown-extensions
+  - python <= 3.8
+  - python-kaleido
+  - scipy
+  # - scikit-image
+  # - scikit-learn
+  # - starry
+  - sunpy
+  # - tensorflow
+  # - tqdm
+  - notebook
+

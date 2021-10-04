@@ -1,0 +1,57 @@
+site_name: NEID Solar Analysis
+site_description: NEID Solar Data Analysis Documentation
+authors:
+    - Tamar Ervin
+
+# repository information
+repo_url: https://github.com/shalverson/NEID_Solar_analysis
+edit_uri: blob/master/mkdocs/docs/
+
+# site navigation
+nav:
+  - Home: index.md
+  - SDO Velocities:
+      - HMI Data:
+        - Data Corrections: sdo/data.md
+        - Sunpy Example: sdo/examples/docs_sunpy_example.ipynb
+        - Corrections Example: sdo/examples/docs_solar_corrections.ipynb
+      - Coordinate Transformations: sdo/coords.md
+      - Region Identification: sdo/region.md
+      - Velocity Components: sdo/vel.md
+      - RV Calculation:
+        - Regression Calculation: sdo/rv.md
+        - Calculation Example: sdo/examples/docs_rv_calcs.ipynb
+      - Magnetic Observables: sdo/mag.md
+
+# theme
+theme:
+  name: material
+  language: en
+  palette:
+    primary: black
+    accent: black
+  logo: img/neid_logo.png
+
+# plugins
+plugins:
+  - search:
+      lang: en
+  - mkdocs-jupyter:
+      ignore_h1_titles: True
+
+# extensions
+markdown_extensions:
+  - attr_list
+  - admonition
+#  - codehilite:
+#      linenums: true
+  - pymdownx.critic
+  - pymdownx.mark
+  - pymdownx.tabbed
+  - pymdownx.arithmatex
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
+  - javascripts/config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
