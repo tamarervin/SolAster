@@ -224,22 +224,37 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_2">
+        <label class="md-nav__link" for="__nav_3">
           HMI Data
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="HMI Data" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           HMI Data
         </label>
@@ -252,6 +267,20 @@
   
     <li class="md-nav__item">
       <a href="../data/" class="md-nav__link">
+        Aquiring Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corr/" class="md-nav__link">
         Data Corrections
       </a>
     </li>
@@ -317,43 +346,10 @@
   
   
   
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_6">
-          RV Calculation
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="RV Calculation" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
-          <span class="md-nav__icon md-icon"></span>
-          RV Calculation
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
     <li class="md-nav__item">
       <a href="../rv/" class="md-nav__link">
-        Regression Calculation
+        RV Calculation
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -412,6 +408,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#area-based-magnetic-observables" class="md-nav__link">
+    Area Based Magnetic Observables
+  </a>
+  
+    <nav class="md-nav" aria-label="Area Based Magnetic Observables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#area-thresholded-filling-factor" class="md-nav__link">
+    Area Thresholded Filling Factor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#area-thresholded-unsigned-flux" class="md-nav__link">
+    Area Thresholded Unsigned Flux
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -431,18 +454,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_8">
+        <label class="md-nav__link" for="__nav_9">
           Jupyter Examples
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Jupyter Examples" data-md-level="1">
-        <label class="md-nav__title" for="__nav_8">
+        <label class="md-nav__title" for="__nav_9">
           <span class="md-nav__icon md-icon"></span>
           Jupyter Examples
         </label>
@@ -549,6 +572,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#area-based-magnetic-observables" class="md-nav__link">
+    Area Based Magnetic Observables
+  </a>
+  
+    <nav class="md-nav" aria-label="Area Based Magnetic Observables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#area-thresholded-filling-factor" class="md-nav__link">
+    Area Thresholded Filling Factor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#area-thresholded-unsigned-flux" class="md-nav__link">
+    Area Thresholded Unsigned Flux
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -643,6 +693,121 @@ filling factor which is the sum of the two.  </p>
 
     return np.abs(unsign_flux)
 </code></pre>
+<h2 id="area-based-magnetic-observables">Area Based Magnetic Observables</h2>
+<p>In addition to the unsigned flux and filling factor calculations described above, we calculate
+these quantities with an eye for what types of regions are causing variations in magnetic
+activity. The calculations for area thresholded regions is outlined below.</p>
+<h3 id="area-thresholded-filling-factor">Area Thresholded Filling Factor</h3>
+<pre><code class="language-python">def area_filling_factor(active, area, mu, mmap, fac_inds, athresh=20, mu_cutoff=0.3):
+    &quot;&quot;&quot;
+    calculate filling factor for regions thresholded by area
+    - differentiate between large and small regions
+    - differentiate between plage (large) and network (small) bright regions
+
+    Parameters
+    ----------
+    active: weights array where active pixels have weight = 1
+    area: area of each active region weighted by its intensity
+    mu: array of mu (cosine theta) values
+    mmap: UNCORRECTED Sunpy map object (Magnetogram)
+    fac_inds: array of indices where faculae are detected
+    athresh: area threshold value between large and small regions (in uHem)
+    mu_cutoff: minimum mu cutoff value for usable data
+
+    Returns
+    -------
+    f_small: filling factor (%) for small magnetically active regions
+    f_large: filling factor (%) for large magnetically active regions
+    f_network: filling factor (%) for network (small, bright magnetically active) regions
+    f_plage: filling factor (%) for plage (large, bright magnetically active) regions
+    f_nonconv: filling factor (%) for regions that do not suppress convective blueshift
+
+    &quot;&quot;&quot;
+
+    # get good mu values
+    good_mu = np.where(mu &gt; mu_cutoff)
+
+    # get number of pixels
+    npix = len(mmap.data[good_mu])
+
+    # get quiet pixels
+    quiet = 1 - active
+
+    # get filling factor for 'small' magnetic features
+    small = np.zeros(mmap.data.shape)
+    small_inds = np.logical_and(active &gt; 0.5, area &lt; athresh)
+    small[small_inds] = 1.
+    f_small = np.nansum(small) / npix * 100
+
+    # get filling factor for 'large' magnetic features
+    large = np.zeros(mmap.data.shape)
+    large_inds = np.logical_and(active &gt; 0.5, area &gt; athresh)
+    large[large_inds] = 1.
+    f_large = np.nansum(large) / npix * 100
+
+    # get filling factor for network (small, faculae regions)
+    network = np.zeros(mmap.data.shape)
+    network_inds = np.logical_and(small &gt; 0.5, fac_inds &gt; 0.5)
+    network[network_inds] = 1.
+    f_network = np.nansum(network) / npix * 100
+
+    # get filling factor for plage (large, faculae regions)
+    plage = np.zeros(mmap.data.shape)
+    plage_inds = np.logical_and(large &gt; 0.5, fac_inds &gt; 0.5)
+    plage[plage_inds] = 1.
+    f_plage = np.nansum(plage) / npix * 100
+
+    # get filling factor for small, non-convective regions
+    nonconv = np.zeros(mmap.data.shape)
+    nonconv_inds = np.logical_and(quiet &gt; 0.5, small &gt; 0.5)
+    nonconv[nonconv_inds] = 1.
+    f_nonconv = np.nansum(nonconv) / npix * 100
+
+    return f_small, f_large, f_network, f_plage, f_nonconv
+</code></pre>
+<h3 id="area-thresholded-unsigned-flux">Area Thresholded Unsigned Flux</h3>
+<pre><code class="language-python">def area_unsigned_flux(map_mag_obs, imap, area, active, athresh=20):
+    &quot;&quot;&quot;
+    calculate the magnetic flux for different regions based on area cut
+    and magnetic activitiy
+
+    Parameters
+    ----------
+    map_mag_obs: corrected observed magnetic field strength Sunpy map object (Magnetogram)
+    imap: UNCORRECTED Sunpy map object (Intensitygram)
+    area: area of each active region weighted by its intensity
+    active: weights array where active pixels have weight = 1
+
+    Returns
+    -------
+    quiet_flux: magnetic flux of quiet-Sun regions
+    ar_flux: magnetic flux of active regions
+    conv_flux: magnetic flux of regions that suppress convective blueshift
+    pol_flux: magnetic flux of polarized regions
+    pol_conv_flux: magnetic flux of polarized regions that suppress the convective blueshift
+
+    &quot;&quot;&quot;
+
+    # get data arrays
+    i_data = imap.data
+    m_data = map_mag_obs.data
+    mabs_data = np.abs(m_data)
+    quiet = 1 - active
+
+    # get large regions array
+    large = np.zeros(m_data.shape)
+    large_inds = np.logical_and(active &gt; 0.5, area &gt; athresh)
+    large[large_inds] = 1.
+
+    # calculate relevant fluxes
+    quiet_flux = np.nansum(mabs_data * i_data * quiet) / np.nansum(i_data * quiet)
+    ar_flux = np.nansum(mabs_data * i_data * active) / np.nansum(i_data * active)
+    conv_flux = np.nansum(mabs_data * i_data * large) / np.nansum(i_data * large)
+    pol_flux = np.nansum(m_data * i_data) / np.nansum(i_data)
+    pol_conv_flux = np.nansum(m_data * i_data * large) / np.nansum(i_data * large)
+
+    return quiet_flux, ar_flux, conv_flux, pol_flux, pol_conv_flux
+</code></pre>
                 
               
               
@@ -662,7 +827,7 @@ filling factor which is the sum of the two.  </p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../rv/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Regression Calculation" rel="prev">
+        <a href="../rv/" class="md-footer__link md-footer__link--prev" aria-label="Previous: RV Calculation" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -671,7 +836,7 @@ filling factor which is the sum of the two.  </p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Regression Calculation
+              RV Calculation
             </div>
           </div>
         </a>
