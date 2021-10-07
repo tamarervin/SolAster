@@ -322,34 +322,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../examples/docs_sunpy_example/" class="md-nav__link">
-        Sunpy Example
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../examples/docs_solar_corrections/" class="md-nav__link">
-        Corrections Example
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -443,20 +415,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../examples/docs_rv_calcs/" class="md-nav__link">
-        Calculation Example
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -474,6 +432,96 @@
       <a href="../mag/" class="md-nav__link">
         Magnetic Observables
       </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          Jupyter Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Jupyter Examples" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Jupyter Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/docs_sunpy_example/" class="md-nav__link">
+        Sunpy Basics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/docs_solar_corrections/" class="md-nav__link">
+        Component Calculations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/docs_rv_calcs/" class="md-nav__link">
+        RV Calculation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/rv_calculation/" class="md-nav__link">
+        Full Pipeline
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -551,12 +599,12 @@
                 <h1 id="data-corrections">Data Corrections</h1>
 <p>For the calculation of independent RV's, we used the three main
 HMI data products: Dopplergrams, Intensitygrams, Magnetograms. These data products
-must be corrected for inherent issues such as relative velocity transformations, 
+must be corrected for inherent issues such as relative velocityn between the spacecraft and Sun, 
 limb-darkening, and foreshortening.  </p>
 <h2 id="acquiring-the-data">Acquiring the Data</h2>
 <p>To get the HMI data products, we utilize Sunpy's querying techniques. 
 This allows us to search by date, physical observable, and instrument.  </p>
-<p>An example of querying Sunpy for data can be found <a href="/examples/docs_sunpy_example.ipynb">here</a>.  </p>
+<p>An example of querying Sunpy for data can be found <a href="/mkdocs/docs/sdo/examples/docs_sunpy_example.ipynb">here</a>.  </p>
 <h2 id="velocity-corrections">Velocity Corrections</h2>
 <p>Dopplergrams are maps of solar surface velocity that must be corrected for the relative
 spacecraft velocity, and the velocity due to solar rotation.  </p>
@@ -697,13 +745,13 @@ the observed magnetic field (magnetogram data) is less than the true radial fiel
       
       
         
-        <a href="../examples/docs_sunpy_example/" class="md-footer__link md-footer__link--next" aria-label="Next: Sunpy Example" rel="next">
+        <a href="../coords/" class="md-footer__link md-footer__link--next" aria-label="Next: Coordinate Transformations" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Sunpy Example
+              Coordinate Transformations
             </div>
           </div>
           <div class="md-footer__button md-icon">
