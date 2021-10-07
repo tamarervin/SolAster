@@ -559,7 +559,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/tamarervin/sdo_hmi_rvs/blob/master/mkdocs/docs/sdo/examples/rv_calculation.ipynb" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/tamarervin/sdo_hmi_rvs/blob/master/mkdocs/docs/sdo/examples/docs_full_pipeline.ipynb" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1264,12 +1264,12 @@ all of MD as it is not optimized for dense, information rich UIs.
 <span class="kn">from</span> <span class="nn">sunpy.net</span> <span class="kn">import</span> <span class="n">attrs</span> <span class="k">as</span> <span class="n">a</span>
 <span class="kn">from</span> <span class="nn">sunpy.coordinates</span> <span class="kn">import</span> <span class="n">frames</span>
 
-<span class="kn">import</span> <span class="nn">tamar.tools.solar_funcs</span> <span class="k">as</span> <span class="nn">sfuncs</span>
-<span class="kn">import</span> <span class="nn">tamar.tools.lbc_funcs</span> <span class="k">as</span> <span class="nn">lbfuncs</span>
-<span class="kn">import</span> <span class="nn">tamar.tools.coord_funcs</span> <span class="k">as</span> <span class="nn">ctfuncs</span>
-<span class="kn">import</span> <span class="nn">tamar.tools.utilities</span> <span class="k">as</span> <span class="nn">utils</span>
-<span class="kn">from</span> <span class="nn">tamar.tools.settings</span> <span class="kn">import</span> <span class="n">CsvDir</span>
-<span class="kn">from</span> <span class="nn">tamar.tools.settings</span> <span class="kn">import</span> <span class="n">scaling</span>
+<span class="kn">import</span> <span class="nn">sdo_hmi_rvs.tools.calculation_funcs</span> <span class="k">as</span> <span class="nn">sfuncs</span>
+<span class="kn">import</span> <span class="nn">sdo_hmi_rvs.tools.lbc_funcs</span> <span class="k">as</span> <span class="nn">lbfuncs</span>
+<span class="kn">import</span> <span class="nn">sdo_hmi_rvs.tools.coord_funcs</span> <span class="k">as</span> <span class="nn">ctfuncs</span>
+<span class="kn">import</span> <span class="nn">sdo_hmi_rvs.tools.utilities</span> <span class="k">as</span> <span class="nn">utils</span>
+<span class="kn">from</span> <span class="nn">sdo_hmi_rvs.tools.settings</span> <span class="kn">import</span> <span class="n">CsvDir</span>
+<span class="kn">from</span> <span class="nn">sdo_hmi_rvs.tools.settings</span> <span class="kn">import</span> <span class="n">Scaling</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
 </pre></div>
@@ -1286,12 +1286,12 @@ from sunpy.net import Fido
 from sunpy.net import attrs as a
 from sunpy.coordinates import frames
 
-import tamar.tools.solar_funcs as sfuncs
-import tamar.tools.lbc_funcs as lbfuncs
-import tamar.tools.coord_funcs as ctfuncs
-import tamar.tools.utilities as utils
-from tamar.tools.settings import CsvDir
-from tamar.tools.settings import scaling
+import sdo_hmi_rvs.tools.calculation_funcs as sfuncs
+import sdo_hmi_rvs.tools.lbc_funcs as lbfuncs
+import sdo_hmi_rvs.tools.coord_funcs as ctfuncs
+import sdo_hmi_rvs.tools.utilities as utils
+from sdo_hmi_rvs.tools.settings import CsvDir
+from sdo_hmi_rvs.tools.settings import Scaling
 
 from sklearn.linear_model import LinearRegression</div>
     
@@ -1327,8 +1327,7 @@ from sklearn.linear_model import LinearRegression</div>
         </div>
         <div class="CodeMirror cm-s-jupyter">
             <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># name of csv file to store calculations</span>
-<span class="n">csv_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CsvDir</span><span class="o">.</span><span class="n">CALC</span><span class="p">,</span> <span class="s1">&#39;csv_name.csv&#39;</span><span class="p">)</span>
-<span class="n">bad_dates_csv</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CsvDir</span><span class="o">.</span><span class="n">CALC</span><span class="p">,</span> <span class="s1">&#39;bad_dates.csv&#39;</span><span class="p">)</span>
+<span class="n">csv_name</span> <span class="o">=</span> <span class="s1">&#39;csv_name&#39;</span>
 
 <span class="c1"># date range</span>
 <span class="n">start_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">00</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -1338,8 +1337,7 @@ from sklearn.linear_model import LinearRegression</div>
 <span class="n">cadence</span> <span class="o">=</span> <span class="mi">24</span><span class="o">*</span><span class="mi">3600</span>
 </pre></div>
 <div id="cell-2" class="clipboard-copy-txt"># name of csv file to store calculations
-csv_name = os.path.join(CsvDir.CALC, 'csv_name.csv')
-bad_dates_csv = os.path.join(CsvDir.CALC, 'bad_dates.csv')
+csv_name = 'csv_name'
 
 # date range
 start_date = datetime.datetime(2021, 8, 26, 8, 00, 0)
@@ -1379,7 +1377,11 @@ cadence = 24*3600</div>
             </clipboard-copy>
         </div>
         <div class="CodeMirror cm-s-jupyter">
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># print out csv title</span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># create file names</span>
+<span class="n">csv_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CsvDir</span><span class="o">.</span><span class="n">CALC</span><span class="p">,</span> <span class="n">csv_name</span><span class="o">+</span><span class="s1">&#39;.csv&#39;</span><span class="p">)</span>
+<span class="n">bad_dates_csv</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CsvDir</span><span class="o">.</span><span class="n">CALC</span><span class="p">,</span> <span class="n">csv_name</span><span class="o">+</span><span class="s1">&#39;_bad_dates.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># print out csv title</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Beginning calculation of values for csv file: &quot;</span> <span class="o">+</span> <span class="n">csv_name</span><span class="p">)</span>
 
 <span class="c1"># List of header strings</span>
@@ -1399,7 +1401,11 @@ cadence = 24*3600</div>
 <span class="n">xy</span> <span class="o">=</span> <span class="p">(</span><span class="n">end_date</span> <span class="o">-</span> <span class="n">start_date</span><span class="p">)</span><span class="o">.</span><span class="n">seconds</span> <span class="o">+</span> <span class="p">(</span><span class="n">end_date</span> <span class="o">-</span> <span class="n">start_date</span><span class="p">)</span><span class="o">.</span><span class="n">days</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">3600</span>
 <span class="n">dates_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_date</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">cadence</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">xy</span><span class="o">/</span><span class="n">cadence</span><span class="p">))]</span>
 </pre></div>
-<div id="cell-3" class="clipboard-copy-txt"># print out csv title
+<div id="cell-3" class="clipboard-copy-txt"># create file names
+csv_name = os.path.join(CsvDir.CALC, csv_name+'.csv')
+bad_dates_csv = os.path.join(CsvDir.CALC, csv_name+'_bad_dates.csv')
+
+# print out csv title
 print("Beginning calculation of values for csv file: " + csv_name)
 
 # List of header strings
@@ -1825,6 +1831,12 @@ print('Calculation complete for dates:', start_date, 'to', end_date)</div>
 <h2 id="full-rv-calculation">Full RV Calculation<a class="anchor-link" href="#Full-RV-Calculation">&#182;</a></h2><p>Use the photometric and convective velocity components to calculate the full RV.</p>
 
 </div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Read in CSV with data.</p>
+
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
@@ -1843,32 +1855,94 @@ print('Calculation complete for dates:', start_date, 'to', end_date)</div>
             </clipboard-copy>
         </div>
         <div class="CodeMirror cm-s-jupyter">
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># csv file with rv components</span>
+<span class="n">csv_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CsvDir</span><span class="o">.</span><span class="n">CALC</span><span class="p">,</span> <span class="s1">&#39;csv_name.csv&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># create pandas dataframe</span>
+<span class="n">component_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+</pre></div>
+<div id="cell-5" class="clipboard-copy-txt"># csv file with rv components
+csv_file = os.path.join(CsvDir.CALC, 'csv_name.csv')
+
+
+# create pandas dataframe
+component_df = pd.read_csv(csv_file)</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-6">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+        <div class="CodeMirror cm-s-jupyter">
             <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># get velocities lists</span>
 <span class="n">v_phot</span> <span class="o">=</span> <span class="n">component_df</span><span class="o">.</span><span class="n">v_phot</span><span class="o">.</span><span class="n">values</span>
 <span class="n">v_conv</span> <span class="o">=</span> <span class="n">component_df</span><span class="o">.</span><span class="n">v_conv</span><span class="o">.</span><span class="n">values</span>
 
 <span class="c1"># get scaling factors</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">settings</span>
-<span class="n">B</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">RV0</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">intercept_</span>
-
-
-<span class="n">RV</span> <span class="o">=</span> <span class="n">A</span><span class="o">*</span><span class="n">v_phot</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">v_conv</span> <span class="o">+</span> <span class="n">RV0</span>
-
-<span class="n">component_df</span><span class="p">[</span><span class="s2">&quot;rv_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">RV</span>
-<span class="n">component_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">Scaling</span><span class="o">.</span><span class="n">HARPSN</span><span class="o">.</span><span class="n">A</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">Scaling</span><span class="o">.</span><span class="n">HARPSN</span><span class="o">.</span><span class="n">B</span>
+<span class="n">RV0</span> <span class="o">=</span> <span class="n">Scaling</span><span class="o">.</span><span class="n">HARPSN</span><span class="o">.</span><span class="n">RV0</span>
 </pre></div>
-<div id="cell-5" class="clipboard-copy-txt"># get velocities lists
+<div id="cell-6" class="clipboard-copy-txt"># get velocities lists
 v_phot = component_df.v_phot.values
 v_conv = component_df.v_conv.values
 
 # get scaling factors
-A = settings
-B = reg.coef_[1]
-RV0 = reg.intercept_
+A = Scaling.HARPSN.A
+B = Scaling.HARPSN.B
+RV0 = Scaling.HARPSN.RV0</div>
+    
+        </div>
+    </div>
 
+</div>
+</div>
 
-RV = A*v_phot + B*v_conv + RV0
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-7">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+        <div class="CodeMirror cm-s-jupyter">
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">RV</span> <span class="o">=</span> <span class="n">A</span><span class="o">*</span><span class="n">v_phot</span> <span class="o">+</span> <span class="n">B</span><span class="o">*</span><span class="n">v_conv</span> <span class="o">+</span> <span class="n">RV0</span>
+
+<span class="n">component_df</span><span class="p">[</span><span class="s2">&quot;rv_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">RV</span>
+<span class="n">component_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+<div id="cell-7" class="clipboard-copy-txt">RV = A*v_phot + B*v_conv + RV0
 
 component_df["rv_model"] = RV
 component_df.to_csv(csv_file, index=False)

@@ -264,7 +264,7 @@ def get_limb_coeff(mu, u2_interp, v2_interp):
     # get valid indices
     use_indices = np.logical_and(mu > 0, mu != np.nan)
 
-    # get u2 values -- TODO: this is super slowwww
+    # get u2 values
     u2 = np.zeros(mu.shape)
     u2[use_indices] = [u2_interp[np.absolute(mu - mu).argmin()] for mu in mu[use_indices]]
 

@@ -96,7 +96,6 @@ def animate(i, fig, axs, aia):
 
 def plot_image(los_image, nfig=None, cmap='gray', title=None):
     """
-    # TODO: this needs to be updated to work with corrected maps
     function to plot AIA los disk images
 
     Parameters

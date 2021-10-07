@@ -356,7 +356,7 @@ def image_grid_to_cr(x, y, R0=1.01, obsv_lat=0, obsv_lon=0, outside_map_val=np.n
     ----------
     x: array of helioprojective cartesian x values
     y: array of helioprojective cartesian y values
-    R0: observation radius  # TODO: determine the correct R0 value to use -- rsun1 = mag_map_rot.meta['rsun_obs'] * 760e3 / mag_map_rot.meta['rsun_ref']
+    R0: observation radius
     obsv_lon: longitude of observing telescope
     obsv_lat: latitude of observing telescope
     outside_map_val: value for array elements outside of the solar limb
@@ -404,7 +404,7 @@ def image_grid_to_cr(x, y, R0=1.01, obsv_lat=0, obsv_lon=0, outside_map_val=np.n
     cr_phi = np.arctan2(map3D_coord[1, :], map3D_coord[0, :])
     cr_r = np.sqrt(map3D_coord[0, :] ** 2 + map3D_coord[1, :] ** 2 + map3D_coord[2, :] ** 2)
 
-    # Change phi range from [-pi,pi] to [0,2pi] -- TODO: i no longer think this should be done
+    # Change phi range from [-pi,pi] to [0,2pi]
     # neg_phi = cr_phi < 0
     # cr_phi[neg_phi] = cr_phi[neg_phi] + 2 * np.pi
 
