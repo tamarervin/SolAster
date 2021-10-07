@@ -11,7 +11,7 @@ an active region based magnetic weighting array. A weight of 0 denotes quiet-Sun
 1 denotes active pixel.
 
 The equation for this velocity calculation is:
-$v_{phot} = \frac{\sum_{ij} (v_{ij} - \delta v_{sc, ij})(I_{ij} - K) W_{ij}}
+$v_{phot} = \frac{\sum_{ij} v_{rot, ij} (I_{ij} - K) W_{ij}}
  {\sum_{ij} I_{ij}}$.
 
 K is a scaling factor based off the limb-brightening correction.
@@ -25,7 +25,7 @@ just faculae/network or sunspot regions.
 ```python
 def v_phot(quiet, active, Lij, vrot, imap, mu, fac_inds, spot_inds, mu_cutoff=0.3):
     """
-    function to calculate photometic velocity due to rotational Doppler variation
+    function to calculate photometric velocity due to rotational Doppler variation
 
     Parameters
     ----------
@@ -136,3 +136,5 @@ def v_disc(map_vel_cor, imap):
 
     return v_disc
 ```
+
+

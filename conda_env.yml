@@ -5,7 +5,7 @@ channels:
   - conda-forge
 dependencies:
   # - aiapy
-  # - astropy
+   - astropy
   # - barycorrpy
   # - corner
   # - glob2
@@ -23,7 +23,7 @@ dependencies:
   - python-kaleido
   - scipy
   # - scikit-image
-  # - scikit-learn
+   - scikit-learn
   # - starry
   - sunpy
   # - tensorflow

@@ -1,36 +1,45 @@
-site_name: NEID Solar Analysis
-site_description: NEID Solar Data Analysis Documentation
+site_name: SDO HMI RV Pipeline
+site_description: SDO HMI RV Pipeline Documentation
 authors:
     - Tamar Ervin
 
 # repository information
-repo_url: https://github.com/shalverson/NEID_Solar_analysis
+repo_url: https://github.com/tamarervin/sdo_hmi_rvs
 edit_uri: blob/master/mkdocs/docs/
 
 # site navigation
 nav:
   - Home: index.md
-  - SDO Velocities:
-      - HMI Data:
-        - Data Corrections: sdo/data.md
-        - Sunpy Example: sdo/examples/docs_sunpy_example.ipynb
-        - Corrections Example: sdo/examples/docs_solar_corrections.ipynb
-      - Coordinate Transformations: sdo/coords.md
-      - Region Identification: sdo/region.md
-      - Velocity Components: sdo/vel.md
-      - RV Calculation:
-        - Regression Calculation: sdo/rv.md
-        - Calculation Example: sdo/examples/docs_rv_calcs.ipynb
-      - Magnetic Observables: sdo/mag.md
+  - About: about.md
+  - HMI Data:
+    - Aquiring Data: sdo/data.md
+    - Data Corrections: sdo/corr.md
+  - Coordinate Transformations: sdo/coords.md
+  - Region Identification: sdo/region.md
+  - Velocity Components: sdo/vel.md
+  - RV Calculation: sdo/rv.md
+  - Magnetic Observables: sdo/mag.md
+  - Jupyter Examples:
+    - Sunpy Basics: sdo/examples/docs_sunpy_example.ipynb
+    - Component Calculations: sdo/examples/docs_solar_corrections.ipynb
+    - RV Calculation: sdo/examples/docs_rv_calcs.ipynb
+    - Full Pipeline: sdo/examples/docs_full_pipeline.ipynb
 
 # theme
 theme:
   name: material
   language: en
   palette:
-    primary: black
-    accent: black
-  logo: img/neid_logo.png
+    primary: indigo
+    accent: light blue
+  logo: img/sun.png
+  favicon: img/sun.png
+  font:
+    code: Oswald
+  features:
+    - navigation.top
+    - header.autohide
+
 
 # plugins
 plugins:
@@ -43,8 +52,6 @@ plugins:
 markdown_extensions:
   - attr_list
   - admonition
-#  - codehilite:
-#      linenums: true
   - pymdownx.critic
   - pymdownx.mark
   - pymdownx.tabbed
