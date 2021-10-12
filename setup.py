@@ -1,23 +1,14 @@
-import setuptools
+from distutils.core import setup
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
-
-setuptools.setup(
-    name="sdo_hmi_rvs",                     # This is the name of the package
-    version="0.0.1",                        # The initial release version
-    author="Tamar Ervin",                     # Full name of the author
-    description="Python package to independently derive 'sun-as-a-star' radial velocity variations.",
-    long_description=long_description,      # Long description read from the the readme file
-    long_description_content_type="text/markdown",
-    packages=setuptools.find_packages(),    # List of all python modules to be installed
-    classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: Apache Software License",
-        "Operating System :: OS Independent",
-    ],                                      # Information to filter the project on PyPi website
-    python_requires='>=3.8',                # Minimum version requirement of the package
-    py_modules=["sdo_hmi_rvs"],             # Name of the python package
-    package_dir={'':'sdo_hmi_rvs/tools'},     # Directory of the source code of the package
-    install_requires=[]                     # Install other dependencies if any
+setup(
+    name = 'sdo_hmi_rvs',
+    packages = ['sdo_hmi_rvs'],
+    version = '0.0.1',  # Ideally should be same as your GitHub release tag varsion
+    description = "Python package to independently derive 'sun-as-a-star' radial velocity variations.",
+    author = 'Tamar Ervin',
+    author_email = 'tamarervin@gmail.com',
+    url = 'github package source url',
+    download_url = 'download link you saved',
+    keywords = ['tag1', 'tag2'],
+    classifiers = [],
 )
