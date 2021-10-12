@@ -16,7 +16,7 @@
     
     
       
-        <title>Coordinate Transformations - SDO HMI RV Pipeline</title>
+        <title>Full Pipeline - SDO HMI RV Pipeline</title>
       
     
     
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#coordinate-transformations" class="md-skip">
+        <a href="#full-pipeline" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Coordinate Transformations
+              Full Pipeline
             
           </span>
         </div>
@@ -300,65 +300,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Coordinate Transformations
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../coords/" class="md-nav__link">
         Coordinate Transformations
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#pixel-array-computation" class="md-nav__link">
-    Pixel Array Computation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#coordinate-transform" class="md-nav__link">
-    Coordinate Transform
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fix-mu-values" class="md-nav__link">
-    Fix Mu Values
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -429,11 +375,65 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../pipeline/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Full Pipeline
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Full Pipeline
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#inputs" class="md-nav__link">
+    Inputs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    Example usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function" class="md-nav__link">
+    Function
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -554,22 +554,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pixel-array-computation" class="md-nav__link">
-    Pixel Array Computation
+  <a href="#inputs" class="md-nav__link">
+    Inputs
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#coordinate-transform" class="md-nav__link">
-    Coordinate Transform
+  <a href="#example-usage" class="md-nav__link">
+    Example usage
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#fix-mu-values" class="md-nav__link">
-    Fix Mu Values
+  <a href="#function" class="md-nav__link">
+    Function
   </a>
   
 </li>
@@ -586,143 +586,246 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/tamarervin/sdo_hmi_rvs/blob/master/mkdocs/docs/sdo/coords.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/tamarervin/sdo_hmi_rvs/blob/master/mkdocs/docs/sdo/pipeline.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="coordinate-transformations">Coordinate Transformations</h1>
-<p>SDO/HMI Data Products are returned in Helioprojective Cartesian pixel coordinates. In 
-order to calculate the spacecraft and solar rotation velocity corrections, we need to
-convert this to the Heliographic Carrington Coordinate System (sun centered coordinate system). 
-In addition to being sun-centered, Heliographic Carrington coordinates also rotate with
-respect to the Carrington rotation period. Transformations are based off Thompson (2006). </p>
-<p>Coordinate functions are <a href="https://github.com/tamarervin/sdo_hmi_rvs/blob/main/sdo_hmi_rvs/tools/coord_funcs.py">here</a>.</p>
-<h2 id="pixel-array-computation">Pixel Array Computation</h2>
-<p>The first step in the coordinate transformation is computation of the pixel-wise
-coordinate arrays with respect to solar center. We do this by taking into account the
-reference pixels from the header file. </p>
-<p>We then calculate the array of <span class="arithmatex"><span class="MathJax_Preview">\mu</span><script type="math/tex">\mu</script></span> and radius values for that image, where <span class="arithmatex"><span class="MathJax_Preview">\mu = cos(\theta)</span><script type="math/tex">\mu = cos(\theta)</script></span>. 
-First, we determine pixel size in physical coordinates (solar radii) and then calculate
-the center-to-limb angles. We get the radius by determining the distance in solar radii 
-to each pixel. </p>
-<pre><code class="language-python">def coordinates(smap):
-    &quot;&quot;&quot;
-    calculate array of mu values and cartesian
-    coordinates for image
-
-    Parameters
-    ----------
-    smap: Sunpy map object
-
-    Returns
-    -------
-    x: array of x coordinates in helioprojective cartesian system
-    y: array of y coordinates in helioprojective cartesian system
-    pd: array of pixel distances
-    r: array of solar radius values
-    d: observer distance from sun in solar radii
-    mu: array of mu values
-
-
-    &quot;&quot;&quot;
-
-    # distance of observer to sun in solar radii
-    d = smap.fits_header['DSUN_OBS'] / smap.fits_header['RSUN_REF']
-
-    # focal length in pixels
-    f = 180. * 3600. / np.pi / smap.fits_header['CDELT1']
-
-    # get cartesian x, y map scales
-    x, y = get_map_scales(smap)
-
-    # distance (in pixels) to pixel
-    pd = np.sqrt(x ** 2 + y ** 2)
-
-    # distance (in solar r) to pixel
-    pr = f * f * pd * pd + pd ** 4 - d * d * pd ** 4 + 0.J
-    r = (d * f * pd - np.sqrt(pr)) / (f * f + pd * pd)
-
-    # separate complex parts
-    r = r.real
-
-    # get mu array
-    pr = 1 - r ** 2 + 0.J
-    cos_alpha = (np.sqrt(pr)).real
-    sin_alpha = r.real
-    cos_theta = ((d - np.sqrt(pr)) / np.sqrt(r ** 2 + (d - np.sqrt(pr)) ** 2)).real
-    sin_theta = (np.sqrt(1 - cos_theta ** 2)).real
-    mu = cos_alpha * cos_theta - sin_alpha * sin_theta
-
-    return x, y, pd, r, d, mu
+                <h1 id="full-pipeline">Full Pipeline</h1>
+<h2 id="inputs">Inputs</h2>
+<ul>
+<li>start_date: start date of RV calculations  </li>
+<li>end_date: end date of RV calculations  </li>
+<li>cadence: how often you want to calculate </li>
+<li>csv_name: file name to save calculations  </li>
+</ul>
+<h2 id="example-usage">Example usage</h2>
+<pre><code class="language-python">start_date = datetime.datetime(2021, 8, 26, 8, 00, 0)
+end_date = datetime.datetime(2021, 9, 3, 0, 00, 0)
+cadence = 24*3600
+csv_name = 'csv_name'
+component_calc(start_date, end_date, cadence, csv_name)
 </code></pre>
-<h2 id="coordinate-transform">Coordinate Transform</h2>
-<p>We are able to apply the coordinate transformation based on a calculated rotation 
-matrix. We get an array of coordinates in the westward, northward, and radial direction. </p>
-<pre><code class="language-python">def vel_coords(x, y, pd, r, smap):
+<h2 id="function">Function</h2>
+<pre><code class="language-python">def component_calc(start_date, end_date, cadence, csv_name=None):
     &quot;&quot;&quot;
-    calculate coordinate transformation to heliographic Carrington coordinates
+    function to calculate rv components using pipeline functions
 
     Parameters
     ----------
-    x: array of x coordinates in helioprojective cartesian system
-    y: array of y coordinates in helioprojective cartesian system
-    pd: array of pixel distances
-    r: array of solar radius values
-    smap: Sunpy map object
+    start_date: start date of RV calculations
+    end_date: end date of RV calculations
+    cadence: how often to calculate RV components
+    csv_name: name of file to store calculations in
 
     Returns
     -------
-    wij: array of pixel coordinates relative to solar center in westward direction
-    nij: array of pixel coordinates relative to solar center in northward direction
-    rij: array of pixel coordinates relative to solar center in radial direction
 
     &quot;&quot;&quot;
 
-    head = smap.fits_header
-    crota2 = head['CROTA2']  # deg
+    # create file names
+    if csv_name is None:
+        csv_name = str(start_date)
+    csv_name = os.path.join(CsvDir.CALC, csv_name + '.csv')
+    bad_dates_csv = os.path.join(CsvDir.CALC, csv_name + '_bad_dates.csv')
 
-    # transform each pixel to get into Heliographic CR Coordinates
-    dw = y * np.sin(np.deg2rad(crota2)) + x * np.cos(np.deg2rad(crota2))
-    dn = y * np.cos(np.deg2rad(crota2)) - x * np.sin(np.deg2rad(crota2))
+    # print out csv title
+    print(&quot;Beginning calculation of values for csv file: &quot; + csv_name)
 
-    # get cartesian coordinates for velocity calculations
-    pr = 1 - r ** 2 + 0.J
-    wij = r * dw / pd
-    nij = r * dn / pd
-    rij = (np.sqrt(pr)).real
+    # List of header strings
+    row_contents = ['date_obs', 'date_jd', 'v_quiet', 'v_disc', 'v_phot', 'v_conv', 'f_bright', 'f_spot', 'f', 'Bobs',
+                    'vphot_bright', 'vphot_spot', 'f_small', 'f_large', 'f_network', 'f_plage', 'f_nonconv',
+                    'quiet_flux', 'ar_flux', 'conv_flux', 'pol_flux', 'pol_conv_flux', 'vconv_quiet', 'vconv_large',
+                    'vconv_small']
 
-    return wij, nij, rij
-</code></pre>
-<h2 id="fix-mu-values">Fix Mu Values</h2>
-<p>Lastly, we remove all pixels with mu values less than 0.1 because our limb-brightening model
-does poorly in correcting near the edge of the Solar disk. </p>
-<pre><code class="language-python">def fix_mu(mu, smaps, mu_cutoff=0.3):
-    &quot;&quot;&quot;
-    function to remove pixel values where mu is less than 0.1
+    # Append a list as new line to an old csv file
+    utils.append_list_as_row(csv_name, row_contents)
 
-    Parameters
-    ----------
-    mu: cosine of the center to limb angle
-    smaps: list of Sunpy map object
-    mu_cutoff: minimum mu cutoff value
+    # get hmi data products
+    time_range = datetime.timedelta(seconds=22)
+    physobs_list = [a.Physobs.los_velocity, a.Physobs.los_magnetic_field, a.Physobs.intensity]
 
-    Returns
-    -------
-    mu: corrected cosine of the center to limb angle
-    smap: corrected Sunpy map object
+    # get dates list
+    xy = (end_date - start_date).seconds + (end_date - start_date).days * 24 * 3600
+    dates_list = [start_date + datetime.timedelta(seconds=cadence * x) for x in range(0, int(xy / cadence))]
 
-    &quot;&quot;&quot;
+    for i, date in enumerate(dates_list):
+        # convert the date to a string -- required for use in csv file
+        date_str, date_obj, date_jd = utils.get_dates(date)
 
-    # remove pixel values where mu &lt; mu_cut (0.3)
-    bad_inds = np.where(mu &lt;= mu_cutoff)
+        # pull image within specified time range
+        result = Fido.search(a.Time(str(date_obj - time_range), str(date_obj + time_range)),
+                             a.Instrument.hmi, physobs_list[0] | physobs_list[1] | physobs_list[2])
 
-    # fix arrays
-    for smap in smaps:
-        smap.data[bad_inds] = 0
+        # add file to list
+        file_download = Fido.fetch(result)
 
-    return smaps
+        # remove unusable file types
+        good_files = []
+        for file in file_download:
+            name, extension = os.path.splitext(file)
+            if extension == '.fits':
+                good_files.append(file)
 
+        if len(good_files) != 3:
+            # append these values to the csv file
+            save_vals = [date_str, 'not three good files']
+            utils.append_list_as_row(bad_dates_csv, save_vals)
+            # print that the files are missing
+            print('\nNot three good files: ' + date_str + ' index: ' + str(i))
+
+            pass
+        else:
+            # convert to map sequence
+            map_seq = sunpy.map.Map(sorted(good_files))
+
+            # check for missing data types
+            missing_map = False
+            # split into data types
+            for j, map_obj in enumerate(map_seq):
+                if map_obj.meta['content'] == 'DOPPLERGRAM':
+                    vmap = map_obj
+                elif map_obj.meta['content'] == 'MAGNETOGRAM':
+                    mmap = map_obj
+                elif map_obj.meta['content'] == 'CONTINUUM INTENSITY':
+                    imap = map_obj
+                else:
+                    missing_map = True
+
+            if missing_map:
+                print(&quot;Missing a data product for &quot; + date_str)
+
+                # add the data
+                # append these values to the csv file
+                save_vals = [date_str, 'missing data product']
+                utils.append_list_as_row(bad_dates_csv, save_vals)
+                pass
+
+            else:
+                # coordinate transformation for maps
+                x, y, pd, r, d, mu = ctfuncs.coordinates(vmap)
+                wij, nij, rij = ctfuncs.vel_coords(x, y, pd, r, vmap)
+
+                # remove bad mu values
+                vmap, mmap, imap = ctfuncs.fix_mu(mu, [vmap, mmap, imap])
+
+                # calculate relative positions
+                deltaw, deltan, deltar, dij = sfuncs.rel_positions(wij, nij, rij, vmap)
+
+                # calculate spacecraft velocity
+                vsc = sfuncs.spacecraft_vel(deltaw, deltan, deltar, dij, vmap)
+
+                # optimized solar rotation parameters
+                a1 = 14.713
+                a2 = -2.396
+                a3 = -1.787
+                a_parameters = [a1, a2, a3]
+
+                # calculation of solar rotation velocity
+                vrot = sfuncs.solar_rot_vel(wij, nij, rij, deltaw, deltan, deltar, dij, vmap, a_parameters)
+
+                # calculate corrected velocity
+                corrected_vel = vmap.data - np.real(vsc) - np.real(vrot)
+
+                # corrected velocity maps
+                map_vel_cor = sfuncs.corrected_map(corrected_vel, vmap, map_type='Corrected-Dopplergram',
+                                            frame=frames.HeliographicCarrington)
+
+                # limb brightening
+                Lij = lbfuncs.limb_polynomial(imap)
+
+                # calculate corrected data
+                Iflat = imap.data / Lij
+
+                # corrected intensity maps
+                map_int_cor = sfuncs.corrected_map(Iflat, imap, map_type='Corrected-Intensitygram',
+                                            frame=frames.HeliographicCarrington)
+
+                # magnetic noise level
+                B_noise = 8
+
+                # calculate unsigned field strength
+                Bobs, Br = sfuncs.mag_field(mu, mmap, B_noise)
+
+                # corrected observed magnetic data map
+                map_mag_obs = sfuncs.corrected_map(Bobs, mmap, map_type='Corrected-Magnetogram',
+                                            frame=frames.HeliographicCarrington)
+
+
+                ### calculate magnetic threshold
+                # magnetic threshold value (G) from Yeo et. al. 2013
+                Br_cutoff = 24
+                # mu cutoff value
+                mu_cutoff = 0.3
+
+                # calculate magnetic threshold
+                active, quiet = sfuncs.mag_thresh(mu, mmap, Br_cutoff=Br_cutoff, mu_cutoff=mu_cutoff)
+
+                # calculate intensity threshold
+                fac_inds, spot_inds = sfuncs.int_thresh(map_int_cor, active, quiet)
+
+                # create threshold array
+                thresh_arr = sfuncs.thresh_map(fac_inds, spot_inds)
+
+                # full threshold maps
+                map_full_thresh = sfuncs.corrected_map(thresh_arr, mmap, map_type='Threshold',
+                                                frame=frames.HeliographicCarrington)
+
+                ### velocity contribution due to convective motion of quiet-Sun
+                v_quiet = v_quiet(map_vel_cor, imap, quiet)
+
+                ### velocity contribution due to rotational Doppler imbalance of active regions (faculae/sunspots)
+                # calculate photospheric velocity
+                v_phot, vphot_bright, vphot_spot = v_phot(quiet, active, Lij, vrot, imap, mu, fac_inds,
+                                                          spot_inds)
+
+                ### velocity contribution due to suppression of convective blueshift by active regions
+                # calculate disc-averaged velocity
+                v_disc = v_disc(map_vel_cor, imap)
+
+                # calculate convective velocity
+                v_conv = v_disc - v_quiet
+
+                ### filling factor
+                # calculate filling factor
+                f_bright, f_spot, f = sfuncs.filling_factor(mu, mmap, active, fac_inds, spot_inds)
+
+                ### unsigned magnetic flux
+                # unsigned observed flux
+                unsigned_obs_flux = sfuncs.unsigned_flux(map_mag_obs, imap)
+
+                ### calculate the area filling factor
+                pixA_hem = ctfuncs.pix_area_hem(wij, nij, rij, vmap)
+                area = sfuncs.area_calc(active, pixA_hem)
+                f_small, f_large, f_network, f_plage, f_nonconv =sfuncs.area_filling_factor(active, area, mu, mmap,
+                                                                                      fac_inds)
+
+                ### get the unsigned flux
+                quiet_flux, ar_flux, conv_flux, pol_flux, pol_conv_flux = sfuncs.area_unsigned_flux(map_mag_obs, imap,
+                                                                                             area,
+                                                                                             active)
+
+                ### get area weighted convective velocities
+                vconv_quiet, vconv_large, vconv_small = sfuncs.area_vconv(map_vel_cor, imap, active, area)
+
+                # make array of what we want to save
+                save_vals = [v_quiet, v_disc, v_phot, v_conv, f_bright, f_spot, f, unsigned_obs_flux, vphot_bright,
+                             vphot_spot, f_small, f_large, f_network, f_plage, f_nonconv, quiet_flux, ar_flux,
+                             conv_flux, pol_flux, pol_conv_flux, vconv_quiet, vconv_large, vconv_small]
+
+                # round stuff
+                rounded = np.around(save_vals, 3)
+                round_vals = [date_str, date_jd]
+                for val in rounded:
+                    round_vals.append(val)
+
+                # append these values to the csv file
+                utils.append_list_as_row(csv_name, round_vals)
+
+                # print that the date is completed
+                print('\nCalculations and save to file complete for ' + date_str + ' index: ' + str(i))
+
+    print('Calculation complete for dates:', start_date, 'to', end_date)
 </code></pre>
                 
               
@@ -748,7 +851,7 @@ does poorly in correcting near the edge of the Solar disk. </p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../corr/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Data Corrections" rel="prev">
+        <a href="../mag/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Magnetic Observables" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -757,20 +860,20 @@ does poorly in correcting near the edge of the Solar disk. </p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Data Corrections
+              Magnetic Observables
             </div>
           </div>
         </a>
       
       
         
-        <a href="../region/" class="md-footer__link md-footer__link--next" aria-label="Next: Region Identification" rel="next">
+        <a href="../examples/docs_sunpy_example/" class="md-footer__link md-footer__link--next" aria-label="Next: Sunpy Basics" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Region Identification
+              Sunpy Basics
             </div>
           </div>
           <div class="md-footer__button md-icon">
