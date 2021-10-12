@@ -19,7 +19,7 @@ import sdo_hmi_rvs.tools.calculation_funcs as sfuncs
 import sdo_hmi_rvs.tools.lbc_funcs as lbfuncs
 import sdo_hmi_rvs.tools.coord_funcs as ctfuncs
 import sdo_hmi_rvs.tools.utilities as utils
-from sdo_hmi_rvs.tools.settings import CsvDir
+from sdo_hmi_rvs.tools.settings_tamar import CsvDir
 
 
 def component_calc(start_date, end_date, cadence, csv_name=None):

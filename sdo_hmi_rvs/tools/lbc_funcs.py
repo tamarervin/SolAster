@@ -130,147 +130,147 @@ def limb_polynomial(imap):
 
 ### defunct
 
-def get_dict(dict_name):
-    """
-    function to return the correct dictionary of coefficient values
-
-    Parameters
-    ----------
-    dict_name: name of the coefficient dictionary you want
-
-    Returns
-    -------
-    dict: coefficient dictionary of choosing
-
-    """
-
-    if dict_name == 'u2_coeff':
-        return u2_coeff
-    elif dict_name == 'v2_coeff':
-        return v2_coeff
-    else:
-        return limb_bright_coeff
-
-
-limb_bright_coeff = {
-    0.20: [0.12, 0.33],
-    0.22: [-1.3, 1.6],
-    0.245: [-0.1, 0.85],
-    0.265: [-0.1, 0.20],
-    0.28: [0.38, 0.57],
-    0.30: [0.74, 0.20],
-    0.32: [0.88, 0.03],
-    0.35: [0.98, -0.10],
-    0.37: [1.03, -0.16],
-    0.38: [0.92, -0.05],
-    0.40: [0.91, -0.05],
-    0.45: [0.99, -0.17],
-    0.50: [0.97, -0.22],
-    0.55: [0.93, -0.23],
-    0.60: [0.88, -0.23],
-    0.80: [0.73, -0.22],
-    1.00: [0.64, -0.20],
-    1.5: [0.57, -0.21]
-}
-
-u2_coeff = {
-    0.20: 0.12,
-    0.22: -1.3,
-    0.245: -0.1,
-    0.265: -0.1,
-    0.28: 0.38,
-    0.30: 0.74,
-    0.32: 0.88,
-    0.35: 0.98,
-    0.37: 1.03,
-    0.38: 0.92,
-    0.40: 0.91,
-    0.45: 0.99,
-    0.50: 0.97,
-    0.55: 0.93,
-    0.60: 0.88,
-    0.80: 0.73,
-    1.00: 0.64,
-}
-
-v2_coeff = {
-    0.20: 0.33,
-    0.22: 1.6,
-    0.245: 0.85,
-    0.265: 0.20,
-    0.28: 0.57,
-    0.30: 0.20,
-    0.32: 0.03,
-    0.35: -0.10,
-    0.37: -0.16,
-    0.38: -0.05,
-    0.40: -0.05,
-    0.45: -0.17,
-    0.50: -0.22,
-    0.55: -0.23,
-    0.60: -0.23,
-    0.80: -0.22,
-    1.00: -0.2,
-}
-
-
-def interp_coeff_vals():
-    """
-    function to interpolate limb-brightening coefficient values
-
-    Returns
-    -------
-    u2_interp: interpolated u2 coefficient values
-    v2_interp: interpolated v2 coefficient values
-
-    """
-    # get coefficient lists
-    u2_coeff = get_dict('u2_coeff')
-    v2_coeff = get_dict('v2_coeff')
-
-    # get lists of mu, u2, and v2 values
-    mu_list = list(u2_coeff.keys())
-    u2_values = list(u2_coeff.values())
-    v2_values = list(v2_coeff.values())
-    mu_values = np.arange(0, 1, 0.01).tolist()
-
-    # interpolate values from dictionary
-    u2_interp1d = interp1d(mu_list, u2_values, fill_value='extrapolate')
-    u2_interp = u2_interp1d(mu_values)
-    v2_interp1d = interp1d(mu_list, v2_values, fill_value='extrapolate')
-    v2_interp = v2_interp1d(mu_values)
-
-    return u2_interp, v2_interp
-
-
-def get_limb_coeff(mu, u2_interp, v2_interp):
-
-    """
-    function to get limb darkening coefficients (Allen 1973) based on mu value
-
-    Parameters
-    ----------
-    mu: array of mu values (cos theta)
-    u2_interp: interpolated u2 coefficient values
-    v2_interp: interpolated v2 coefficient values
-
-    Returns
-    -------
-    u2: limb darkening coefficient array u2
-    v2: limb darkening coefficient array  v2
-
-    """
-
-    # get valid indices
-    use_indices = np.logical_and(mu > 0, mu != np.nan)
-
-    # get u2 values
-    u2 = np.zeros(mu.shape)
-    u2[use_indices] = [u2_interp[np.absolute(mu - mu).argmin()] for mu in mu[use_indices]]
-
-    # get v2 values
-    v2 = np.zeros(mu.shape)
-    v2[use_indices] = [v2_interp[np.absolute(mu - mu).argmin()] for mu in mu[use_indices]]
-
-    return u2, v2
+# def get_dict(dict_name):
+#     """
+#     function to return the correct dictionary of coefficient values
+#
+#     Parameters
+#     ----------
+#     dict_name: name of the coefficient dictionary you want
+#
+#     Returns
+#     -------
+#     dict: coefficient dictionary of choosing
+#
+#     """
+#
+#     if dict_name == 'u2_coeff':
+#         return u2_coeff
+#     elif dict_name == 'v2_coeff':
+#         return v2_coeff
+#     else:
+#         return limb_bright_coeff
+#
+#
+# limb_bright_coeff = {
+#     0.20: [0.12, 0.33],
+#     0.22: [-1.3, 1.6],
+#     0.245: [-0.1, 0.85],
+#     0.265: [-0.1, 0.20],
+#     0.28: [0.38, 0.57],
+#     0.30: [0.74, 0.20],
+#     0.32: [0.88, 0.03],
+#     0.35: [0.98, -0.10],
+#     0.37: [1.03, -0.16],
+#     0.38: [0.92, -0.05],
+#     0.40: [0.91, -0.05],
+#     0.45: [0.99, -0.17],
+#     0.50: [0.97, -0.22],
+#     0.55: [0.93, -0.23],
+#     0.60: [0.88, -0.23],
+#     0.80: [0.73, -0.22],
+#     1.00: [0.64, -0.20],
+#     1.5: [0.57, -0.21]
+# }
+#
+# u2_coeff = {
+#     0.20: 0.12,
+#     0.22: -1.3,
+#     0.245: -0.1,
+#     0.265: -0.1,
+#     0.28: 0.38,
+#     0.30: 0.74,
+#     0.32: 0.88,
+#     0.35: 0.98,
+#     0.37: 1.03,
+#     0.38: 0.92,
+#     0.40: 0.91,
+#     0.45: 0.99,
+#     0.50: 0.97,
+#     0.55: 0.93,
+#     0.60: 0.88,
+#     0.80: 0.73,
+#     1.00: 0.64,
+# }
+#
+# v2_coeff = {
+#     0.20: 0.33,
+#     0.22: 1.6,
+#     0.245: 0.85,
+#     0.265: 0.20,
+#     0.28: 0.57,
+#     0.30: 0.20,
+#     0.32: 0.03,
+#     0.35: -0.10,
+#     0.37: -0.16,
+#     0.38: -0.05,
+#     0.40: -0.05,
+#     0.45: -0.17,
+#     0.50: -0.22,
+#     0.55: -0.23,
+#     0.60: -0.23,
+#     0.80: -0.22,
+#     1.00: -0.2,
+# }
+#
+#
+# def interp_coeff_vals():
+#     """
+#     function to interpolate limb-brightening coefficient values
+#
+#     Returns
+#     -------
+#     u2_interp: interpolated u2 coefficient values
+#     v2_interp: interpolated v2 coefficient values
+#
+#     """
+#     # get coefficient lists
+#     u2_coeff = get_dict('u2_coeff')
+#     v2_coeff = get_dict('v2_coeff')
+#
+#     # get lists of mu, u2, and v2 values
+#     mu_list = list(u2_coeff.keys())
+#     u2_values = list(u2_coeff.values())
+#     v2_values = list(v2_coeff.values())
+#     mu_values = np.arange(0, 1, 0.01).tolist()
+#
+#     # interpolate values from dictionary
+#     u2_interp1d = interp1d(mu_list, u2_values, fill_value='extrapolate')
+#     u2_interp = u2_interp1d(mu_values)
+#     v2_interp1d = interp1d(mu_list, v2_values, fill_value='extrapolate')
+#     v2_interp = v2_interp1d(mu_values)
+#
+#     return u2_interp, v2_interp
+#
+#
+# def get_limb_coeff(mu, u2_interp, v2_interp):
+#
+#     """
+#     function to get limb darkening coefficients (Allen 1973) based on mu value
+#
+#     Parameters
+#     ----------
+#     mu: array of mu values (cos theta)
+#     u2_interp: interpolated u2 coefficient values
+#     v2_interp: interpolated v2 coefficient values
+#
+#     Returns
+#     -------
+#     u2: limb darkening coefficient array u2
+#     v2: limb darkening coefficient array  v2
+#
+#     """
+#
+#     # get valid indices
+#     use_indices = np.logical_and(mu > 0, mu != np.nan)
+#
+#     # get u2 values
+#     u2 = np.zeros(mu.shape)
+#     u2[use_indices] = [u2_interp[np.absolute(mu - mu).argmin()] for mu in mu[use_indices]]
+#
+#     # get v2 values
+#     v2 = np.zeros(mu.shape)
+#     v2[use_indices] = [v2_interp[np.absolute(mu - mu).argmin()] for mu in mu[use_indices]]
+#
+#     return u2, v2
 
