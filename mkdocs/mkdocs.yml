@@ -19,6 +19,7 @@ nav:
   - Velocity Components: sdo/vel.md
   - RV Calculation: sdo/rv.md
   - Magnetic Observables: sdo/mag.md
+  - Full Pipeline: sdo/pipeline.md
   - Jupyter Examples:
     - Sunpy Basics: sdo/examples/docs_sunpy_example.ipynb
     - Component Calculations: sdo/examples/docs_solar_corrections.ipynb

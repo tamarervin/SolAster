@@ -6,7 +6,7 @@ convert this to the Heliographic Carrington Coordinate System (sun centered coor
 In addition to being sun-centered, Heliographic Carrington coordinates also rotate with
 respect to the Carrington rotation period. Transformations are based off Thompson (2006). 
 
-Coordinate functions are [here](https://github.com/shalverson/NEID_Solar_analysis/blob/master/tamar/tools/coord_funcs.py).
+Coordinate functions are [here](https://github.com/tamarervin/sdo_hmi_rvs/blob/main/sdo_hmi_rvs/tools/coord_funcs.py).
 
 ## Pixel Array Computation
 

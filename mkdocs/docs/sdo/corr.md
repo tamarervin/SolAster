@@ -118,7 +118,7 @@ calculated in Allen's Astrophysical Quantities (1993).
 
 $L_{ij} = 1 - u_2 - v_2 + u_2 cos \theta + v_2 cos^2 \theta$  
 
-The functions for limb-darkening corrections can be found [here](https://github.com/shalverson/NEID_Solar_analysis/blob/master/tamar/tools/lbc_funcs.py).  
+The functions for limb-darkening corrections can be found [here](https://github.com/tamarervin/sdo_hmi_rvs/blob/main/sdo_hmi_rvs/tools/lbc_funcs.py).  
 
 ## Magnetic Field Corrections
 
