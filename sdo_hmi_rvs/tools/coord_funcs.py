@@ -10,8 +10,6 @@ Cartesian to Heliographic Carrington Coordinates.
 import scipy
 import numpy as np
 
-import astropy.units as u
-
 
 def get_map_scales(smap):
     """
@@ -142,7 +140,7 @@ def fix_mu(mu, smaps, mu_cutoff=0.3):
     Returns
     -------
     mu: corrected cosine of the center to limb angle
-    smap: corrected Sunpy map object
+    smaps: corrected Sunpy map objects
 
     """
 

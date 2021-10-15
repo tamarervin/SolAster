@@ -4,11 +4,7 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  # - aiapy
-   - astropy
-  # - barycorrpy
-  # - corner
-  # - glob2
+  - astropy
   - jupyter
   - matplotlib
   - mkdocs
@@ -17,16 +13,11 @@ dependencies:
   - numpy
   - pathlib
   - pandas
-  # - plotly
   - pymdown-extensions
   - python <= 3.8
   - python-kaleido
   - scipy
-  # - scikit-image
-   - scikit-learn
-  # - starry
+  - scikit-learn
   - sunpy
-  # - tensorflow
-  # - tqdm
   - notebook
 

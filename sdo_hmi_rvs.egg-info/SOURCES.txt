@@ -1,0 +1,10 @@
+LICENSE
+MANIFEST.in
+README.md
+README.rst
+setup.cfg
+setup.py
+sdo_hmi_rvs.egg-info/PKG-INFO
+sdo_hmi_rvs.egg-info/SOURCES.txt
+sdo_hmi_rvs.egg-info/dependency_links.txt
+sdo_hmi_rvs.egg-info/top_level.txt

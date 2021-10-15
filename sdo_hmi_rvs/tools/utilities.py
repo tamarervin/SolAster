@@ -72,6 +72,7 @@ def get_dates(date):
     -------
     date_str: UT datetime as string
     date_obj: UT datetime object
+    date_jd: UT datetime as float (JD)
 
     """
     if isinstance(date, str):
@@ -104,6 +105,9 @@ def get_neid_struct_dates(date):
 
     Returns
     -------
+    date_str: date string
+    date_obj: datetime object
+    date_jd: jd date (float)
 
     """
 

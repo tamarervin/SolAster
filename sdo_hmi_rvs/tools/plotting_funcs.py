@@ -100,10 +100,10 @@ def plot_image(los_image, nfig=None, cmap='gray', title=None):
 
     Parameters
     ----------
-    los_image
-    nfig
-    cmap
-    title
+    los_image: 2D line of sight image to plot
+    nfig: figure number
+    cmap: colormap to use
+    title: figure title
 
     Returns
     -------
@@ -439,6 +439,22 @@ def four_correlation_plots(x_list, y_list, title, xlabel_list=None, ylabel_list=
 
 
 def scatter_overlaid_timeseries(x, y_list, title, xlabel, ylabel_list, save_fig=None):
+    """
+    function to overlay scatter plots
+
+    Parameters
+    ----------
+    x: x data to plot
+    y_list: list of y data to plot
+    title: title of plot
+    xlabel: label for x axes
+    ylabel_list: list of labels for y axes
+    save_fig: path to save file, None if not saving
+
+    Returns
+    -------
+
+    """
 
     # plot style
     plot_style = os.path.join(PlotDir.MPL, 'mystyle.mplstyle')

@@ -186,7 +186,7 @@ def corrected_map(corrected_data, smap, map_type, frame=frames.HeliographicCarri
 
     Returns
     -------
-    corrected_map: Sunpy map object with new frame information and corrected data
+    corr_map: Sunpy map object with new frame information and corrected data
 
     """
 
@@ -203,9 +203,9 @@ def corrected_map(corrected_data, smap, map_type, frame=frames.HeliographicCarri
     header['wavelnth'] = smap.meta['wavelnth']
 
     # create new Sunpy map instance with corrected data
-    corrected_map = sunpy.map.Map(corrected_data, header)
+    corr_map = sunpy.map.Map(corrected_data, header)
 
-    return corrected_map
+    return corr_map
 
 
 def mag_field(mu, mmap, B_noise=8, mu_cutoff=0.3):
@@ -604,6 +604,7 @@ def area_unsigned_flux(map_mag_obs, imap, area, active, athresh=20):
     imap: UNCORRECTED Sunpy map object (Intensitygram)
     area: area of each active region weighted by its intensity
     active: weights array where active pixels have weight = 1
+    athresh: area threshold value between large and small regions (in uHem)
 
     Returns
     -------
@@ -637,6 +638,24 @@ def area_unsigned_flux(map_mag_obs, imap, area, active, athresh=20):
 
 
 def area_vconv(map_vel_cor, imap, active, area, athresh=20):
+    """
+    calculate convective velocities for different area thresholds
+
+    Parameters
+    ----------
+    map_vel_cor: corrected (velocities) Sunpy map object (Dopplergram)
+    imap: UNCORRECTED Sunpy map object (Intensitygram)
+    active: weights array where active pixels have weight = 1
+    area: area of each active region weighted by its intensity
+    athresh: area threshold value between large and small regions (in uHem)
+
+    Returns
+    -------
+    vconv_quiet: convective velocity due to quiet-Sun regions
+    vconv_large: convective velocity due to large active regions
+    vconv_small: convective velocity due to small active regions
+
+    """
 
     # get data arrays
     v_data = map_vel_cor.data

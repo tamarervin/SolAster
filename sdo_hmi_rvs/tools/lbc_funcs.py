@@ -9,7 +9,6 @@ use fifth order polynomial and constants from Allen 1973
 """
 
 import numpy as np
-from scipy.interpolate import interp1d
 
 
 def get_u(ll):
@@ -23,6 +22,7 @@ def get_u(ll):
     Returns
     -------
     vl: coefficient v based on wavelength
+
     """
 
     pll = np.array([1.0, ll, ll ** 2, ll ** 3, ll ** 4, ll ** 5])

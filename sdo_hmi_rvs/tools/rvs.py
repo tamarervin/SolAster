@@ -22,7 +22,7 @@ import sdo_hmi_rvs.tools.utilities as utils
 from sdo_hmi_rvs.tools.settings_tamar import CsvDir
 
 
-def component_calc(start_date, end_date, cadence, csv_name=None):
+def rvs(start_date, end_date, cadence, csv_name=None):
     """
     function to calculate rv components using pipeline functions
 
