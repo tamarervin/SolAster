@@ -16,12 +16,12 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='sdo_hmi_rvs',
-    version='0.0.5',
+    version='0.0.6',
     description="Python package to independently derive 'sun-as-a-star' radial velocity variations.",
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/tamarervin/sdo_hmi_rvs',
-    download_url='https://github.com/tamarervin/sdo_hmi_rvs/archive/refs/tags/v0.0.5.tar.gz',
+    download_url='https://github.com/tamarervin/sdo_hmi_rvs/archive/refs/tags/v0.0.6.tar.gz',
     keywords=['RVs', 'Solar'],
     author='Tamar Ervin',
     author_email='tamarervin@gmail.com',
