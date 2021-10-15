@@ -6,6 +6,8 @@ calculation of solar RV components
 
 """
 
+import os
+import sys
 import numpy as np
 
 import matplotlib.pyplot as plt
@@ -17,6 +19,7 @@ from sunpy.net import Fido
 from sunpy.net import attrs as a
 from sunpy.coordinates import frames
 
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../../'))
 import sdo_hmi_rvs.tools.calculation_funcs as sfuncs
 import sdo_hmi_rvs.tools.lbc_funcs as lbfuncs
 import sdo_hmi_rvs.tools.coord_funcs as ctfuncs

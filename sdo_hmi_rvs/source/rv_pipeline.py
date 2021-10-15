@@ -8,6 +8,7 @@ RV calculations for date range
 
 
 import os
+import sys
 
 import time
 import datetime
@@ -18,17 +19,18 @@ from sunpy.net import Fido
 from sunpy.net import attrs as a
 from sunpy.coordinates import frames
 
+sys.path.append(os.path.join(os.path.dirname(__file__),'../../'))
 import sdo_hmi_rvs.tools.calculation_funcs as sfuncs
 import sdo_hmi_rvs.tools.lbc_funcs as lbfuncs
 import sdo_hmi_rvs.tools.coord_funcs as ctfuncs
 import sdo_hmi_rvs.tools.utilities as utils
-from sdo_hmi_rvs.tools.settings_template import CsvDir
+from sdo_hmi_rvs.tools.settings import CsvDir
 
 start_time = time.time()
 
 # name of csv file to store calculations
-csv_name = os.path.join(CsvDir.Calc, 'csv_name')
-bad_dates_csv = os.path.join(CsvDir.Calc, 'bad_dates_csv.csv')
+csv_name = os.path.join(CsvDir.CALC, 'csv_name.csv')
+bad_dates_csv = os.path.join(CsvDir.CALC, 'bad_dates_csv.csv')
 
 # dates and querying cadence
 cadence = 60*60  # querying cadence in seconds

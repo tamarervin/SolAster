@@ -7,20 +7,17 @@ calculating the unsigned magnetic field.
 
 """
 
+import os
+import sys
+
 import numpy as np
-
-import matplotlib.pyplot as plt
-
 import astropy.units as u
-from astropy.coordinates import SkyCoord
 
 import sunpy.map
 from sunpy.net import Fido
 from sunpy.net import attrs as a
-from sunpy.coordinates import frames
 
-from skimage.measure import label, regionprops
-
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../../'))
 import sdo_hmi_rvs.tools.calculation_funcs as sfuncs
 import sdo_hmi_rvs.tools.coord_funcs as ctfuncs
 

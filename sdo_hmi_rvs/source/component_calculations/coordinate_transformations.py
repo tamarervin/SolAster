@@ -9,7 +9,6 @@ solar rotational velocity calculation
 
 import numpy as np
 import datetime
-import astropy.units as u
 from sunpy.net import attrs as a
 import sunpy.map
 from sunpy.net import Fido

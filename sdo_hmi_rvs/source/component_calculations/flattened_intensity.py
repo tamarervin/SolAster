@@ -8,6 +8,8 @@ use fifth order polynomial and constants from Allen 1973
 IDL code here: https://hesperia.gsfc.nasa.gov/ssw/gen/idl/solar/darklimb_correct.pro
 
 """
+import os
+import sys
 
 import astropy.units as u
 
@@ -17,18 +19,17 @@ from sunpy.net import attrs as a
 
 import numpy as np
 
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../../'))
 import sdo_hmi_rvs.tools.coord_funcs as ctfuncs
 
-
 # get magnetograms
-cadence = a.Sample(24*u.hour)  # querying cadence
+cadence = a.Sample(24 * u.hour)  # querying cadence
 start_date = '2021-01-01T12:00:00'  # start date of query
 end_date = '2021-01-05T12:00:00'
 physobs_list = [a.Physobs.los_velocity, a.Physobs.los_magnetic_field, a.Physobs.intensity]
 
 result = Fido.search(a.Time(start_date, end_date),
                      a.Instrument.hmi, physobs_list[0] | physobs_list[1] | physobs_list[2], cadence)
-
 
 # download results
 file_download = Fido.fetch(result)
@@ -153,4 +154,3 @@ Lij = 1.0 - ul - vl + ul * np.cos(np.arcsin(grid)) + vl * np.cos(np.arcsin(grid)
 
 # flatten intensity array
 Iflat = imap.data / Lij
-
