@@ -16,12 +16,12 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='sdo_hmi_rvs',
-    version='0.0.6',
+    version='0.0.5',
     description="Python package to independently derive 'sun-as-a-star' radial velocity variations.",
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/tamarervin/sdo_hmi_rvs',
-    download_url='https://github.com/tamarervin/sdo_hmi_rvs/archive/refs/tags/v0.0.6.tar.gz',
+    download_url='https://github.com/tamarervin/sdo_hmi_rvs/archive/refs/tags/v0.0.5.tar.gz',
     keywords=['RVs', 'Solar'],
     author='Tamar Ervin',
     author_email='tamarervin@gmail.com',
@@ -34,14 +34,14 @@ setup(
               'sdo_hmi_rvs.tools',
               'sdo_hmi_rvs.source',
               'sdo_hmi_rvs.examples',
-              'sdo_hmi_rvs.tools.calculation_funcs',
-              'sdo_hmi_rvs.tools.coord_funcs',
-              'sdo_hmi_rvs.tools.lbc_funcs',
-              'sdo_hmi_rvs.tools.plotting_funcs',
-              'sdo_hmi_rvs.tools.rvs',
-              'sdo_hmi_rvs.tools.settings',
-              'sdo_hmi_rvs.tools.utilities',
-              'sdo_hmi_rvs.tools.settings_template',
+              # 'sdo_hmi_rvs.tools.calculation_funcs',
+              # 'sdo_hmi_rvs.tools.coord_funcs',
+              # 'sdo_hmi_rvs.tools.lbc_funcs',
+              # 'sdo_hmi_rvs.tools.plotting_funcs',
+              # 'sdo_hmi_rvs.tools.rvs',
+              # 'sdo_hmi_rvs.tools.settings',
+              # 'sdo_hmi_rvs.tools.utilities',
+              # 'sdo_hmi_rvs.tools.settings_template',
               ],
 
     package_data={
@@ -64,21 +64,5 @@ setup(
 )
 
 
-# setup(
-#     name='sdo_hmi_rvs',
-#     version='0.0.5',  # Ideally should be same as your GitHub release tag varsion
-#     description="Python package to independently derive 'sun-as-a-star' radial velocity variations.",
-#     author='Tamar Ervin',
-#     author_email='tamarervin@gmail.com',
-#     url='https://github.com/tamarervin/sdo_hmi_rvs',
-#     download_url='https://github.com/tamarervin/sdo_hmi_rvs/archive/refs/tags/v0.0.5.tar.gz',
-#     keywords=['RVs', 'Solar'],
-#     classifiers=[
-#         "Programming Language :: Python :: 3",
-#         "License :: OSI Approved :: Apache Software License",
-#         "Operating System :: OS Independent",
-#     ],
-#     include_package_data=True,
-# )
 
 
