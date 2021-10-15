@@ -18,6 +18,7 @@ dependencies:
   - python-kaleido
   - scipy
   - scikit-learn
+  - scikit-image
   - sunpy
   - notebook
 
