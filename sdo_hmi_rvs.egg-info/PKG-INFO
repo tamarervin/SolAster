@@ -1,12 +1,12 @@
 Metadata-Version: 2.1
 Name: sdo-hmi-rvs
-Version: 0.0.6
+Version: 0.0.7
 Summary: Python package to independently derive 'sun-as-a-star' radial velocity variations.
 Home-page: https://github.com/tamarervin/sdo_hmi_rvs
 Author: Tamar Ervin
 Author-email: tamarervin@gmail.com
 License: UNKNOWN
-Download-URL: https://github.com/tamarervin/sdo_hmi_rvs/archive/refs/tags/v0.0.6.tar.gz
+Download-URL: https://github.com/tamarervin/sdo_hmi_rvs/archive/refs/tags/v0.0.7.tar.gz
 Project-URL: Bug Tracker, https://github.com/tamarervin/sdo_hmi_rvs/issues
 Keywords: RVs,Solar
 Platform: UNKNOWN
