@@ -11,19 +11,19 @@
       
       
       
-      <link rel="icon" href="img/sun.png">
+      <link rel="icon" href="../../img/sun.png">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.1">
     
     
       
-        <title>SDO HMI RV Pipeline</title>
+        <title>Coordinate Transformations - SDO HMI RV Pipeline</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.1c75ef36.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1c75ef36.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
         
           
           
@@ -42,7 +42,7 @@
     
     
     
-      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
     
       
@@ -61,7 +61,7 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="light-blue">
   
     
-    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sdohmi-derived-rvs" class="md-skip">
+        <a href="#coordinate-transformations" class="md-skip">
           Skip to content
         </a>
       
@@ -82,9 +82,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="SDO HMI RV Pipeline" class="md-header__button md-logo" aria-label="SDO HMI RV Pipeline" data-md-component="logo">
+    <a href="../.." title="SDO HMI RV Pipeline" class="md-header__button md-logo" aria-label="SDO HMI RV Pipeline" data-md-component="logo">
       
-  <img src="img/sun.png" alt="logo">
+  <img src="../../img/sun.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Coordinate Transformations
             
           </span>
         </div>
@@ -181,9 +181,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="SDO HMI RV Pipeline" class="md-nav__button md-logo" aria-label="SDO HMI RV Pipeline" data-md-component="logo">
+    <a href="../.." title="SDO HMI RV Pipeline" class="md-nav__button md-logo" aria-label="SDO HMI RV Pipeline" data-md-component="logo">
       
-  <img src="img/sun.png" alt="logo">
+  <img src="../../img/sun.png" alt="logo">
 
     </a>
     SDO HMI RV Pipeline
@@ -210,21 +210,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         Home
       </a>
-      
     </li>
   
 
@@ -237,7 +227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="about/" class="md-nav__link">
+      <a href="../../about/" class="md-nav__link">
         About
       </a>
     </li>
@@ -278,7 +268,7 @@
   
   
     <li class="md-nav__item">
-      <a href="data/data/" class="md-nav__link">
+      <a href="../../data/data/" class="md-nav__link">
         Aquiring Data
       </a>
     </li>
@@ -292,7 +282,7 @@
   
   
     <li class="md-nav__item">
-      <a href="data/corr/" class="md-nav__link">
+      <a href="../../data/corr/" class="md-nav__link">
         Data Corrections
       </a>
     </li>
@@ -312,11 +302,65 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="calcs/coords/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Coordinate Transformations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Coordinate Transformations
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pixel-array-computation" class="md-nav__link">
+    Pixel Array Computation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coordinate-transform" class="md-nav__link">
+    Coordinate Transform
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fix-mu-values" class="md-nav__link">
+    Fix Mu Values
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -329,7 +373,7 @@
   
   
     <li class="md-nav__item">
-      <a href="calcs/region/" class="md-nav__link">
+      <a href="../region/" class="md-nav__link">
         Region Identification
       </a>
     </li>
@@ -344,7 +388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="calcs/vel/" class="md-nav__link">
+      <a href="../vel/" class="md-nav__link">
         Velocity Components
       </a>
     </li>
@@ -359,7 +403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="calcs/rv/" class="md-nav__link">
+      <a href="../rv/" class="md-nav__link">
         RV Calculation
       </a>
     </li>
@@ -374,7 +418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="calcs/mag/" class="md-nav__link">
+      <a href="../mag/" class="md-nav__link">
         Magnetic Observables
       </a>
     </li>
@@ -389,7 +433,7 @@
   
   
     <li class="md-nav__item">
-      <a href="package/pipeline/" class="md-nav__link">
+      <a href="../../package/pipeline/" class="md-nav__link">
         Full Pipeline
       </a>
     </li>
@@ -430,7 +474,7 @@
   
   
     <li class="md-nav__item">
-      <a href="package/coord_funcs/" class="md-nav__link">
+      <a href="../../package/coord_funcs/" class="md-nav__link">
         Coordinate Transformations
       </a>
     </li>
@@ -444,7 +488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="package/lbc_funcs/" class="md-nav__link">
+      <a href="../../package/lbc_funcs/" class="md-nav__link">
         Limb-Brightening Correction
       </a>
     </li>
@@ -458,7 +502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="package/calculation_funcs/" class="md-nav__link">
+      <a href="../../package/calculation_funcs/" class="md-nav__link">
         Calculation Functions
       </a>
     </li>
@@ -472,7 +516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="package/rvs/" class="md-nav__link">
+      <a href="../../package/rvs/" class="md-nav__link">
         RV Calculations
       </a>
     </li>
@@ -486,7 +530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="package/plotting_funcs/" class="md-nav__link">
+      <a href="../../package/plotting_funcs/" class="md-nav__link">
         Plotting Functions
       </a>
     </li>
@@ -500,7 +544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="package/settings/" class="md-nav__link">
+      <a href="../../package/settings/" class="md-nav__link">
         Settings
       </a>
     </li>
@@ -548,7 +592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="examples/docs_sunpy_example/" class="md-nav__link">
+      <a href="../../examples/docs_sunpy_example/" class="md-nav__link">
         Sunpy Basics
       </a>
     </li>
@@ -562,7 +606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="examples/docs_solar_corrections/" class="md-nav__link">
+      <a href="../../examples/docs_solar_corrections/" class="md-nav__link">
         Component Calculations
       </a>
     </li>
@@ -576,7 +620,7 @@
   
   
     <li class="md-nav__item">
-      <a href="examples/docs_rv_calcs/" class="md-nav__link">
+      <a href="../../examples/docs_rv_calcs/" class="md-nav__link">
         RV Calculation
       </a>
     </li>
@@ -590,7 +634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="examples/docs_full_pipeline/" class="md-nav__link">
+      <a href="../../examples/docs_full_pipeline/" class="md-nav__link">
         Full Pipeline
       </a>
     </li>
@@ -623,6 +667,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pixel-array-computation" class="md-nav__link">
+    Pixel Array Computation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coordinate-transform" class="md-nav__link">
+    Coordinate Transform
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fix-mu-values" class="md-nav__link">
+    Fix Mu Values
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -633,15 +706,144 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/tamarervin/sdo_hmi_rvs/blob/master/mkdocs/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/tamarervin/sdo_hmi_rvs/blob/master/mkdocs/docs/calcs/coords.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="sdohmi-derived-rvs">SDO/HMI Derived RVs</h1>
-<p>Welcome to the documentation site for the SDO/HMI Derived RVs package.</p>
-<p>Additional information can be found by navigating through the links on the left. </p>
-<p>For the source code check out our <a href="https://github.com/tamarervin/sdo_hmi_rvs">GitHub</a>!</p>
+                <h1 id="coordinate-transformations">Coordinate Transformations</h1>
+<p>SDO/HMI Data Products are returned in Helioprojective Cartesian pixel coordinates. In 
+order to calculate the spacecraft and solar rotation velocity corrections, we need to
+convert this to the Heliographic Carrington Coordinate System (sun centered coordinate system). 
+In addition to being sun-centered, Heliographic Carrington coordinates also rotate with
+respect to the Carrington rotation period. Transformations are based off Thompson (2006). </p>
+<p>Coordinate functions are <a href="https://github.com/tamarervin/sdo_hmi_rvs/blob/main/sdo_hmi_rvs/tools/coord_funcs.py">here</a>.</p>
+<h2 id="pixel-array-computation">Pixel Array Computation</h2>
+<p>The first step in the coordinate transformation is computation of the pixel-wise
+coordinate arrays with respect to solar center. We do this by taking into account the
+reference pixels from the header file. </p>
+<p>We then calculate the array of <span class="arithmatex"><span class="MathJax_Preview">\mu</span><script type="math/tex">\mu</script></span> and radius values for that image, where <span class="arithmatex"><span class="MathJax_Preview">\mu = cos(\theta)</span><script type="math/tex">\mu = cos(\theta)</script></span>. 
+First, we determine pixel size in physical coordinates (solar radii) and then calculate
+the center-to-limb angles. We get the radius by determining the distance in solar radii 
+to each pixel. </p>
+<pre><code class="language-python">def coordinates(smap):
+    &quot;&quot;&quot;
+    calculate array of mu values and cartesian
+    coordinates for image
+
+    Parameters
+    ----------
+    smap: Sunpy map object
+
+    Returns
+    -------
+    x: array of x coordinates in helioprojective cartesian system
+    y: array of y coordinates in helioprojective cartesian system
+    pd: array of pixel distances
+    r: array of solar radius values
+    d: observer distance from sun in solar radii
+    mu: array of mu values
+
+
+    &quot;&quot;&quot;
+
+    # distance of observer to sun in solar radii
+    d = smap.fits_header['DSUN_OBS'] / smap.fits_header['RSUN_REF']
+
+    # focal length in pixels
+    f = 180. * 3600. / np.pi / smap.fits_header['CDELT1']
+
+    # get cartesian x, y map scales
+    x, y = get_map_scales(smap)
+
+    # distance (in pixels) to pixel
+    pd = np.sqrt(x ** 2 + y ** 2)
+
+    # distance (in solar r) to pixel
+    pr = f * f * pd * pd + pd ** 4 - d * d * pd ** 4 + 0.J
+    r = (d * f * pd - np.sqrt(pr)) / (f * f + pd * pd)
+
+    # separate complex parts
+    r = r.real
+
+    # get mu array
+    pr = 1 - r ** 2 + 0.J
+    cos_alpha = (np.sqrt(pr)).real
+    sin_alpha = r.real
+    cos_theta = ((d - np.sqrt(pr)) / np.sqrt(r ** 2 + (d - np.sqrt(pr)) ** 2)).real
+    sin_theta = (np.sqrt(1 - cos_theta ** 2)).real
+    mu = cos_alpha * cos_theta - sin_alpha * sin_theta
+
+    return x, y, pd, r, d, mu
+</code></pre>
+<h2 id="coordinate-transform">Coordinate Transform</h2>
+<p>We are able to apply the coordinate transformation based on a calculated rotation 
+matrix. We get an array of coordinates in the westward, northward, and radial direction. </p>
+<pre><code class="language-python">def vel_coords(x, y, pd, r, smap):
+    &quot;&quot;&quot;
+    calculate coordinate transformation to heliographic Carrington coordinates
+
+    Parameters
+    ----------
+    x: array of x coordinates in helioprojective cartesian system
+    y: array of y coordinates in helioprojective cartesian system
+    pd: array of pixel distances
+    r: array of solar radius values
+    smap: Sunpy map object
+
+    Returns
+    -------
+    wij: array of pixel coordinates relative to solar center in westward direction
+    nij: array of pixel coordinates relative to solar center in northward direction
+    rij: array of pixel coordinates relative to solar center in radial direction
+
+    &quot;&quot;&quot;
+
+    head = smap.fits_header
+    crota2 = head['CROTA2']  # deg
+
+    # transform each pixel to get into Heliographic CR Coordinates
+    dw = y * np.sin(np.deg2rad(crota2)) + x * np.cos(np.deg2rad(crota2))
+    dn = y * np.cos(np.deg2rad(crota2)) - x * np.sin(np.deg2rad(crota2))
+
+    # get cartesian coordinates for velocity calculations
+    pr = 1 - r ** 2 + 0.J
+    wij = r * dw / pd
+    nij = r * dn / pd
+    rij = (np.sqrt(pr)).real
+
+    return wij, nij, rij
+</code></pre>
+<h2 id="fix-mu-values">Fix Mu Values</h2>
+<p>Lastly, we remove all pixels with mu values less than 0.1 because our limb-brightening model
+does poorly in correcting near the edge of the Solar disk. </p>
+<pre><code class="language-python">def fix_mu(mu, smaps, mu_cutoff=0.3):
+    &quot;&quot;&quot;
+    function to remove pixel values where mu is less than 0.1
+
+    Parameters
+    ----------
+    mu: cosine of the center to limb angle
+    smaps: list of Sunpy map object
+    mu_cutoff: minimum mu cutoff value
+
+    Returns
+    -------
+    mu: corrected cosine of the center to limb angle
+    smap: corrected Sunpy map object
+
+    &quot;&quot;&quot;
+
+    # remove pixel values where mu &lt; mu_cut (0.3)
+    bad_inds = np.where(mu &lt;= mu_cutoff)
+
+    # fix arrays
+    for smap in smaps:
+        smap.data[bad_inds] = 0
+
+    return smaps
+
+</code></pre>
                 
               
               
@@ -665,15 +867,30 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
+        
+        <a href="../../data/corr/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Data Corrections" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Data Corrections
+            </div>
+          </div>
+        </a>
+      
       
         
-        <a href="about/" class="md-footer__link md-footer__link--next" aria-label="Next: About" rel="next">
+        <a href="../region/" class="md-footer__link md-footer__link--next" aria-label="Next: Region Identification" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              About
+              Region Identification
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -704,14 +921,14 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.top", "header.autohide"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "header.autohide"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.c7d1b464.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c7d1b464.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
-        <script src="javascripts/config.js"></script>
+        <script src="../../javascripts/config.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

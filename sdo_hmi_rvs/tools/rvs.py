@@ -29,13 +29,18 @@ def rvs(start_date, end_date, cadence, csv_name=None):
 
     Parameters
     ----------
-    start_date: start date of RV calculations (datetime object)
-    end_date: end date of RV calculations (datetime object)
-    cadence: how often to calculate RV components
-    csv_name: name of file to store calculations in
+    start_date: datetime
+        start date of RV calculations (datetime object)
+    end_date: datetime
+        end date of RV calculations (datetime object)
+    cadence: int
+        how often to calculate RV components
+    csv_name: str
+        name of file to store calculations in
 
     Returns
     -------
+
 
     """
 
