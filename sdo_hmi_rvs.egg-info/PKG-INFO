@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: sdo-hmi-rvs
+Version: 0.0.9
+Summary: Python package to calculate 'sun-as-a-star' RVs.
+Home-page: https://github.com/tamarervin/sdo_hmi_rvs
+Author: Tamar Ervin
+Author-email: tamarervin@gmail.com
+License: Apache Software License
+Platform: UNKNOWN
+License-File: LICENSE
+
+UNKNOWN
+

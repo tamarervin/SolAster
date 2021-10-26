@@ -11,7 +11,6 @@ import os
 import sys
 
 import time
-import pytz
 import datetime
 import numpy as np
 
@@ -35,23 +34,8 @@ bad_dates_csv = os.path.join(CsvDir.CALC, 'bad_dates_csv.csv')
 
 # dates and querying cadence
 cadence = 60*60  # querying cadence in seconds
-start_date = datetime.datetime(2021, 8, 26, 8, 00, 0, pytz.UTC)
-end_date = datetime.datetime(2021, 9, 3, 0, 00, 0, pytz.UTC)
-
-### ----- do not update anything below ----- ###
-# check date formats
-start_date = utils.check_date_format(start_date)
-end_date = utils.check_date_format(end_date)
-
-# check cadence format
-if type(cadence) != int:
-    raise ('Calculation cadence must be an integer value in seconds.')
-
-# create file names
-if csv_name is None:
-    csv_name = str(start_date)
-if type(csv_name) != str:
-    raise ('The csv name must be a string.')
+start_date = datetime.datetime(2021, 8, 26, 8, 00, 0)
+end_date = datetime.datetime(2021, 9, 3, 0, 00, 0)
 
 # print out csv title
 print("Beginning calculation of values for csv file: " + csv_name)
@@ -97,6 +81,7 @@ for i, date in enumerate(dates_list):
         utils.append_list_as_row(bad_dates_csv, save_vals)
         # print that the files are missing
         print('\nNot three good files: ' + date_str + ' index: ' + str(i))
+
         pass
     else:
         # convert to map sequence

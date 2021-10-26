@@ -12,19 +12,21 @@ nav:
   - Home: index.md
   - About: about.md
   - HMI Data:
-    - Aquiring Data: sdo/data.md
-    - Data Corrections: sdo/corr.md
-  - Coordinate Transformations: sdo/coords.md
-  - Region Identification: sdo/region.md
-  - Velocity Components: sdo/vel.md
-  - RV Calculation: sdo/rv.md
-  - Magnetic Observables: sdo/mag.md
-  - Full Pipeline: sdo/pipeline.md
+    - Aquiring Data: data/data.md
+    - Data Corrections: data/corr.md
+  - Coordinate Transformations: calcs/coords.md
+  - Region Identification: calcs/region.md
+  - Velocity Components: calcs/vel.md
+  - RV Calculation: calcs/rv.md
+  - Magnetic Observables: calcs/mag.md
+  - Full Pipeline: package/pipeline.md
+  - Function Documentation: package/functions.md
   - Jupyter Examples:
-    - Sunpy Basics: sdo/examples/docs_sunpy_example.ipynb
-    - Component Calculations: sdo/examples/docs_solar_corrections.ipynb
-    - RV Calculation: sdo/examples/docs_rv_calcs.ipynb
-    - Full Pipeline: sdo/examples/docs_full_pipeline.ipynb
+    - Sunpy Basics: examples/docs_sunpy_example.ipynb
+    - Component Calculations: examples/docs_solar_corrections.ipynb
+    - RV Calculation: examples/docs_rv_calcs.ipynb
+    - Full Pipeline: examples/docs_full_pipeline.ipynb
+
 
 # theme
 theme:

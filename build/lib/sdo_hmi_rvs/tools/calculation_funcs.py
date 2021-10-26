@@ -41,7 +41,7 @@ def map_sequence(dates_list, time_range=datetime.timedelta(seconds=6), instrumen
     """
 
     if isinstance(dates_list[0][0], str):
-        datetimes = [datetime.datetime.strptime(date[0], '%Y-%m-%dT%H:%M:%S') for date in dates_list]
+        datetimes = [datetime.datetime.strptime(date[0], '%Y-%m-%dT%H:%M:%S.%f') for date in dates_list]
     else:
         datetimes = dates_list
 

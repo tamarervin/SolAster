@@ -7,7 +7,6 @@ pipeline function to calculate 'sun-as-a-star' RVs
 """
 
 import os
-
 import datetime
 import numpy as np
 
@@ -29,8 +28,8 @@ def rvs(start_date, end_date, cadence, csv_name=None):
 
     Parameters
     ----------
-    start_date: start date of RV calculations (datetime object)
-    end_date: end date of RV calculations (datetime object)
+    start_date: start date of RV calculations
+    end_date: end date of RV calculations
     cadence: how often to calculate RV components
     csv_name: name of file to store calculations in
 
@@ -39,20 +38,9 @@ def rvs(start_date, end_date, cadence, csv_name=None):
 
     """
 
-    # check date formats
-    start_date = utils.check_date_format(start_date)
-    end_date = utils.check_date_format(end_date)
-
-    # check cadence format
-    if type(cadence) != int:
-        raise ('Calculation cadence must be an integer value in seconds.')
-
     # create file names
     if csv_name is None:
         csv_name = str(start_date)
-    if type(csv_name) != str:
-        raise ('The csv name must be a string.')
-
     csv_name = os.path.join(CsvDir.CALC, csv_name + '.csv')
     bad_dates_csv = os.path.join(CsvDir.CALC, csv_name + '_bad_dates.csv')
 

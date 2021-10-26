@@ -186,30 +186,5 @@ def read_sdo_csv(csv_file):
     return date_jd, dates, v_phot, v_conv, rv_model, rv_sun, rv_error, f, Bobs, f_bright, f_spot
 
 
-def check_date_format(date):
-    """
-    function to check the date format and raise error if formatted incorrectly
-
-    Parameters
-    ----------
-    date: date to check
-
-    Returns
-    -------
-    date: corrected date
-
-    """
-
-    # reformat date if correct
-    if isinstance(date, str):
-        date = datetime.datetime.strptime(date, '%Y-%m-%dT%H:%M:%S')
-    elif isinstance(date, float):
-        t = Time(date, format='jd')
-        date = t.datetime
-    else:
-        raise ('The date', date, 'is formatted incorrectly. Should be JD or datetime object in UT.')
-
-    return date
-
 
 

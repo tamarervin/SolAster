@@ -2,6 +2,13 @@
 
 Pipeline to independently derive 'sun-as-a-star' radial velocity variations.
 
+# Installation
+
+* package installation using pip  
+* install pip  
+* install package   
+``pip install sdo_hmi_rvs``
+
 # Documentation
 
 **Documentation Site:**  https://tamarervin.github.io/sdo_hmi_rvs/
