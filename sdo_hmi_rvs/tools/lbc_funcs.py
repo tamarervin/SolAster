@@ -17,11 +17,13 @@ def get_u(ll):
 
     Parameters
     ----------
-    ll: wavelength
+    ll : float
+        wavelength
 
     Returns
     -------
-    vl: coefficient v based on wavelength
+    vl : float
+        coefficient v based on wavelength
 
     """
 
@@ -43,11 +45,13 @@ def get_v(ll):
 
     Parameters
     ----------
-    ll: wavelength
+    ll : float
+        wavelength
 
     Returns
     -------
-    vl: coefficient v based on wavelength
+    vl : float
+        coefficient v based on wavelength
 
     """
 
@@ -70,11 +74,13 @@ def limb_polynomial(imap):
 
     Parameters
     ----------
-    imap: UNCORRECTED Sunpy map object (Intensitygram)
+    imap
+        UNCORRECTED Sunpy map object (Intensitygram)
 
     Returns
     -------
-    Lij: limb-darkening polynomial array
+    Lij : array_like
+        limb-darkening polynomial array
 
     """
 

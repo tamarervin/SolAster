@@ -20,7 +20,13 @@ nav:
   - RV Calculation: calcs/rv.md
   - Magnetic Observables: calcs/mag.md
   - Full Pipeline: package/pipeline.md
-  - Function Documentation: package/functions.md
+  - Function Documentation:
+    - Coordinate Transformations: package/coord_funcs.md
+    - Limb-Brightening Correction: package/lbc_funcs.md
+    - Calculation Functions: package/calculation_funcs.md
+    - RV Calculations: package/rvs.md
+    - Plotting Functions: package/plotting_funcs.md
+    - Settings: package/settings.md
   - Jupyter Examples:
     - Sunpy Basics: examples/docs_sunpy_example.ipynb
     - Component Calculations: examples/docs_solar_corrections.ipynb
@@ -50,6 +56,9 @@ plugins:
       lang: en
   - mkdocs-jupyter:
       ignore_h1_titles: True
+  - mkdocstrings:
+      docstring_style: numpy
+#  - numkdoc
 
 # extensions
 markdown_extensions:
