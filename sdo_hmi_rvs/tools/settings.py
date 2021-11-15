@@ -11,9 +11,10 @@ import os
 
 class BaseDir:
     """
-    Base directory. Update this and follow same file structure and all will be well :)
+    Base directory.
+    Update this if you want to save the files outside the repo and follow same file structure and all will be well :)
     """
-    BASE_DIR = ''
+    BASE_DIR = os.path.realpath('../products/')
 
 
 class CsvDir:
@@ -35,11 +36,13 @@ class Scaling:
     """
     Class that holds scaling coefficients for RV calculations.
     """
+    pass
 
 
 class HARPSN(Scaling):
     """
     Class that holds HARPS-N scaling coefficients for RV calculations.
+    Fit using linear regression on HARPS-N data from 2015.
     """
 
     A = 2.101
@@ -50,9 +53,16 @@ class HARPSN(Scaling):
 class NEID(Scaling):
     """
     Class that holds NEID scaling coefficients for RV calculations.
+     Fit using linear regression on NEID data from Dec 2020 - June 2021.
     """
 
     A = 1.0983
     B = 1.423
     RV0 = -646.076
 
+
+class PlotDir:
+    """
+    Directories that hold plotting style files
+    """
+    MPL = os.path.join(BaseDir.BASE_DIR, 'mplstyle')

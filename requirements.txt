@@ -5,3 +5,5 @@ astropy~=4.3.1
 scipy~=1.7.1
 matplotlib~=3.4.2
 scikit-image~=0.16.2
+sunpy~=3.0.1
+pytz~=2021.1

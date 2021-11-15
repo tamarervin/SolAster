@@ -21,11 +21,13 @@ def read_csv(csv_file_path):
 
     Parameters
     ----------
-    csv_file_path: path to csv file (string)
+    csv_file_path : str
+        path to csv file
 
     Returns
     -------
-    csv_list: list (strings) of elements in csv file
+    csv_list : str, list
+        list of elements in csv file
 
     """
 
@@ -42,8 +44,10 @@ def append_list_as_row(file_name, list_of_elem):
 
     Parameters
     ----------
-    file_name: path to csv file
-    list_of_elem: elements as a list to add to file
+    file_name : str
+        path to csv file
+    list_of_elem : list
+        elements as a list to add to file
 
     Returns
     -------
@@ -66,13 +70,17 @@ def get_dates(date):
 
     Parameters
     ----------
-    date: date in any form (JD, string, datetime)
+    date
+        date in any form (JD, string, datetime)
 
     Returns
     -------
-    date_str: UT datetime as string
-    date_obj: UT datetime object
-    date_jd: UT datetime as float (JD)
+    date_str : str
+        UT datetime as string
+    date_obj : datetime
+        UT datetime object
+    date_jd : float
+        UT datetime as float (JD)
 
     """
     if isinstance(date, str):
@@ -101,13 +109,17 @@ def get_neid_struct_dates(date):
 
     Parameters
     ----------
-    date: date in any form (JD, string, datetime)
+    date
+        date in any form (JD, string, datetime)
 
     Returns
     -------
-    date_str: date string
-    date_obj: datetime object
-    date_jd: jd date (float)
+    date_str : str
+        date string
+    date_obj : datetime
+        datetime object
+    date_jd : float
+        jd date
 
     """
 
@@ -139,11 +151,13 @@ def read_sdo_csv(csv_file):
 
     Parameters
     ----------
-    csv_file: path to csv file to read
+    csv_file : str
+        path to csv file to read
 
     Returns
     -------
-    list of SDO derived metrics
+    list : list
+        list of SDO derived metrics
 
     """
 
@@ -185,6 +199,33 @@ def read_sdo_csv(csv_file):
 
     return date_jd, dates, v_phot, v_conv, rv_model, rv_sun, rv_error, f, Bobs, f_bright, f_spot
 
+
+def check_date_format(date):
+    """
+    function to check the date format and raise error if formatted incorrectly
+
+    Parameters
+    ----------
+    date
+        date to check
+
+    Returns
+    -------
+    date : datetime
+        corrected date
+
+    """
+
+    # reformat date if correct
+    if isinstance(date, str):
+        date = datetime.datetime.strptime(date, '%Y-%m-%dT%H:%M:%S')
+    elif isinstance(date, float):
+        t = Time(date, format='jd')
+        date = t.datetime
+    else:
+        raise ('The date', date, 'is formatted incorrectly. Should be JD or datetime object in UT.')
+
+    return date
 
 
 

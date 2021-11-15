@@ -4,7 +4,6 @@ Date: June 16, 2021
 
 functions for calculating Solar velocity corrections
 and components for derivation of SDO/HMI RVs
-
 """
 
 import datetime
@@ -29,19 +28,23 @@ def map_sequence(dates_list, time_range=datetime.timedelta(seconds=6), instrumen
 
     Parameters
     ----------
-    dates_list: list of dates, either datetime or strings
-    time_range: plus/minus time range to search for images in comparison to desired timestamp
-    instrument: Sunpy instrument of choice (AIA, HMI, LASCO, EIT)
-    wavelength: desired wavelength of choice instrument
+    dates_list: datetime, list
+        list of dates, either datetime or strings
+    time_range: datetime timedelta
+        plus/minus time range to search for images in comparison to desired timestamp
+    instrument: astropy inst
+        Sunpy instrument of choice (AIA, HMI, LASCO, EIT)
+    wavelength: astropy wvlth
+        desired wavelength of choice instrument
 
     Returns
     -------
-    maps: Sunpy map sequence object
-
+    maps: map
+        Sunpy map sequence object
     """
 
     if isinstance(dates_list[0][0], str):
-        datetimes = [datetime.datetime.strptime(date[0], '%Y-%m-%dT%H:%M:%S.%f') for date in dates_list]
+        datetimes = [datetime.datetime.strptime(date[0], '%Y-%m-%dT%H:%M:%S') for date in dates_list]
     else:
         datetimes = dates_list
 
@@ -65,18 +68,25 @@ def rel_positions(wij, nij, rij, smap):
 
     Parameters
     ----------
-    wij: array of westward values for image
-    nij: array of northward values for image
-    rij: array of radius values for image
-    smap: Sunpy map object
+    wij: float, array
+        array of westward values for image
+    nij: float, array
+        array of northward values for image
+    rij: float, array
+        array of radius values for image
+    smap: map
+        Sunpy map object
 
     Returns
     -------
-    deltaw: relative westward position of pixel
-    deltan: relative northward position of pixel
-    deltar: relative radial position of pixel
-    dij: distance between pixel ij and spacecraft
-
+    deltaw: float, array
+        relative westward position of pixel
+    deltan: float, array
+        relative northward position of pixel
+    deltar: float, array
+        relative radial position of pixel
+    dij: float
+        distance between pixel ij and spacecraft
     """
 
     # calculate relative positions of each pixel
@@ -95,16 +105,21 @@ def spacecraft_vel(deltaw, deltan, deltar, dij, vmap):
 
     Parameters
     ----------
-    deltaw: relative westward position of pixel
-    deltan: relative northward position of pixel
-    deltar: relative radial position of pixel
-    dij: distance between pixel ij and spacecraft
-    vmap: Sunpy map object (Dopplergram)
+    deltaw: float, array
+        relative westward position of pixel
+    deltan: float, array
+        relative northward position of pixel
+    deltar: float, array
+        relative radial position of pixel
+    dij: float
+        distance between pixel ij and spacecraft
+    vmap: map
+        Sunpy map object (Dopplergram)
 
     Returns
     -------
-    vsc: array of spacecraft velocities
-
+    vsc: float, array
+        array of spacecraft velocities
    """
 
     # velocity of spacecraft relative to sun
@@ -124,20 +139,29 @@ def solar_rot_vel(wij, nij, rij, deltaw, deltan, deltar, dij, vmap, a_parameters
 
     Parameters
     ----------
-    wij: array of westward values for image
-    nij: array of northward values for image
-    rij: array of radius values for image
-    deltaw: relative westward position of pixel
-    deltan: relative northward position of pixel
-    deltar: relative radial position of pixel
-    dij: distance between pixel ij and spacecraft
-    vmap: Sunpy map object (Dopplergram)
-    a_parameters: array of solar differential rotation parameters from Snodgrass & Ulrich (1990).
+    wij: float, array
+        array of westward values for image
+    nij: float, array
+        array of northward values for image
+    rij: float, array
+        array of radius values for image
+    deltaw: float, array
+        relative westward position of pixel
+    deltan: float, array
+        relative northward position of pixel
+    deltar: float, array
+        relative radial position of pixel
+    dij: float
+        distance between pixel ij and spacecraft
+    vmap: map
+        Sunpy map object (Dopplergram)
+    a_parameters: float, array
+        array of solar differential rotation parameters from Snodgrass & Ulrich (1990).
 
     Returns
     -------
-    vrot: array of solar rotation velocities
-
+    vrot: float, array
+        array of solar rotation velocities\
     """
 
     # apply to cartesian coordinates
@@ -179,15 +203,19 @@ def corrected_map(corrected_data, smap, map_type, frame=frames.HeliographicCarri
 
     Parameters
     ----------
-    corrected_data: corrected velocity data
-    smap: original Sunpy map object
-    map_type: map type for 'content' section of fits header (string)
-    frame: new rotation frame
+    corrected_data: float, array
+        corrected velocity data
+    smap: map
+        original Sunpy map object
+    map_type: map type
+        map type for 'content' section of fits header (string)
+    frame: sunpy coordinate frame
+        new rotation frame
 
     Returns
     -------
-    corr_map: Sunpy map object with new frame information and corrected data
-
+    corr_map: map
+        Sunpy map object with new frame information and corrected data
     """
 
     # build SkyCoord instance in new frame
@@ -214,16 +242,21 @@ def mag_field(mu, mmap, B_noise=8, mu_cutoff=0.3):
 
     Parameters
     ----------
-    mu: array of mu (cosine theta) values
-    mmap: Sunpy map object (Magnetogram)
-    B_noise: magnetic noise level in Gauss
-    mu_cutoff: minimum mu cutoff value
+    mu: float, array
+        array of mu (cosine theta) values
+    mmap: map
+        Sunpy map object (Magnetogram)
+    B_noise: int
+        magnetic noise level in Gauss
+    mu_cutoff: float
+        minimum mu cutoff value
 
     Returns
     -------
-    Bobs: corrected observed magnetic field strength
-    Br: array of corrected unsigned magnetic field strength
-
+    Bobs: float, array
+        array of corrected observed magnetic field strength
+    Br: float, array
+        array of corrected unsigned magnetic field strength
     """
 
     # get valid indices
@@ -246,16 +279,21 @@ def mag_thresh(mu, mmap, Br_cutoff=24, mu_cutoff=0.3):
 
     Parameters
     ----------
-    mu: array of mu (cosine theta) values
-    mmap: corrected (unsigned magnetic field) Sunpy map object (Magnetogram)
-    Br_cutoff: minimum cutoff value (in Gauss) for thresholding active regions
-    mu_cutoff: minimum mu cutoff value for data to ignore
+    mu: float, array
+        array of mu (cosine theta) values
+    mmap: map
+        corrected (unsigned magnetic field) Sunpy map object (Magnetogram)
+    Br_cutoff: int
+        minimum cutoff value (in Gauss) for thresholding active regions
+    mu_cutoff: float
+        minimum mu cutoff value for data to ignore
 
     Returns
     -------
-    active: weights array where active pixels are 1
-    quiet: weights array where active pixels are 0
-
+    active: int, array
+        weights array where active pixels are 1
+    quiet: int, array
+        weights array where active pixels are 0
     """
 
     # get active region indices
@@ -292,16 +330,21 @@ def int_thresh(map_int_cor, active, quiet):
 
     Parameters
     ----------
-    map_int_cor: corrected (limb-darkening) Sunpy map object (Intensitygram)
-    active: weights array where active pixels are 1
-    quiet: weights array where active pixels are 0
+    map_int_cor: map
+        corrected (limb-darkening) Sunpy map object (Intensitygram)
+    active: int, array
+        weights array where active pixels are 1
+    quiet: int, array
+        weights array where active pixels are 0
 
     Returns
     -------
-    fac_inds: array of indices where faculae are detected
-    spot_inds: array of indices where sunspots are detected
-
+    fac_inds: int, array
+        array of indices where faculae are detected
+    spot_inds: int, array
+        array of indices where sunspots are detected
     """
+
     # flattened intensity data
     Iflat = map_int_cor.data
 
@@ -326,13 +369,15 @@ def thresh_map(fac_inds, spot_inds):
 
     Parameters
     ----------
-    fac_inds: array of indices where faculae are detected
-    spot_inds: array of indices where sunspots are detected
+    fac_inds: int, array
+        array of indices where faculae are detected
+    spot_inds: int, array
+        array of indices where sunspots are detected
 
     Returns
     -------
-    thresh_arr: array of values denoting faculae (1) and sunspots (2)
-
+    thresh_arr: int, array
+        array of values denoting faculae (1) and sunspots (2)
     """
 
     thresh_arr = np.full(shape=fac_inds.shape, fill_value=np.nan)
@@ -348,14 +393,17 @@ def v_quiet(map_vel_cor, imap, quiet):
 
     Parameters
     ----------
-    map_vel_cor: corrected (velocities) Sunpy map object (Dopplergram)
-    imap: UNCORRECTED Sunpy map object (Intensitygram)
-    quiet: weights array where active pixels have weight = 0
+    map_vel_cor: map
+        corrected (velocities) Sunpy map object (Dopplergram)
+    imap: map
+        UNCORRECTED Sunpy map object (Intensitygram)
+    quiet: int, array
+        weights array where active pixels have weight = 0
 
     Returns
     -------
-    v_quiet: quiet-Sun velocity (float)
-
+    v_quiet: float
+        quiet-Sun velocity
     """
 
     v_quiet = np.nansum(map_vel_cor.data * imap.data * quiet) / np.nansum(
@@ -370,20 +418,29 @@ def v_phot(quiet, active, Lij, vrot, imap, mu, fac_inds, spot_inds, mu_cutoff=0.
 
     Parameters
     ----------
-    quiet: weights array where active pixels have weight = 0
-    active: weights array where active pixels have weight = 1
-    Lij: limb-darkening polynomial function
-    vrot: solar rotational velocity
-    imap: UNCORRECTED Sunpy map object (Intensitygram)
-    mu: array of mu values
-    fac_inds: array of indices where faculae are detected
-    spot_inds: array of indices where sunspots are detected
-    mu_cutoff: minimum mu cutoff value
+    quiet: int, array
+        weights array where active pixels have weight = 0
+    active: int, array
+        weights array where active pixels have weight = 1
+    Lij: float, array
+        limb-darkening polynomial function
+    vrot: float, array
+        solar rotational velocity
+    imap: map
+        UNCORRECTED Sunpy map object (Intensitygram)
+    mu: float, array
+        array of mu values
+    fac_inds: int, array
+        array of indices where faculae are detected
+    spot_inds: int, array
+        array of indices where sunspots are detected
+    mu_cutoff: float
+        minimum mu cutoff value
 
     Returns
     -------
-    v_phot: photospheric velocity perturbation (float)
-
+    v_phot: float
+        photospheric velocity perturbation
     """
 
     # get good mu values
@@ -410,13 +467,15 @@ def v_disc(map_vel_cor, imap):
 
     Parameters
     ----------
-    map_vel_cor: corrected (velocities) Sunpy map object (Dopplergram)
-    imap: UNCORRECTED Sunpy map object (Intensitygram)
+    map_vel_cor: map
+        corrected (velocities) Sunpy map object (Dopplergram)
+    imap: map
+        UNCORRECTED Sunpy map object (Intensitygram)
 
     Returns
     -------
-    v_disc: disc averaged velocity of Sun (float)
-
+    v_disc: float
+        disc averaged velocity of Sun
     """
 
     v_disc = np.nansum(map_vel_cor.data * imap.data) / np.nansum(imap.data)
@@ -432,19 +491,27 @@ def filling_factor(mu, mmap, active, fac_inds, spot_inds, mu_cutoff=0.3):
 
     Parameters
     ----------
-    mu: array of mu (cosine theta) values
-    mmap: UNCORRECTED Sunpy map object (Magnetogram)
-    active: weights array where active pixels have weight = 1
-    fac_inds: array of indices where faculae are detected
-    spot_inds: array of indices where sunspots are detected
-    mu_cutoff: minimum mu cutoff value
+    mu: float, array
+        array of mu (cosine theta) values
+    mmap: map
+        UNCORRECTED Sunpy map object (Magnetogram)
+    active: int, array
+        weights array where active pixels have weight = 1
+    fac_inds: int, array
+        array of indices where faculae are detected
+    spot_inds: int, array
+        array of indices where sunspots are detected
+    mu_cutoff: float
+        minimum mu cutoff value
 
     Returns
     -------
-    f_bright: filling factor (%) for bright areas (faculae)
-    f_spot: filling factor (%) for dark areas (sunspots)
-    f_total: filling factor (%) for timestamp
-
+    f_bright: float
+        filling factor (%) for bright areas (faculae)
+    f_spot: float
+        filling factor (%) for dark areas (sunspots)
+    f_total: float
+     filling factor (%) for timestamp
     """
 
     # get good mu values
@@ -475,13 +542,15 @@ def unsigned_flux(map_mag_obs, imap):
 
     Parameters
     ----------
-    map_mag_obs: corrected observed magnetic field strength Sunpy map object (Magnetogram)
-    imap: UNCORRECTED Sunpy map object (Intensitygram)
+    map_mag_obs: map
+        corrected observed magnetic field strength Sunpy map object (Magnetogram)
+    imap: map
+        UNCORRECTED Sunpy map object (Intensitygram)
 
     Returns
     -------
-    unsign_flux: unsigned magnetic flux
-
+    unsign_flux: float
+        unsigned magnetic flux
     """
 
     # get data arrays
@@ -501,13 +570,15 @@ def area_calc(active, pixA_hem):
 
     Parameters
     ----------
-    active: weights array where active pixels have weight = 1
-    pixA_hem: pixel areas in uHem
+    active: int, array
+        weights array where active pixels have weight = 1
+    pixA_hem: float, array
+        pixel areas in uHem
 
     Returns
     -------
-    area: area of each active region weighted by its intensity
-
+    area: float, array
+        area of each active region weighted by its intensity
     """
 
     # get labeling of image
@@ -533,22 +604,33 @@ def area_filling_factor(active, area, mu, mmap, fac_inds, athresh=20, mu_cutoff=
 
     Parameters
     ----------
-    active: weights array where active pixels have weight = 1
-    area: area of each active region weighted by its intensity
-    mu: array of mu (cosine theta) values
-    mmap: UNCORRECTED Sunpy map object (Magnetogram)
-    fac_inds: array of indices where faculae are detected
-    athresh: area threshold value between large and small regions (in uHem)
-    mu_cutoff: minimum mu cutoff value for usable data
+    active: int, array
+        weights array where active pixels have weight = 1
+    area: float, array
+        area of each active region weighted by its intensity
+    mu: float, array
+        array of mu (cosine theta) values
+    mmap: map
+        UNCORRECTED Sunpy map object (Magnetogram)
+    fac_inds: int, array
+        array of indices where faculae are detected
+    athresh: int
+        area threshold value between large and small regions (in uHem)
+    mu_cutoff: float
+        minimum mu cutoff value for usable data
 
     Returns
     -------
-    f_small: filling factor (%) for small magnetically active regions
-    f_large: filling factor (%) for large magnetically active regions
-    f_network: filling factor (%) for network (small, bright magnetically active) regions
-    f_plage: filling factor (%) for plage (large, bright magnetically active) regions
-    f_nonconv: filling factor (%) for regions that do not suppress convective blueshift
-
+    f_small: float
+        filling factor (%) for small magnetically active regions
+    f_large: float
+        filling factor (%) for large magnetically active regions
+    f_network: float
+        filling factor (%) for network (small, bright magnetically active) regions
+    f_plage: float
+        filling factor (%) for plage (large, bright magnetically active) regions
+    f_nonconv: float
+        filling factor (%) for regions that do not suppress convective blueshift
     """
 
     # get good mu values
@@ -600,20 +682,29 @@ def area_unsigned_flux(map_mag_obs, imap, area, active, athresh=20):
 
     Parameters
     ----------
-    map_mag_obs: corrected observed magnetic field strength Sunpy map object (Magnetogram)
-    imap: UNCORRECTED Sunpy map object (Intensitygram)
-    area: area of each active region weighted by its intensity
-    active: weights array where active pixels have weight = 1
-    athresh: area threshold value between large and small regions (in uHem)
+    map_mag_obs: map
+        corrected observed magnetic field strength Sunpy map object (Magnetogram)
+    imap: map
+        UNCORRECTED Sunpy map object (Intensitygram)
+    area: float, array
+        area of each active region weighted by its intensity
+    active: int, array
+        weights array where active pixels have weight = 1
+    athresh: int
+        area threshold value between large and small regions (in uHem)
 
     Returns
     -------
-    quiet_flux: magnetic flux of quiet-Sun regions
-    ar_flux: magnetic flux of active regions
-    conv_flux: magnetic flux of regions that suppress convective blueshift
-    pol_flux: magnetic flux of polarized regions
-    pol_conv_flux: magnetic flux of polarized regions that suppress the convective blueshift
-
+    quiet_flux: float
+        magnetic flux of quiet-Sun regions
+    ar_flux: float
+        magnetic flux of active regions
+    conv_flux: float
+        magnetic flux of regions that suppress convective blueshift
+    pol_flux: float
+        magnetic flux of polarized regions
+    pol_conv_flux: float
+        magnetic flux of polarized regions that suppress the convective blueshift
     """
 
     # get data arrays
@@ -643,18 +734,25 @@ def area_vconv(map_vel_cor, imap, active, area, athresh=20):
 
     Parameters
     ----------
-    map_vel_cor: corrected (velocities) Sunpy map object (Dopplergram)
-    imap: UNCORRECTED Sunpy map object (Intensitygram)
-    active: weights array where active pixels have weight = 1
-    area: area of each active region weighted by its intensity
-    athresh: area threshold value between large and small regions (in uHem)
+    map_vel_cor: map
+        corrected (velocities) Sunpy map object (Dopplergram)
+    imap: map
+        UNCORRECTED Sunpy map object (Intensitygram)
+    active: int, array
+        weights array where active pixels have weight = 1
+    area: float, array
+        area of each active region weighted by its intensity
+    athresh: int
+        area threshold value between large and small regions (in uHem)
 
     Returns
     -------
-    vconv_quiet: convective velocity due to quiet-Sun regions
-    vconv_large: convective velocity due to large active regions
-    vconv_small: convective velocity due to small active regions
-
+    vconv_quiet: float
+        convective velocity due to quiet-Sun regions
+    vconv_large: float
+        convective velocity due to large active regions
+    vconv_small: float
+        convective velocity due to small active regions
     """
 
     # get data arrays

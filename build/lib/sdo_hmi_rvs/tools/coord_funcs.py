@@ -1,5 +1,6 @@
 """
 Tamar Ervin
+
 Date: June 24, 2021
 
 Coordinate transformation functions to transform from the Helioprojective
@@ -19,12 +20,15 @@ def get_map_scales(smap):
 
     Parameters
     ----------
-    smap: Sunpy map object
+    smap: map
+        Sunpy map object
 
     Returns
     -------
-    x: array of x coordinates in helioprojective cartesian system
-    y: array of y coordinates in helioprojective cartesian system
+    x: numpy array
+        array of x coordinates in helioprojective cartesian system
+    y: numpy array
+        array of y coordinates in helioprojective cartesian system
 
     """
 
@@ -47,16 +51,23 @@ def coordinates(smap):
 
     Parameters
     ----------
-    smap: Sunpy map object
+    smap: map
+        Sunpy map object
 
     Returns
     -------
-    x: array of x coordinates in helioprojective cartesian system
-    y: array of y coordinates in helioprojective cartesian system
-    pd: array of pixel distances
-    r: array of solar radius values
-    d: observer distance from sun in solar radii
-    mu: array of mu values
+    x: float, array
+        array of x coordinates in helioprojective cartesian system
+    y: float, array
+        array of y coordinates in helioprojective cartesian system
+    pd: float, array
+        array of pixel distances
+    r: float, array
+        array of solar radius values
+    d: float
+        observer distance from sun in solar radii
+    mu: float, array
+        array of mu values
 
 
     """
@@ -97,17 +108,25 @@ def vel_coords(x, y, pd, r, smap):
 
     Parameters
     ----------
-    x: array of x coordinates in helioprojective cartesian system
-    y: array of y coordinates in helioprojective cartesian system
-    pd: array of pixel distances
-    r: array of solar radius values
-    smap: Sunpy map object
+    x: float, array
+        array of x coordinates in helioprojective cartesian system
+    y: float, array
+        array of y coordinates in helioprojective cartesian system
+    pd: float, array
+        array of pixel distances
+    r: float, array
+        array of solar radius values
+    smap: map
+        Sunpy map object
 
     Returns
     -------
-    wij: array of pixel coordinates relative to solar center in westward direction
-    nij: array of pixel coordinates relative to solar center in northward direction
-    rij: array of pixel coordinates relative to solar center in radial direction
+    wij: float, array
+        array of pixel coordinates relative to solar center in westward direction
+    nij: float, array
+        array of pixel coordinates relative to solar center in northward direction
+    rij: float, array
+        array of pixel coordinates relative to solar center in radial direction
 
     """
 
@@ -133,14 +152,19 @@ def fix_mu(mu, smaps, mu_cutoff=0.3):
 
     Parameters
     ----------
-    mu: cosine of the center to limb angle
-    smaps: list of Sunpy map object
-    mu_cutoff: minimum mu cutoff value
+    mu: float, array
+        cosine of the center to limb angle
+    smaps: map, list
+        list of Sunpy map object
+    mu_cutoff: float
+        minimum mu cutoff value
 
     Returns
     -------
-    mu: corrected cosine of the center to limb angle
-    smaps: corrected Sunpy map objects
+    mu: float, array
+        corrected cosine of the center to limb angle
+    smaps: map, list
+        corrected Sunpy map objects
 
     """
 
@@ -161,14 +185,19 @@ def pix_area_hem(wij, nij, rij, smap):
 
     Parameters
     ----------
-    wij: array of pixel coordinates relative to solar center in westward direction
-    nij: array of pixel coordinates relative to solar center in northward direction
-    rij: array of pixel coordinates relative to solar center in radial direction
-    smap
+    wij: float, array
+        array of pixel coordinates relative to solar center in westward direction
+    nij: float, array
+        array of pixel coordinates relative to solar center in northward direction
+    rij: float, array
+        array of pixel coordinates relative to solar center in radial direction
+    smap: map
+        Sunpy map object
 
     Returns
     -------
-    pixA_hem: pixel areas in uHem
+    pixA_hem: float, array
+        pixel areas in uHem
 
     """
     # get x and y arrays
