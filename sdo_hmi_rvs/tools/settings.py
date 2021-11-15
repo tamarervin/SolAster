@@ -32,6 +32,13 @@ class ImgDir:
     IMG_DIR = os.path.join(BaseDir.BASE_DIR, 'images')
 
 
+class PlotDir:
+    """
+    Directories that hold plotting style files
+    """
+    MPL = os.path.join(BaseDir.BASE_DIR, 'mplstyle')
+
+
 class Scaling:
     """
     Class that holds scaling coefficients for RV calculations.
@@ -60,9 +67,3 @@ class NEID(Scaling):
     B = 1.423
     RV0 = -646.076
 
-
-class PlotDir:
-    """
-    Directories that hold plotting style files
-    """
-    MPL = os.path.join(BaseDir.BASE_DIR, 'mplstyle')

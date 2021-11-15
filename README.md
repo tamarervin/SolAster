@@ -34,8 +34,9 @@ outlines the corrections and component calculation pipeline
   
 3. [RV Calculations](https://github.com/tamarervin/sdo_hmi_rvs/blob/main/sdo_hmi_rvs/examples/rv_calculation.ipynb):
 outlines calculation of full model RV from velocity components  
-   * requires input CSV with velocity components from [example 2](https://github.com/tamarervin/sdo_hmi_rvs/blob/main/sdo_hmi_rvs/examples/component_calculations.ipynb)
-  
+   * requires input CSV with velocity components from [example 2](https://github.com/tamarervin/sdo_hmi_rvs/blob/main/sdo_hmi_rvs/examples/component_calculations.ipynb)  
+   * an example CSV file with calculations is stored [here](https://github.com/tamarervin/sdo_hmi_rvs/blob/main/sdo_hmi_rvs/products/csv_files/calcs/example_calcs.csv)
+    
 4. [Full Pipeline](https://github.com/tamarervin/sdo_hmi_rvs/blob/main/sdo_hmi_rvs/examples/full_pipeline.ipynb):
 full end-to-end pipeline to calculate 'sun-as-a-star' RVs and magnetic observables 
    
