@@ -1692,8 +1692,8 @@ for i, map_obj in enumerate(map_seq):
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Apply coordinate transformations for HMI data products where:</p>
-<p><code>x, y, pd, r, d, mu = coord[i][0], coord[i][1], coord[i][2], coord[i][3], coord[i][4], coord[i][5]<code></p>
-<p><code>wij, nij, rij = vel_coords[i][0], vel_coords[i][1], vel_coords[i][2]<code></p>
+<p><code>x, y, pd, r, d, mu = coord[i][0], coord[i][1], coord[i][2], coord[i][3], coord[i][4], coord[i][5]</code></p>
+<p><code>wij, nij, rij = vel_coords[i][0], vel_coords[i][1], vel_coords[i][2]</code></p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -1737,7 +1737,7 @@ vel_coords = [ctfuncs.vel_coords(coord[0], coord[1], coord[2], coord[3], hmi_vel
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Remove bad mu values from each map.</p>
-<p><code>hmi_vel, hmi_mag, imap = maps[i][0], maps[i][1], maps[i][2]<code></p>
+<p><code>hmi_vel, hmi_mag, imap = maps[i][0], maps[i][1], maps[i][2]</code></p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -1790,7 +1790,7 @@ hmi_int = [maps[i][2] for i in range(0, len(hmi_vel))]</div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Calculate relative positions.</p>
-<p><code>deltaw, deltan, deltar, dij = delta[i][0], delta[i][1], delta[i][2], delta[i][3]<code></p>
+<p><code>deltaw, deltan, deltar, dij = delta[i][0], delta[i][1], delta[i][2], delta[i][3]</code></p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -2279,7 +2279,7 @@ plt.show()</div>
 <p>We calculate radial unsigned magnetic field strength and set pixels with an
 observed magnetic field below the noise value equal to zero.</p>
 <p>The noise level used is from Yeo et al. 2013, and is 8 Gauss.</p>
-<p><code>Bobs, Br = corrected_mag[0], corrected_mag[1]<code></p>
+<p><code>Bobs, Br = corrected_mag[0], corrected_mag[1]</code></p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -2524,7 +2524,7 @@ area_cutoff = 45</div>
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>For weighting, we return an active weights array (active = 1) and quiet weights array (active = 0).</p>
 <p>Get threshold maps where:</p>
-<p><code>active, quiet = mag_thresh[i][0], mag_thresh[i][1]<code></p>
+<p><code>active, quiet = mag_thresh[i][0], mag_thresh[i][1]</code></p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -2648,7 +2648,7 @@ is the mean pixel flattened intensity over quiet Sun regions.</p>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Calculate intensity threshold value and differentiate between sunspots and faculae where:</p>
-<p><code>fac_inds, spot_inds = int_thresh[0], int_thresh[1]<code></p>
+<p><code>fac_inds, spot_inds = int_thresh[0], int_thresh[1]</code></p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -3047,7 +3047,7 @@ $ K = \frac{\sum_{ij} I_{ij} L_{ij} W_{ij}}{\sum_{ij} L_{ij}^2 W_{ij}} $</p>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Calculate photometric velocity.</p>
-<p><code>v_phot, vphot_bright, vphot_spot = vphot[0], vphot[1], vphot[2]<code></p>
+<p><code>v_phot, vphot_bright, vphot_spot = vphot[0], vphot[1], vphot[2]</code></p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -3183,7 +3183,7 @@ magnetic flux</li>
 <h2 id="filling-factor">Filling Factor<a class="anchor-link" href="#Filling-Factor">&#182;</a></h2><p>Estimate the disc-averaged filling factors of sunspots and plage:
 $ f_{spot, plage} = \frac{1}{N_{pix}} \sum_{ij} W_{ij} $</p>
 <p>In this case, a weight of 1 is an active pixel (active_weights).</p>
-<p><code>f_bright, f_spot, f = filling[0], filling[1], filling[2]<code></p>
+<p><code>f_bright, f_spot, f = filling[0], filling[1], filling[2]</code></p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -3306,7 +3306,7 @@ area = [sfuncs.area_calc(mag_thresh[i][0], pixA_hem[i]) for i in range(0, len(hm
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Calculate the area filling factor.</p>
-<p><code>f_small, f_large, f_network, f_plage, f_nonconv = f_area[0], f_area[1], f_area[2], f_area[3], f_area[4]<code></p>
+<p><code>f_small, f_large, f_network, f_plage, f_nonconv = f_area[0], f_area[1], f_area[2], f_area[3], f_area[4]</code></p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -3342,7 +3342,7 @@ area = [sfuncs.area_calc(mag_thresh[i][0], pixA_hem[i]) for i in range(0, len(hm
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Calculate unsigned flux of various polarized and active regions.</p>
-<p><code>quiet_flux, ar_flux, conv_flux, pol_flux, pol_conv_flux = flux[0], flux[1], flux[2], flux[3], flux[4], flux[5]<code></p>
+<p><code>quiet_flux, ar_flux, conv_flux, pol_flux, pol_conv_flux = flux[0], flux[1], flux[2], flux[3], flux[4], flux[5]</code></p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -3380,7 +3380,7 @@ area = [sfuncs.area_calc(mag_thresh[i][0], pixA_hem[i]) for i in range(0, len(hm
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Get area weighted convective velocities.</p>
-<p><code>vconv_quiet, vconv_large, vconv_small = vconv_area[0], vconv_area[1], vconv_area[2]<code></p>
+<p><code>vconv_quiet, vconv_large, vconv_small = vconv_area[0], vconv_area[1], vconv_area[2]</code></p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
