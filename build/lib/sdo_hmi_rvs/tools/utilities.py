@@ -6,6 +6,7 @@ Utility functions for reading and writing data
 
 """
 
+import os
 import csv
 import datetime
 
@@ -228,4 +229,24 @@ def check_date_format(date):
     return date
 
 
+def check_dir(dir_path):
+    """
+    function to check if a directory exists and if not create one
 
+    Parameters
+    ----------
+    dir_path : string
+        path to directory we are checking
+
+    Returns
+    -------
+
+    """
+
+    # check that directory exist
+    exist_dir = os.path.isdir(dir_path)
+
+    # create directory if it does not exist
+    if not exist_dir:
+        os.makedirs(dir_path)
+        print("Created directory", dir_path)

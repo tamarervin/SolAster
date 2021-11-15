@@ -196,23 +196,21 @@ def vert_comp_timeseries(x, y_list, title, xlabel=None, ylabel_list=None, save_f
     plt.style.use(plot_style)
 
     # set up figure
-    fig, axs = plt.subplots(len(y_list), 1, sharex='all', figsize=[12, 3*len(y_list)], gridspec_kw={'hspace': 0.0})
+    fig, axs = plt.subplots(len(y_list), 1, sharex='all', figsize=[6, 1.5 * len(y_list)], gridspec_kw={'hspace': 0})
     if title is not None:
         fig.suptitle(title)
 
     # set up axes labels
+    # set up axes labels
     for i in range(0, len(axs)):
-        if i == len(axs) - 1:
-            axs[i].set(xlabel=xlabel, ylabel=ylabel_list[i])
-        else:
-            axs[i].set(ylabel=ylabel_list[i])
+        axs[i].set(ylabel=ylabel_list[i])
+    axs[i].set(xlabel=xlabel)
 
     # plot data
-    color_list = ['lightcoral', 'lightblue', 'plum', 'pink', 'navajowhite']
     for i in range(0, len(axs)):
-        axs[i].scatter(x, y_list[i], color=color_list[i], edgecolors='k', linewidths=1.0)
-        # axs[i].locator_params(axis="y", nbins=5)
-    # axs[1].scatter(x, y_list[1], color='lightblue', edgecolors='k', linewidths=1.0)
+        axs[i].scatter(x, y_list[i], color='thistle', s=30, edgecolors='k', linewidths=0.8,
+                       label='rms: ' + str(np.round(np.std(y_list[i]), 3)))
+        axs[i].locator_params(axis="y", nbins=5)
 
     # set axes tick marks
     axs[i].tick_params(labelbottom=True)

@@ -17,6 +17,4 @@ sdo_hmi_rvs/tools/lbc_funcs.py
 sdo_hmi_rvs/tools/plotting_funcs.py
 sdo_hmi_rvs/tools/rvs.py
 sdo_hmi_rvs/tools/settings.py
-sdo_hmi_rvs/tools/settings_tamar.py
-sdo_hmi_rvs/tools/settings_template.py
 sdo_hmi_rvs/tools/utilities.py
