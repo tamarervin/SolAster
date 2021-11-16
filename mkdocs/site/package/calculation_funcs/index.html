@@ -1,0 +1,3032 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="SDO HMI RV Pipeline Documentation">
+      
+      
+      
+      
+      <link rel="icon" href="../../img/sun.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.1">
+    
+    
+      
+        <title>Calculation Functions - SDO HMI RV Pipeline</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1c75ef36.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=:300,400,400i,700%7COswald&display=fallback">
+        <style>:root{--md-text-font-family:"";--md-code-font-family:"Oswald"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="light-blue">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#calculation-functions-module" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SDO HMI RV Pipeline" class="md-header__button md-logo" aria-label="SDO HMI RV Pipeline" data-md-component="logo">
+      
+  <img src="../../img/sun.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SDO HMI RV Pipeline
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Calculation Functions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/tamarervin/sdo_hmi_rvs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SDO HMI RV Pipeline" class="md-nav__button md-logo" aria-label="SDO HMI RV Pipeline" data-md-component="logo">
+      
+  <img src="../../img/sun.png" alt="logo">
+
+    </a>
+    SDO HMI RV Pipeline
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/tamarervin/sdo_hmi_rvs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          HMI Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="HMI Data" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          HMI Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/data/" class="md-nav__link">
+        Aquiring Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/corr/" class="md-nav__link">
+        Data Corrections
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calcs/coords/" class="md-nav__link">
+        Coordinate Transformations
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calcs/region/" class="md-nav__link">
+        Region Identification
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calcs/vel/" class="md-nav__link">
+        Velocity Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calcs/rv/" class="md-nav__link">
+        RV Calculation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calcs/mag/" class="md-nav__link">
+        Magnetic Observables
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/" class="md-nav__link">
+        Full Pipeline
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10">
+          Function Documentation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Function Documentation" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Function Documentation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coord_funcs/" class="md-nav__link">
+        Coordinate Transformations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lbc_funcs/" class="md-nav__link">
+        Limb-Brightening Correction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Calculation Functions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Calculation Functions
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs" class="md-nav__link">
+    sdo_hmi_rvs.tools.calculation_funcs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_calc" class="md-nav__link">
+    area_calc()
+  </a>
+  
+    <nav class="md-nav" aria-label="area_calc()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_calc--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_calc--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_filling_factor" class="md-nav__link">
+    area_filling_factor()
+  </a>
+  
+    <nav class="md-nav" aria-label="area_filling_factor()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_filling_factor--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_filling_factor--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_unsigned_flux" class="md-nav__link">
+    area_unsigned_flux()
+  </a>
+  
+    <nav class="md-nav" aria-label="area_unsigned_flux()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_unsigned_flux--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_unsigned_flux--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_vconv" class="md-nav__link">
+    area_vconv()
+  </a>
+  
+    <nav class="md-nav" aria-label="area_vconv()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_vconv--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_vconv--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.corrected_map" class="md-nav__link">
+    corrected_map()
+  </a>
+  
+    <nav class="md-nav" aria-label="corrected_map()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.corrected_map--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.corrected_map--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.filling_factor" class="md-nav__link">
+    filling_factor()
+  </a>
+  
+    <nav class="md-nav" aria-label="filling_factor()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.filling_factor--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.filling_factor--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.int_thresh" class="md-nav__link">
+    int_thresh()
+  </a>
+  
+    <nav class="md-nav" aria-label="int_thresh()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.int_thresh--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.int_thresh--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.mag_field" class="md-nav__link">
+    mag_field()
+  </a>
+  
+    <nav class="md-nav" aria-label="mag_field()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.mag_field--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.mag_field--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.mag_thresh" class="md-nav__link">
+    mag_thresh()
+  </a>
+  
+    <nav class="md-nav" aria-label="mag_thresh()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.mag_thresh--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.mag_thresh--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.map_sequence" class="md-nav__link">
+    map_sequence()
+  </a>
+  
+    <nav class="md-nav" aria-label="map_sequence()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.map_sequence--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.map_sequence--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.rel_positions" class="md-nav__link">
+    rel_positions()
+  </a>
+  
+    <nav class="md-nav" aria-label="rel_positions()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.rel_positions--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.rel_positions--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.solar_rot_vel" class="md-nav__link">
+    solar_rot_vel()
+  </a>
+  
+    <nav class="md-nav" aria-label="solar_rot_vel()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.solar_rot_vel--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.solar_rot_vel--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.spacecraft_vel" class="md-nav__link">
+    spacecraft_vel()
+  </a>
+  
+    <nav class="md-nav" aria-label="spacecraft_vel()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.spacecraft_vel--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.spacecraft_vel--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.thresh_map" class="md-nav__link">
+    thresh_map()
+  </a>
+  
+    <nav class="md-nav" aria-label="thresh_map()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.thresh_map--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.thresh_map--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.unsigned_flux" class="md-nav__link">
+    unsigned_flux()
+  </a>
+  
+    <nav class="md-nav" aria-label="unsigned_flux()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.unsigned_flux--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.unsigned_flux--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_disc" class="md-nav__link">
+    v_disc()
+  </a>
+  
+    <nav class="md-nav" aria-label="v_disc()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_disc--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_disc--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_phot" class="md-nav__link">
+    v_phot()
+  </a>
+  
+    <nav class="md-nav" aria-label="v_phot()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_phot--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_phot--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_quiet" class="md-nav__link">
+    v_quiet()
+  </a>
+  
+    <nav class="md-nav" aria-label="v_quiet()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_quiet--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_quiet--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rvs/" class="md-nav__link">
+        RV Calculations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plotting_funcs/" class="md-nav__link">
+        Plotting Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../settings/" class="md-nav__link">
+        Settings
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11">
+          Jupyter Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Jupyter Examples" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          Jupyter Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/docs_sunpy_example/" class="md-nav__link">
+        Sunpy Basics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/docs_solar_corrections/" class="md-nav__link">
+        Component Calculations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/docs_rv_calcs/" class="md-nav__link">
+        RV Calculation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/docs_full_pipeline/" class="md-nav__link">
+        Full Pipeline
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs" class="md-nav__link">
+    sdo_hmi_rvs.tools.calculation_funcs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_calc" class="md-nav__link">
+    area_calc()
+  </a>
+  
+    <nav class="md-nav" aria-label="area_calc()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_calc--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_calc--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_filling_factor" class="md-nav__link">
+    area_filling_factor()
+  </a>
+  
+    <nav class="md-nav" aria-label="area_filling_factor()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_filling_factor--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_filling_factor--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_unsigned_flux" class="md-nav__link">
+    area_unsigned_flux()
+  </a>
+  
+    <nav class="md-nav" aria-label="area_unsigned_flux()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_unsigned_flux--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_unsigned_flux--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_vconv" class="md-nav__link">
+    area_vconv()
+  </a>
+  
+    <nav class="md-nav" aria-label="area_vconv()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_vconv--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.area_vconv--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.corrected_map" class="md-nav__link">
+    corrected_map()
+  </a>
+  
+    <nav class="md-nav" aria-label="corrected_map()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.corrected_map--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.corrected_map--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.filling_factor" class="md-nav__link">
+    filling_factor()
+  </a>
+  
+    <nav class="md-nav" aria-label="filling_factor()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.filling_factor--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.filling_factor--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.int_thresh" class="md-nav__link">
+    int_thresh()
+  </a>
+  
+    <nav class="md-nav" aria-label="int_thresh()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.int_thresh--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.int_thresh--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.mag_field" class="md-nav__link">
+    mag_field()
+  </a>
+  
+    <nav class="md-nav" aria-label="mag_field()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.mag_field--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.mag_field--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.mag_thresh" class="md-nav__link">
+    mag_thresh()
+  </a>
+  
+    <nav class="md-nav" aria-label="mag_thresh()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.mag_thresh--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.mag_thresh--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.map_sequence" class="md-nav__link">
+    map_sequence()
+  </a>
+  
+    <nav class="md-nav" aria-label="map_sequence()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.map_sequence--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.map_sequence--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.rel_positions" class="md-nav__link">
+    rel_positions()
+  </a>
+  
+    <nav class="md-nav" aria-label="rel_positions()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.rel_positions--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.rel_positions--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.solar_rot_vel" class="md-nav__link">
+    solar_rot_vel()
+  </a>
+  
+    <nav class="md-nav" aria-label="solar_rot_vel()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.solar_rot_vel--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.solar_rot_vel--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.spacecraft_vel" class="md-nav__link">
+    spacecraft_vel()
+  </a>
+  
+    <nav class="md-nav" aria-label="spacecraft_vel()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.spacecraft_vel--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.spacecraft_vel--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.thresh_map" class="md-nav__link">
+    thresh_map()
+  </a>
+  
+    <nav class="md-nav" aria-label="thresh_map()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.thresh_map--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.thresh_map--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.unsigned_flux" class="md-nav__link">
+    unsigned_flux()
+  </a>
+  
+    <nav class="md-nav" aria-label="unsigned_flux()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.unsigned_flux--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.unsigned_flux--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_disc" class="md-nav__link">
+    v_disc()
+  </a>
+  
+    <nav class="md-nav" aria-label="v_disc()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_disc--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_disc--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_phot" class="md-nav__link">
+    v_phot()
+  </a>
+  
+    <nav class="md-nav" aria-label="v_phot()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_phot--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_phot--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_quiet" class="md-nav__link">
+    v_quiet()
+  </a>
+  
+    <nav class="md-nav" aria-label="v_quiet()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_quiet--parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdo_hmi_rvs.tools.calculation_funcs.v_quiet--returns" class="md-nav__link">
+    Returns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/tamarervin/sdo_hmi_rvs/blob/master/mkdocs/docs/package/calculation_funcs.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="calculation-functions-module">Calculation Functions Module</h1>
+
+
+  <div class="doc doc-object doc-module">
+
+<a id="sdo_hmi_rvs.tools.calculation_funcs"></a>
+    <div class="doc doc-contents first">
+
+      <p>Tamar Ervin
+Date: June 16, 2021</p>
+<p>functions for calculating Solar velocity corrections
+and components for derivation of SDO/HMI RVs</p>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.area_calc" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">area_calc</span><span class="p">(</span><span class="n">active</span><span class="p">,</span> <span class="n">pixA_hem</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>calculate area of active pixels for a thresholded map</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.area_calc--parameters">Parameters</h4>
+<p>active: weights array where active pixels have weight = 1
+pixA_hem: pixel areas in uHem</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.area_calc--returns">Returns</h4>
+<p>area: area of each active region weighted by its intensity</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">area_calc</span><span class="p">(</span><span class="n">active</span><span class="p">,</span> <span class="n">pixA_hem</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculate area of active pixels for a thresholded map</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    active: weights array where active pixels have weight = 1</span>
+<span class="sd">    pixA_hem: pixel areas in uHem</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    area: area of each active region weighted by its intensity</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># get labeling of image</span>
+    <span class="n">labeled</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">active</span><span class="p">)</span>
+
+    <span class="c1"># get area of active regions</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">active</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">props</span> <span class="o">=</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">labeled</span><span class="p">)</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">labeled</span><span class="p">,</span> <span class="n">pixA_hem</span><span class="p">)</span>
+
+    <span class="c1"># add area to array</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">info</span><span class="p">)):</span>
+        <span class="n">area</span><span class="p">[</span><span class="n">props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">area</span> <span class="o">*</span> <span class="n">info</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">mean_intensity</span>
+
+    <span class="k">return</span> <span class="n">area</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.area_filling_factor" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">area_filling_factor</span><span class="p">(</span><span class="n">active</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">mmap</span><span class="p">,</span> <span class="n">fac_inds</span><span class="p">,</span> <span class="n">athresh</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">mu_cutoff</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>calculate filling factor for regions thresholded by area
+- differentiate between large and small regions
+- differentiate between plage (large) and network (small) bright regions</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.area_filling_factor--parameters">Parameters</h4>
+<p>active: weights array where active pixels have weight = 1
+area: area of each active region weighted by its intensity
+mu: array of mu (cosine theta) values
+mmap: UNCORRECTED Sunpy map object (Magnetogram)
+fac_inds: array of indices where faculae are detected
+athresh: area threshold value between large and small regions (in uHem)
+mu_cutoff: minimum mu cutoff value for usable data</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.area_filling_factor--returns">Returns</h4>
+<p>f_small: filling factor (%) for small magnetically active regions
+f_large: filling factor (%) for large magnetically active regions
+f_network: filling factor (%) for network (small, bright magnetically active) regions
+f_plage: filling factor (%) for plage (large, bright magnetically active) regions
+f_nonconv: filling factor (%) for regions that do not suppress convective blueshift</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">area_filling_factor</span><span class="p">(</span><span class="n">active</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">mmap</span><span class="p">,</span> <span class="n">fac_inds</span><span class="p">,</span> <span class="n">athresh</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">mu_cutoff</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculate filling factor for regions thresholded by area</span>
+<span class="sd">    - differentiate between large and small regions</span>
+<span class="sd">    - differentiate between plage (large) and network (small) bright regions</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    active: weights array where active pixels have weight = 1</span>
+<span class="sd">    area: area of each active region weighted by its intensity</span>
+<span class="sd">    mu: array of mu (cosine theta) values</span>
+<span class="sd">    mmap: UNCORRECTED Sunpy map object (Magnetogram)</span>
+<span class="sd">    fac_inds: array of indices where faculae are detected</span>
+<span class="sd">    athresh: area threshold value between large and small regions (in uHem)</span>
+<span class="sd">    mu_cutoff: minimum mu cutoff value for usable data</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    f_small: filling factor (%) for small magnetically active regions</span>
+<span class="sd">    f_large: filling factor (%) for large magnetically active regions</span>
+<span class="sd">    f_network: filling factor (%) for network (small, bright magnetically active) regions</span>
+<span class="sd">    f_plage: filling factor (%) for plage (large, bright magnetically active) regions</span>
+<span class="sd">    f_nonconv: filling factor (%) for regions that do not suppress convective blueshift</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># get good mu values</span>
+    <span class="n">good_mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mu</span> <span class="o">&gt;</span> <span class="n">mu_cutoff</span><span class="p">)</span>
+
+    <span class="c1"># get number of pixels</span>
+    <span class="n">npix</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mmap</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">good_mu</span><span class="p">])</span>
+
+    <span class="c1"># get quiet pixels</span>
+    <span class="n">quiet</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">active</span>
+
+    <span class="c1"># get filling factor for &#39;small&#39; magnetic features</span>
+    <span class="n">small</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mmap</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">small_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">active</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">area</span> <span class="o">&lt;</span> <span class="n">athresh</span><span class="p">)</span>
+    <span class="n">small</span><span class="p">[</span><span class="n">small_inds</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+    <span class="n">f_small</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">small</span><span class="p">)</span> <span class="o">/</span> <span class="n">npix</span> <span class="o">*</span> <span class="mi">100</span>
+
+    <span class="c1"># get filling factor for &#39;large&#39; magnetic features</span>
+    <span class="n">large</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mmap</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">large_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">active</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">area</span> <span class="o">&gt;</span> <span class="n">athresh</span><span class="p">)</span>
+    <span class="n">large</span><span class="p">[</span><span class="n">large_inds</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+    <span class="n">f_large</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">large</span><span class="p">)</span> <span class="o">/</span> <span class="n">npix</span> <span class="o">*</span> <span class="mi">100</span>
+
+    <span class="c1"># get filling factor for network (small, faculae regions)</span>
+    <span class="n">network</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mmap</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">network_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">small</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">fac_inds</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">network</span><span class="p">[</span><span class="n">network_inds</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+    <span class="n">f_network</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">network</span><span class="p">)</span> <span class="o">/</span> <span class="n">npix</span> <span class="o">*</span> <span class="mi">100</span>
+
+    <span class="c1"># get filling factor for plage (large, faculae regions)</span>
+    <span class="n">plage</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mmap</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">plage_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">large</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">fac_inds</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">plage</span><span class="p">[</span><span class="n">plage_inds</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+    <span class="n">f_plage</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">plage</span><span class="p">)</span> <span class="o">/</span> <span class="n">npix</span> <span class="o">*</span> <span class="mi">100</span>
+
+    <span class="c1"># get filling factor for small, non-convective regions</span>
+    <span class="n">nonconv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mmap</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">nonconv_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">quiet</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">small</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">nonconv</span><span class="p">[</span><span class="n">nonconv_inds</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+    <span class="n">f_nonconv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">nonconv</span><span class="p">)</span> <span class="o">/</span> <span class="n">npix</span> <span class="o">*</span> <span class="mi">100</span>
+
+    <span class="k">return</span> <span class="n">f_small</span><span class="p">,</span> <span class="n">f_large</span><span class="p">,</span> <span class="n">f_network</span><span class="p">,</span> <span class="n">f_plage</span><span class="p">,</span> <span class="n">f_nonconv</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.area_unsigned_flux" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">area_unsigned_flux</span><span class="p">(</span><span class="n">map_mag_obs</span><span class="p">,</span> <span class="n">imap</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">active</span><span class="p">,</span> <span class="n">athresh</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>calculate the magnetic flux for different regions based on area cut
+and magnetic activitiy</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.area_unsigned_flux--parameters">Parameters</h4>
+<p>map_mag_obs: corrected observed magnetic field strength Sunpy map object (Magnetogram)
+imap: UNCORRECTED Sunpy map object (Intensitygram)
+area: area of each active region weighted by its intensity
+active: weights array where active pixels have weight = 1
+athresh: area threshold value between large and small regions (in uHem)</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.area_unsigned_flux--returns">Returns</h4>
+<p>quiet_flux: magnetic flux of quiet-Sun regions
+ar_flux: magnetic flux of active regions
+conv_flux: magnetic flux of regions that suppress convective blueshift
+pol_flux: magnetic flux of polarized regions
+pol_conv_flux: magnetic flux of polarized regions that suppress the convective blueshift</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">area_unsigned_flux</span><span class="p">(</span><span class="n">map_mag_obs</span><span class="p">,</span> <span class="n">imap</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">active</span><span class="p">,</span> <span class="n">athresh</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculate the magnetic flux for different regions based on area cut</span>
+<span class="sd">    and magnetic activitiy</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    map_mag_obs: corrected observed magnetic field strength Sunpy map object (Magnetogram)</span>
+<span class="sd">    imap: UNCORRECTED Sunpy map object (Intensitygram)</span>
+<span class="sd">    area: area of each active region weighted by its intensity</span>
+<span class="sd">    active: weights array where active pixels have weight = 1</span>
+<span class="sd">    athresh: area threshold value between large and small regions (in uHem)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    quiet_flux: magnetic flux of quiet-Sun regions</span>
+<span class="sd">    ar_flux: magnetic flux of active regions</span>
+<span class="sd">    conv_flux: magnetic flux of regions that suppress convective blueshift</span>
+<span class="sd">    pol_flux: magnetic flux of polarized regions</span>
+<span class="sd">    pol_conv_flux: magnetic flux of polarized regions that suppress the convective blueshift</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># get data arrays</span>
+    <span class="n">i_data</span> <span class="o">=</span> <span class="n">imap</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">m_data</span> <span class="o">=</span> <span class="n">map_mag_obs</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">mabs_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">m_data</span><span class="p">)</span>
+    <span class="n">quiet</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">active</span>
+
+    <span class="c1"># get large regions array</span>
+    <span class="n">large</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">m_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">large_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">active</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">area</span> <span class="o">&gt;</span> <span class="n">athresh</span><span class="p">)</span>
+    <span class="n">large</span><span class="p">[</span><span class="n">large_inds</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+
+    <span class="c1"># calculate relevant fluxes</span>
+    <span class="n">quiet_flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">mabs_data</span> <span class="o">*</span> <span class="n">i_data</span> <span class="o">*</span> <span class="n">quiet</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">i_data</span> <span class="o">*</span> <span class="n">quiet</span><span class="p">)</span>
+    <span class="n">ar_flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">mabs_data</span> <span class="o">*</span> <span class="n">i_data</span> <span class="o">*</span> <span class="n">active</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">i_data</span> <span class="o">*</span> <span class="n">active</span><span class="p">)</span>
+    <span class="n">conv_flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">mabs_data</span> <span class="o">*</span> <span class="n">i_data</span> <span class="o">*</span> <span class="n">large</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">i_data</span> <span class="o">*</span> <span class="n">large</span><span class="p">)</span>
+    <span class="n">pol_flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">m_data</span> <span class="o">*</span> <span class="n">i_data</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">i_data</span><span class="p">)</span>
+    <span class="n">pol_conv_flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">m_data</span> <span class="o">*</span> <span class="n">i_data</span> <span class="o">*</span> <span class="n">large</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">i_data</span> <span class="o">*</span> <span class="n">large</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">quiet_flux</span><span class="p">,</span> <span class="n">ar_flux</span><span class="p">,</span> <span class="n">conv_flux</span><span class="p">,</span> <span class="n">pol_flux</span><span class="p">,</span> <span class="n">pol_conv_flux</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.area_vconv" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">area_vconv</span><span class="p">(</span><span class="n">map_vel_cor</span><span class="p">,</span> <span class="n">imap</span><span class="p">,</span> <span class="n">active</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">athresh</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>calculate convective velocities for different area thresholds</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.area_vconv--parameters">Parameters</h4>
+<p>map_vel_cor: corrected (velocities) Sunpy map object (Dopplergram)
+imap: UNCORRECTED Sunpy map object (Intensitygram)
+active: weights array where active pixels have weight = 1
+area: area of each active region weighted by its intensity
+athresh: area threshold value between large and small regions (in uHem)</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.area_vconv--returns">Returns</h4>
+<p>vconv_quiet: convective velocity due to quiet-Sun regions
+vconv_large: convective velocity due to large active regions
+vconv_small: convective velocity due to small active regions</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">area_vconv</span><span class="p">(</span><span class="n">map_vel_cor</span><span class="p">,</span> <span class="n">imap</span><span class="p">,</span> <span class="n">active</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">athresh</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculate convective velocities for different area thresholds</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    map_vel_cor: corrected (velocities) Sunpy map object (Dopplergram)</span>
+<span class="sd">    imap: UNCORRECTED Sunpy map object (Intensitygram)</span>
+<span class="sd">    active: weights array where active pixels have weight = 1</span>
+<span class="sd">    area: area of each active region weighted by its intensity</span>
+<span class="sd">    athresh: area threshold value between large and small regions (in uHem)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    vconv_quiet: convective velocity due to quiet-Sun regions</span>
+<span class="sd">    vconv_large: convective velocity due to large active regions</span>
+<span class="sd">    vconv_small: convective velocity due to small active regions</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># get data arrays</span>
+    <span class="n">v_data</span> <span class="o">=</span> <span class="n">map_vel_cor</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">i_data</span> <span class="o">=</span> <span class="n">imap</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="c1"># get large regions array</span>
+    <span class="n">large</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">v_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">large_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">active</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">area</span> <span class="o">&gt;</span> <span class="n">athresh</span><span class="p">)</span>
+    <span class="n">large</span><span class="p">[</span><span class="n">large_inds</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+
+    <span class="c1"># get small regions array</span>
+    <span class="n">small</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">v_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">small_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">active</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">area</span> <span class="o">&lt;</span> <span class="n">athresh</span><span class="p">)</span>
+    <span class="n">small</span><span class="p">[</span><span class="n">small_inds</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+
+    <span class="c1"># label the regions</span>
+    <span class="n">labeled</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">large</span><span class="p">)</span>
+    <span class="n">v_props</span> <span class="o">=</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">labeled</span><span class="p">,</span> <span class="n">v_data</span><span class="p">)</span>
+    <span class="n">i_props</span> <span class="o">=</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">labeled</span><span class="p">,</span> <span class="n">i_data</span><span class="p">)</span>
+
+    <span class="c1"># labeled for small regions</span>
+    <span class="n">labeled</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">small</span><span class="p">)</span>
+    <span class="n">v_small</span> <span class="o">=</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">labeled</span><span class="p">,</span> <span class="n">v_data</span><span class="p">)</span>
+    <span class="n">i_small</span> <span class="o">=</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">labeled</span><span class="p">,</span> <span class="n">i_data</span><span class="p">)</span>
+
+    <span class="c1"># get quiet regions array</span>
+    <span class="n">quiet</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">active</span>
+
+    <span class="c1"># array of non-convective regions</span>
+    <span class="n">nonconv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">v_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">nonconv_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">quiet</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">small</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">nonconv</span><span class="p">[</span><span class="n">nonconv_inds</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+
+    <span class="c1"># velocities of non convective regions</span>
+    <span class="n">vel_quiet</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">v_data</span> <span class="o">*</span> <span class="n">i_data</span> <span class="o">*</span> <span class="n">quiet</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">i_data</span> <span class="o">*</span> <span class="n">quiet</span><span class="p">)</span>
+    <span class="n">vel_nonconv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">v_data</span> <span class="o">*</span> <span class="n">i_data</span> <span class="o">*</span> <span class="n">nonconv</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">i_data</span> <span class="o">*</span> <span class="n">nonconv</span><span class="p">)</span>
+
+    <span class="c1"># velocities of convective regions</span>
+    <span class="n">vconv_large</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v_props</span><span class="p">))</span>
+    <span class="n">vconv_small</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v_props</span><span class="p">))</span>
+    <span class="n">vconv_quiet</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v_props</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v_props</span><span class="p">)):</span>
+        <span class="n">vconv_large</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">area</span> <span class="o">*</span> <span class="p">(</span><span class="n">v_props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">mean_intensity</span> <span class="o">-</span> <span class="n">vel_quiet</span><span class="p">)</span> <span class="o">*</span> <span class="n">i_props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">mean_intensity</span>
+        <span class="n">vconv_small</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_small</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">area</span> <span class="o">*</span> <span class="p">(</span><span class="n">v_small</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">mean_intensity</span> <span class="o">-</span> <span class="n">vel_quiet</span><span class="p">)</span> <span class="o">*</span> <span class="n">i_small</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">mean_intensity</span>
+        <span class="n">vconv_quiet</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">area</span> <span class="o">*</span> <span class="p">(</span><span class="n">v_props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">mean_intensity</span> <span class="o">-</span> <span class="n">vel_nonconv</span><span class="p">)</span> <span class="o">*</span> <span class="n">i_props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">mean_intensity</span>
+
+    <span class="c1"># convective velocity of quiet regions</span>
+    <span class="n">vconv_quiet</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">vconv_quiet</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">i_data</span><span class="p">)</span>
+
+    <span class="c1"># convective velocity of large regions</span>
+    <span class="n">vconv_large</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">vconv_large</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">i_data</span><span class="p">)</span>
+
+    <span class="c1"># convective velocity of small regions</span>
+    <span class="n">vconv_small</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">vconv_small</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">i_data</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">vconv_quiet</span><span class="p">,</span> <span class="n">vconv_large</span><span class="p">,</span> <span class="n">vconv_small</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.corrected_map" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">corrected_map</span><span class="p">(</span><span class="n">corrected_data</span><span class="p">,</span> <span class="n">smap</span><span class="p">,</span> <span class="n">map_type</span><span class="p">,</span> <span class="n">frame</span><span class="o">=&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">sunpy</span><span class="o">.</span><span class="n">coordinates</span><span class="o">.</span><span class="n">frames</span><span class="o">.</span><span class="n">HeliographicCarrington</span><span class="s1">&#39;&gt;)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>function to make Sunpy map object from corrected data</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.corrected_map--parameters">Parameters</h4>
+<p>corrected_data: corrected velocity data
+smap: original Sunpy map object
+map_type: map type for 'content' section of fits header (string)
+frame: new rotation frame</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.corrected_map--returns">Returns</h4>
+<p>corr_map: Sunpy map object with new frame information and corrected data</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">corrected_map</span><span class="p">(</span><span class="n">corrected_data</span><span class="p">,</span> <span class="n">smap</span><span class="p">,</span> <span class="n">map_type</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="n">frames</span><span class="o">.</span><span class="n">HeliographicCarrington</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    function to make Sunpy map object from corrected data</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    corrected_data: corrected velocity data</span>
+<span class="sd">    smap: original Sunpy map object</span>
+<span class="sd">    map_type: map type for &#39;content&#39; section of fits header (string)</span>
+<span class="sd">    frame: new rotation frame</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    corr_map: Sunpy map object with new frame information and corrected data</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># build SkyCoord instance in new frame</span>
+    <span class="n">coord</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="mi">0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">,</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">,</span> <span class="n">obstime</span><span class="o">=</span><span class="n">smap</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="n">smap</span><span class="o">.</span><span class="n">observer_coordinate</span><span class="p">,</span>
+                     <span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">)</span>
+
+    <span class="c1"># create fits header file with data and coordinate system information</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="n">sunpy</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">make_fitswcs_header</span><span class="p">(</span><span class="n">corrected_data</span><span class="p">,</span> <span class="n">coord</span><span class="p">)</span>
+
+    <span class="c1"># update fits header with instrument and content information</span>
+    <span class="n">header</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">map_type</span>
+    <span class="n">header</span><span class="p">[</span><span class="s1">&#39;telescop&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">smap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;telescop&#39;</span><span class="p">]</span>
+    <span class="n">header</span><span class="p">[</span><span class="s1">&#39;wavelnth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">smap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;wavelnth&#39;</span><span class="p">]</span>
+
+    <span class="c1"># create new Sunpy map instance with corrected data</span>
+    <span class="n">corr_map</span> <span class="o">=</span> <span class="n">sunpy</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">corrected_data</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">corr_map</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.filling_factor" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">filling_factor</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">mmap</span><span class="p">,</span> <span class="n">active</span><span class="p">,</span> <span class="n">fac_inds</span><span class="p">,</span> <span class="n">spot_inds</span><span class="p">,</span> <span class="n">mu_cutoff</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>function to calculate filling factors for faculae, sunspots, and
+total magnetically active regions
+- percentage of magnetically active pixels on the solar surface at any one time</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.filling_factor--parameters">Parameters</h4>
+<p>mu: array of mu (cosine theta) values
+mmap: UNCORRECTED Sunpy map object (Magnetogram)
+active: weights array where active pixels have weight = 1
+fac_inds: array of indices where faculae are detected
+spot_inds: array of indices where sunspots are detected
+mu_cutoff: minimum mu cutoff value</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.filling_factor--returns">Returns</h4>
+<p>f_bright: filling factor (%) for bright areas (faculae)
+f_spot: filling factor (%) for dark areas (sunspots)
+f_total: filling factor (%) for timestamp</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">filling_factor</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">mmap</span><span class="p">,</span> <span class="n">active</span><span class="p">,</span> <span class="n">fac_inds</span><span class="p">,</span> <span class="n">spot_inds</span><span class="p">,</span> <span class="n">mu_cutoff</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    function to calculate filling factors for faculae, sunspots, and</span>
+<span class="sd">    total magnetically active regions</span>
+<span class="sd">    - percentage of magnetically active pixels on the solar surface at any one time</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mu: array of mu (cosine theta) values</span>
+<span class="sd">    mmap: UNCORRECTED Sunpy map object (Magnetogram)</span>
+<span class="sd">    active: weights array where active pixels have weight = 1</span>
+<span class="sd">    fac_inds: array of indices where faculae are detected</span>
+<span class="sd">    spot_inds: array of indices where sunspots are detected</span>
+<span class="sd">    mu_cutoff: minimum mu cutoff value</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    f_bright: filling factor (%) for bright areas (faculae)</span>
+<span class="sd">    f_spot: filling factor (%) for dark areas (sunspots)</span>
+<span class="sd">    f_total: filling factor (%) for timestamp</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># get good mu values</span>
+    <span class="n">good_mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mu</span> <span class="o">&gt;</span> <span class="n">mu_cutoff</span><span class="p">)</span>
+
+    <span class="c1"># get number of pixels</span>
+    <span class="n">npix</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mmap</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">good_mu</span><span class="p">])</span>
+
+    <span class="c1"># faculae</span>
+    <span class="n">faculae</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mmap</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">faculae</span><span class="p">[</span><span class="n">fac_inds</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+    <span class="n">f_bright</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">faculae</span><span class="p">)</span> <span class="o">/</span> <span class="n">npix</span> <span class="o">*</span> <span class="mi">100</span>
+
+    <span class="c1"># sunspots</span>
+    <span class="n">spots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mmap</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">spots</span><span class="p">[</span><span class="n">spot_inds</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+    <span class="n">f_spot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">spots</span><span class="p">)</span> <span class="o">/</span> <span class="n">npix</span> <span class="o">*</span> <span class="mi">100</span>
+
+    <span class="c1"># get filling factor</span>
+    <span class="n">f_total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">active</span><span class="p">)</span> <span class="o">/</span> <span class="n">npix</span> <span class="o">*</span> <span class="mi">100</span>
+
+    <span class="k">return</span> <span class="n">f_bright</span><span class="p">,</span> <span class="n">f_spot</span><span class="p">,</span> <span class="n">f_total</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.int_thresh" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">int_thresh</span><span class="p">(</span><span class="n">map_int_cor</span><span class="p">,</span> <span class="n">active</span><span class="p">,</span> <span class="n">quiet</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>function to do intensity thresholding and differentiate between faculae (bright) and sunspots (dark)</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.int_thresh--parameters">Parameters</h4>
+<p>map_int_cor: corrected (limb-darkening) Sunpy map object (Intensitygram)
+active: weights array where active pixels are 1
+quiet: weights array where active pixels are 0</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.int_thresh--returns">Returns</h4>
+<p>fac_inds: array of indices where faculae are detected
+spot_inds: array of indices where sunspots are detected</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">int_thresh</span><span class="p">(</span><span class="n">map_int_cor</span><span class="p">,</span> <span class="n">active</span><span class="p">,</span> <span class="n">quiet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    function to do intensity thresholding and differentiate between faculae (bright) and sunspots (dark)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    map_int_cor: corrected (limb-darkening) Sunpy map object (Intensitygram)</span>
+<span class="sd">    active: weights array where active pixels are 1</span>
+<span class="sd">    quiet: weights array where active pixels are 0</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    fac_inds: array of indices where faculae are detected</span>
+<span class="sd">    spot_inds: array of indices where sunspots are detected</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># flattened intensity data</span>
+    <span class="n">Iflat</span> <span class="o">=</span> <span class="n">map_int_cor</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="c1"># calculate quiet sun intensity</span>
+    <span class="n">int_quiet</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">Iflat</span> <span class="o">*</span> <span class="n">quiet</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">quiet</span><span class="p">)</span>
+
+    <span class="c1"># intensity threshold</span>
+    <span class="n">int_cutoff</span> <span class="o">=</span> <span class="mf">0.89</span> <span class="o">*</span> <span class="n">int_quiet</span>
+
+    <span class="c1"># get faculae</span>
+    <span class="n">fac_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">((</span><span class="n">Iflat</span> <span class="o">&gt;</span> <span class="n">int_cutoff</span><span class="p">),</span> <span class="p">(</span><span class="n">active</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">))</span>
+
+    <span class="c1"># get sunspots</span>
+    <span class="n">spot_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">((</span><span class="n">Iflat</span> <span class="o">&lt;=</span> <span class="n">int_cutoff</span><span class="p">),</span> <span class="p">(</span><span class="n">active</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">fac_inds</span><span class="p">,</span> <span class="n">spot_inds</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.mag_field" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">mag_field</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">mmap</span><span class="p">,</span> <span class="n">B_noise</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">mu_cutoff</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>function to correct for unsigned magnetic field strength and magnetic noise</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.mag_field--parameters">Parameters</h4>
+<p>mu: array of mu (cosine theta) values
+mmap: Sunpy map object (Magnetogram)
+B_noise: magnetic noise level in Gauss
+mu_cutoff: minimum mu cutoff value</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.mag_field--returns">Returns</h4>
+<p>Bobs: corrected observed magnetic field strength
+Br: array of corrected unsigned magnetic field strength</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">mag_field</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">mmap</span><span class="p">,</span> <span class="n">B_noise</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">mu_cutoff</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    function to correct for unsigned magnetic field strength and magnetic noise</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mu: array of mu (cosine theta) values</span>
+<span class="sd">    mmap: Sunpy map object (Magnetogram)</span>
+<span class="sd">    B_noise: magnetic noise level in Gauss</span>
+<span class="sd">    mu_cutoff: minimum mu cutoff value</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Bobs: corrected observed magnetic field strength</span>
+<span class="sd">    Br: array of corrected unsigned magnetic field strength</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># get valid indices</span>
+    <span class="n">use_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">mu</span> <span class="o">&gt;</span> <span class="n">mu_cutoff</span><span class="p">,</span> <span class="n">mu</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">mag_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">use_indices</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">mmap</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">B_noise</span><span class="p">)</span>
+
+    <span class="c1"># calculate full magnetic field strength</span>
+    <span class="n">Bobs</span> <span class="o">=</span> <span class="n">mmap</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">Br</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">mmap</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">Br</span><span class="p">[</span><span class="n">use_indices</span><span class="p">]</span> <span class="o">=</span> <span class="n">Bobs</span><span class="p">[</span><span class="n">use_indices</span><span class="p">]</span> <span class="o">/</span> <span class="n">mu</span><span class="p">[</span><span class="n">use_indices</span><span class="p">]</span>
+    <span class="n">Bobs</span><span class="p">[</span><span class="n">mag_indices</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">Br</span><span class="p">[</span><span class="n">mag_indices</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">return</span> <span class="n">Bobs</span><span class="p">,</span> <span class="n">Br</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.mag_thresh" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">mag_thresh</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">mmap</span><span class="p">,</span> <span class="n">Br_cutoff</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">mu_cutoff</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>function to calculate magnetic threshold and differentiate between magnetically active regions and quiet Sun</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.mag_thresh--parameters">Parameters</h4>
+<p>mu: array of mu (cosine theta) values
+mmap: corrected (unsigned magnetic field) Sunpy map object (Magnetogram)
+Br_cutoff: minimum cutoff value (in Gauss) for thresholding active regions
+mu_cutoff: minimum mu cutoff value for data to ignore</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.mag_thresh--returns">Returns</h4>
+<p>active: weights array where active pixels are 1
+quiet: weights array where active pixels are 0</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">mag_thresh</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">mmap</span><span class="p">,</span> <span class="n">Br_cutoff</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">mu_cutoff</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    function to calculate magnetic threshold and differentiate between magnetically active regions and quiet Sun</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mu: array of mu (cosine theta) values</span>
+<span class="sd">    mmap: corrected (unsigned magnetic field) Sunpy map object (Magnetogram)</span>
+<span class="sd">    Br_cutoff: minimum cutoff value (in Gauss) for thresholding active regions</span>
+<span class="sd">    mu_cutoff: minimum mu cutoff value for data to ignore</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    active: weights array where active pixels are 1</span>
+<span class="sd">    quiet: weights array where active pixels are 0</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># get active region indices</span>
+    <span class="n">active_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">mmap</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">*</span> <span class="n">mu</span> <span class="o">&gt;</span> <span class="n">Br_cutoff</span><span class="p">)</span>
+    <span class="n">bad_mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mu</span> <span class="o">&lt;=</span> <span class="n">mu_cutoff</span><span class="p">)</span>
+
+    <span class="c1"># make active region array</span>
+    <span class="n">active</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mu</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">active</span><span class="p">[</span><span class="n">active_inds</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+    <span class="n">active</span><span class="p">[</span><span class="n">bad_mu</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+
+    <span class="c1"># find isolated pixels</span>
+    <span class="c1"># get area</span>
+    <span class="n">y_labeled</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">active</span><span class="p">,</span> <span class="n">connectivity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">y_area</span> <span class="o">=</span> <span class="p">[</span><span class="n">props</span><span class="o">.</span><span class="n">area</span> <span class="k">for</span> <span class="n">props</span> <span class="ow">in</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">y_labeled</span><span class="p">)]</span>
+
+    <span class="c1"># area constraint</span>
+    <span class="n">good_area</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_area</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">good_area</span> <span class="o">=</span> <span class="n">good_area</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">active_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">y_labeled</span><span class="p">,</span> <span class="n">good_area</span><span class="p">)</span>
+
+    <span class="c1"># create weights array</span>
+    <span class="n">active</span><span class="p">[</span><span class="o">~</span><span class="n">active_indices</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># get quiet indices</span>
+    <span class="n">quiet</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">active</span>
+
+    <span class="k">return</span> <span class="n">active</span><span class="p">,</span> <span class="n">quiet</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.map_sequence" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">map_sequence</span><span class="p">(</span><span class="n">dates_list</span><span class="p">,</span> <span class="n">time_range</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span> <span class="n">instrument</span><span class="o">=&lt;</span><span class="n">sunpy</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">Instrument</span><span class="p">(</span><span class="n">AIA</span><span class="p">:</span> <span class="n">Atmospheric</span> <span class="n">Imaging</span> <span class="n">Assembly</span><span class="p">)</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fcdda286a00</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">wavelength</span><span class="o">=&lt;</span><span class="n">sunpy</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">Wavelength</span><span class="p">(</span><span class="mf">171.0</span><span class="p">,</span> <span class="mf">171.0</span><span class="p">,</span> <span class="s1">&#39;Angstrom&#39;</span><span class="p">)</span><span class="o">&gt;</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>function to query sunpy for images within certain time range of dates in dates list
+user specified instrument and wavelength, otherwise default values: AIA 171A</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.map_sequence--parameters">Parameters</h4>
+<p>dates_list: list of dates, either datetime or strings
+time_range: plus/minus time range to search for images in comparison to desired timestamp
+instrument: Sunpy instrument of choice (AIA, HMI, LASCO, EIT)
+wavelength: desired wavelength of choice instrument</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.map_sequence--returns">Returns</h4>
+<p>maps: Sunpy map sequence object</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">map_sequence</span><span class="p">(</span><span class="n">dates_list</span><span class="p">,</span> <span class="n">time_range</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span> <span class="n">instrument</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">Instrument</span><span class="o">.</span><span class="n">aia</span><span class="p">,</span>
+                 <span class="n">wavelength</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">Wavelength</span><span class="p">(</span><span class="mi">171</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    function to query sunpy for images within certain time range of dates in dates list</span>
+<span class="sd">    user specified instrument and wavelength, otherwise default values: AIA 171A</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dates_list: list of dates, either datetime or strings</span>
+<span class="sd">    time_range: plus/minus time range to search for images in comparison to desired timestamp</span>
+<span class="sd">    instrument: Sunpy instrument of choice (AIA, HMI, LASCO, EIT)</span>
+<span class="sd">    wavelength: desired wavelength of choice instrument</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    maps: Sunpy map sequence object</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dates_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">datetimes</span> <span class="o">=</span> <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">date</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">dates_list</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">datetimes</span> <span class="o">=</span> <span class="n">dates_list</span>
+
+    <span class="n">downloaded_files</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">datetime_object</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datetimes</span><span class="p">):</span>
+        <span class="c1"># pull image within specified time range</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">Fido</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">Time</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">datetime_object</span> <span class="o">-</span> <span class="n">time_range</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime_object</span> <span class="o">+</span> <span class="n">time_range</span><span class="p">)),</span>
+                             <span class="n">instrument</span><span class="p">,</span> <span class="n">wavelength</span><span class="p">)</span>
+        <span class="c1"># add file to list</span>
+        <span class="n">downloaded_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Fido</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+
+    <span class="c1"># build map sequence from files</span>
+    <span class="n">maps</span> <span class="o">=</span> <span class="n">sunpy</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">downloaded_files</span><span class="p">,</span> <span class="n">sequence</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">maps</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.rel_positions" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">rel_positions</span><span class="p">(</span><span class="n">wij</span><span class="p">,</span> <span class="n">nij</span><span class="p">,</span> <span class="n">rij</span><span class="p">,</span> <span class="n">smap</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>function to calculate pixel-wise relative positions in new coordinate frame</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.rel_positions--parameters">Parameters</h4>
+<p>wij: array of westward values for image
+nij: array of northward values for image
+rij: array of radius values for image
+smap: Sunpy map object</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.rel_positions--returns">Returns</h4>
+<p>deltaw: relative westward position of pixel
+deltan: relative northward position of pixel
+deltar: relative radial position of pixel
+dij: distance between pixel ij and spacecraft</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">rel_positions</span><span class="p">(</span><span class="n">wij</span><span class="p">,</span> <span class="n">nij</span><span class="p">,</span> <span class="n">rij</span><span class="p">,</span> <span class="n">smap</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    function to calculate pixel-wise relative positions in new coordinate frame</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    wij: array of westward values for image</span>
+<span class="sd">    nij: array of northward values for image</span>
+<span class="sd">    rij: array of radius values for image</span>
+<span class="sd">    smap: Sunpy map object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    deltaw: relative westward position of pixel</span>
+<span class="sd">    deltan: relative northward position of pixel</span>
+<span class="sd">    deltar: relative radial position of pixel</span>
+<span class="sd">    dij: distance between pixel ij and spacecraft</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># calculate relative positions of each pixel</span>
+    <span class="n">rsc</span> <span class="o">=</span> <span class="n">smap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;dsun_obs&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">smap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;rsun_ref&#39;</span><span class="p">]</span>
+    <span class="n">deltaw</span> <span class="o">=</span> <span class="n">wij</span>
+    <span class="n">deltan</span> <span class="o">=</span> <span class="n">nij</span>
+    <span class="n">deltar</span> <span class="o">=</span> <span class="n">rij</span> <span class="o">-</span> <span class="n">rsc</span>
+    <span class="n">dij</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">deltaw</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">deltan</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">deltar</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">deltaw</span><span class="p">,</span> <span class="n">deltan</span><span class="p">,</span> <span class="n">deltar</span><span class="p">,</span> <span class="n">dij</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.solar_rot_vel" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">solar_rot_vel</span><span class="p">(</span><span class="n">wij</span><span class="p">,</span> <span class="n">nij</span><span class="p">,</span> <span class="n">rij</span><span class="p">,</span> <span class="n">deltaw</span><span class="p">,</span> <span class="n">deltan</span><span class="p">,</span> <span class="n">deltar</span><span class="p">,</span> <span class="n">dij</span><span class="p">,</span> <span class="n">vmap</span><span class="p">,</span> <span class="n">a_parameters</span><span class="o">=</span><span class="p">[</span><span class="mf">14.713</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.396</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.787</span><span class="p">])</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>function to calculate pixel-wise velocities due to solar rotation</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.solar_rot_vel--parameters">Parameters</h4>
+<p>wij: array of westward values for image
+nij: array of northward values for image
+rij: array of radius values for image
+deltaw: relative westward position of pixel
+deltan: relative northward position of pixel
+deltar: relative radial position of pixel
+dij: distance between pixel ij and spacecraft
+vmap: Sunpy map object (Dopplergram)
+a_parameters: array of solar differential rotation parameters from Snodgrass &amp; Ulrich (1990).</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.solar_rot_vel--returns">Returns</h4>
+<p>vrot: array of solar rotation velocities</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">solar_rot_vel</span><span class="p">(</span><span class="n">wij</span><span class="p">,</span> <span class="n">nij</span><span class="p">,</span> <span class="n">rij</span><span class="p">,</span> <span class="n">deltaw</span><span class="p">,</span> <span class="n">deltan</span><span class="p">,</span> <span class="n">deltar</span><span class="p">,</span> <span class="n">dij</span><span class="p">,</span> <span class="n">vmap</span><span class="p">,</span> <span class="n">a_parameters</span><span class="o">=</span><span class="p">[</span><span class="mf">14.713</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.396</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.787</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    function to calculate pixel-wise velocities due to solar rotation</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    wij: array of westward values for image</span>
+<span class="sd">    nij: array of northward values for image</span>
+<span class="sd">    rij: array of radius values for image</span>
+<span class="sd">    deltaw: relative westward position of pixel</span>
+<span class="sd">    deltan: relative northward position of pixel</span>
+<span class="sd">    deltar: relative radial position of pixel</span>
+<span class="sd">    dij: distance between pixel ij and spacecraft</span>
+<span class="sd">    vmap: Sunpy map object (Dopplergram)</span>
+<span class="sd">    a_parameters: array of solar differential rotation parameters from Snodgrass &amp; Ulrich (1990).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    vrot: array of solar rotation velocities</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># apply to cartesian coordinates</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">wij</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">nij</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;crlt_obs&#39;</span><span class="p">]))</span> <span class="o">+</span> <span class="n">rij</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;crlt_obs&#39;</span><span class="p">]))</span>
+    <span class="n">z1</span> <span class="o">=</span> <span class="o">-</span> <span class="n">nij</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;crlt_obs&#39;</span><span class="p">]))</span> <span class="o">+</span> <span class="n">rij</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;crlt_obs&#39;</span><span class="p">]))</span>
+
+    <span class="n">hx</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;crln_obs&#39;</span><span class="p">]))</span> <span class="o">+</span> <span class="n">z1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;crln_obs&#39;</span><span class="p">]))</span>
+    <span class="n">hy</span> <span class="o">=</span> <span class="n">y1</span>
+    <span class="n">hz</span> <span class="o">=</span> <span class="o">-</span><span class="n">x1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;crln_obs&#39;</span><span class="p">]))</span> <span class="o">+</span> <span class="n">z1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;crln_obs&#39;</span><span class="p">]))</span>
+
+    <span class="c1"># apply parameters to determine vrot for given image pixel</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">a_parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">a_parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">hy</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">a_parameters</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">hy</span><span class="p">))</span> <span class="o">**</span> <span class="mi">4</span><span class="p">))</span> <span class="o">*</span> <span class="mf">1.</span> <span class="o">/</span> <span class="mf">86400.</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">180.</span>
+
+    <span class="c1"># get projection of solar rotation</span>
+    <span class="n">vx_rot</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*</span> <span class="n">hz</span> <span class="o">*</span> <span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;rsun_ref&#39;</span><span class="p">]</span>
+    <span class="n">vy_rot</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="n">vz_rot</span> <span class="o">=</span> <span class="o">-</span><span class="n">w</span> <span class="o">*</span> <span class="n">hx</span> <span class="o">*</span> <span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;rsun_ref&#39;</span><span class="p">]</span>
+
+    <span class="n">v1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;crln_obs&#39;</span><span class="p">]))</span> <span class="o">*</span> <span class="n">vx_rot</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;crln_obs&#39;</span><span class="p">]))</span> <span class="o">*</span> <span class="n">vz_rot</span>
+    <span class="n">v2</span> <span class="o">=</span> <span class="n">vy_rot</span>
+    <span class="n">v3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;crln_obs&#39;</span><span class="p">]))</span> <span class="o">*</span> <span class="n">vx_rot</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;crln_obs&#39;</span><span class="p">]))</span> <span class="o">*</span> <span class="n">vz_rot</span>
+
+    <span class="c1"># project into correct direction</span>
+    <span class="n">vrotw</span> <span class="o">=</span> <span class="n">v1</span>
+    <span class="n">vrotn</span> <span class="o">=</span> <span class="n">v2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;crlt_obs&#39;</span><span class="p">]))</span> <span class="o">-</span> <span class="n">v3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;crlt_obs&#39;</span><span class="p">]))</span>
+    <span class="n">vrotr</span> <span class="o">=</span> <span class="n">v2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;crlt_obs&#39;</span><span class="p">]))</span> <span class="o">+</span> <span class="n">v3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;crlt_obs&#39;</span><span class="p">]))</span>
+
+    <span class="c1"># get full rotational velocity</span>
+    <span class="n">vrot</span> <span class="o">=</span> <span class="p">(</span><span class="n">deltaw</span> <span class="o">*</span> <span class="n">vrotw</span> <span class="o">+</span> <span class="n">deltan</span> <span class="o">*</span> <span class="n">vrotn</span> <span class="o">+</span> <span class="n">deltar</span> <span class="o">*</span> <span class="n">vrotr</span><span class="p">)</span> <span class="o">/</span> <span class="n">dij</span>
+
+    <span class="k">return</span> <span class="n">vrot</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.spacecraft_vel" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">spacecraft_vel</span><span class="p">(</span><span class="n">deltaw</span><span class="p">,</span> <span class="n">deltan</span><span class="p">,</span> <span class="n">deltar</span><span class="p">,</span> <span class="n">dij</span><span class="p">,</span> <span class="n">vmap</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>function to calculate pixel-wise spacecraft velocities for Sunpy map</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.spacecraft_vel--parameters">Parameters</h4>
+<p>deltaw: relative westward position of pixel
+deltan: relative northward position of pixel
+deltar: relative radial position of pixel
+dij: distance between pixel ij and spacecraft
+vmap: Sunpy map object (Dopplergram)</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.spacecraft_vel--returns">Returns</h4>
+<p>vsc: array of spacecraft velocities</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">spacecraft_vel</span><span class="p">(</span><span class="n">deltaw</span><span class="p">,</span> <span class="n">deltan</span><span class="p">,</span> <span class="n">deltar</span><span class="p">,</span> <span class="n">dij</span><span class="p">,</span> <span class="n">vmap</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    function to calculate pixel-wise spacecraft velocities for Sunpy map</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    deltaw: relative westward position of pixel</span>
+<span class="sd">    deltan: relative northward position of pixel</span>
+<span class="sd">    deltar: relative radial position of pixel</span>
+<span class="sd">    dij: distance between pixel ij and spacecraft</span>
+<span class="sd">    vmap: Sunpy map object (Dopplergram)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    vsc: array of spacecraft velocities</span>
+
+<span class="sd">   &quot;&quot;&quot;</span>
+
+    <span class="c1"># velocity of spacecraft relative to sun</span>
+    <span class="n">vscw</span> <span class="o">=</span> <span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;obs_vw&#39;</span><span class="p">]</span>
+    <span class="n">vscn</span> <span class="o">=</span> <span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;obs_vn&#39;</span><span class="p">]</span>
+    <span class="n">vscr</span> <span class="o">=</span> <span class="n">vmap</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;obs_vr&#39;</span><span class="p">]</span>
+
+    <span class="c1"># pixel-wise magnitude of spacecraft velocity</span>
+    <span class="n">vsc</span> <span class="o">=</span> <span class="o">-</span> <span class="p">(</span><span class="n">deltaw</span> <span class="o">*</span> <span class="n">vscw</span> <span class="o">+</span> <span class="n">deltan</span> <span class="o">*</span> <span class="n">vscn</span> <span class="o">+</span> <span class="n">deltar</span> <span class="o">*</span> <span class="n">vscr</span><span class="p">)</span> <span class="o">/</span> <span class="n">dij</span>
+
+    <span class="k">return</span> <span class="n">vsc</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.thresh_map" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">thresh_map</span><span class="p">(</span><span class="n">fac_inds</span><span class="p">,</span> <span class="n">spot_inds</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>function that creates thresholded map of sunspots (1) and faculae (2)</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.thresh_map--parameters">Parameters</h4>
+<p>fac_inds: array of indices where faculae are detected
+spot_inds: array of indices where sunspots are detected</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.thresh_map--returns">Returns</h4>
+<p>thresh_arr: array of values denoting faculae (1) and sunspots (2)</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">thresh_map</span><span class="p">(</span><span class="n">fac_inds</span><span class="p">,</span> <span class="n">spot_inds</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    function that creates thresholded map of sunspots (1) and faculae (2)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fac_inds: array of indices where faculae are detected</span>
+<span class="sd">    spot_inds: array of indices where sunspots are detected</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    thresh_arr: array of values denoting faculae (1) and sunspots (2)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">thresh_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">fac_inds</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">thresh_arr</span><span class="p">[</span><span class="n">fac_inds</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">thresh_arr</span><span class="p">[</span><span class="n">spot_inds</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="k">return</span> <span class="n">thresh_arr</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.unsigned_flux" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">unsigned_flux</span><span class="p">(</span><span class="n">map_mag_obs</span><span class="p">,</span> <span class="n">imap</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>calculate unsigned magnetic flux</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.unsigned_flux--parameters">Parameters</h4>
+<p>map_mag_obs: corrected observed magnetic field strength Sunpy map object (Magnetogram)
+imap: UNCORRECTED Sunpy map object (Intensitygram)</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.unsigned_flux--returns">Returns</h4>
+<p>unsign_flux: unsigned magnetic flux</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">unsigned_flux</span><span class="p">(</span><span class="n">map_mag_obs</span><span class="p">,</span> <span class="n">imap</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculate unsigned magnetic flux</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    map_mag_obs: corrected observed magnetic field strength Sunpy map object (Magnetogram)</span>
+<span class="sd">    imap: UNCORRECTED Sunpy map object (Intensitygram)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    unsign_flux: unsigned magnetic flux</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># get data arrays</span>
+    <span class="n">i_data</span> <span class="o">=</span> <span class="n">imap</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">m_data</span> <span class="o">=</span> <span class="n">map_mag_obs</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">mabs_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">m_data</span><span class="p">)</span>
+
+    <span class="c1"># unsigned flux</span>
+    <span class="n">unsign_flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">mabs_data</span> <span class="o">*</span> <span class="n">i_data</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">i_data</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">unsign_flux</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.v_disc" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">v_disc</span><span class="p">(</span><span class="n">map_vel_cor</span><span class="p">,</span> <span class="n">imap</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>function to calculate disc-averaged velocity of Sun</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.v_disc--parameters">Parameters</h4>
+<p>map_vel_cor: corrected (velocities) Sunpy map object (Dopplergram)
+imap: UNCORRECTED Sunpy map object (Intensitygram)</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.v_disc--returns">Returns</h4>
+<p>v_disc: disc averaged velocity of Sun (float)</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">v_disc</span><span class="p">(</span><span class="n">map_vel_cor</span><span class="p">,</span> <span class="n">imap</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    function to calculate disc-averaged velocity of Sun</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    map_vel_cor: corrected (velocities) Sunpy map object (Dopplergram)</span>
+<span class="sd">    imap: UNCORRECTED Sunpy map object (Intensitygram)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    v_disc: disc averaged velocity of Sun (float)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">v_disc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">map_vel_cor</span><span class="o">.</span><span class="n">data</span> <span class="o">*</span> <span class="n">imap</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">imap</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">v_disc</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.v_phot" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">v_phot</span><span class="p">(</span><span class="n">quiet</span><span class="p">,</span> <span class="n">active</span><span class="p">,</span> <span class="n">Lij</span><span class="p">,</span> <span class="n">vrot</span><span class="p">,</span> <span class="n">imap</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">fac_inds</span><span class="p">,</span> <span class="n">spot_inds</span><span class="p">,</span> <span class="n">mu_cutoff</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>function to calculate photometric velocity due to rotational Doppler variation</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.v_phot--parameters">Parameters</h4>
+<p>quiet: weights array where active pixels have weight = 0
+active: weights array where active pixels have weight = 1
+Lij: limb-darkening polynomial function
+vrot: solar rotational velocity
+imap: UNCORRECTED Sunpy map object (Intensitygram)
+mu: array of mu values
+fac_inds: array of indices where faculae are detected
+spot_inds: array of indices where sunspots are detected
+mu_cutoff: minimum mu cutoff value</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.v_phot--returns">Returns</h4>
+<p>v_phot: photospheric velocity perturbation (float)</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">v_phot</span><span class="p">(</span><span class="n">quiet</span><span class="p">,</span> <span class="n">active</span><span class="p">,</span> <span class="n">Lij</span><span class="p">,</span> <span class="n">vrot</span><span class="p">,</span> <span class="n">imap</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">fac_inds</span><span class="p">,</span> <span class="n">spot_inds</span><span class="p">,</span> <span class="n">mu_cutoff</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    function to calculate photometric velocity due to rotational Doppler variation</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    quiet: weights array where active pixels have weight = 0</span>
+<span class="sd">    active: weights array where active pixels have weight = 1</span>
+<span class="sd">    Lij: limb-darkening polynomial function</span>
+<span class="sd">    vrot: solar rotational velocity</span>
+<span class="sd">    imap: UNCORRECTED Sunpy map object (Intensitygram)</span>
+<span class="sd">    mu: array of mu values</span>
+<span class="sd">    fac_inds: array of indices where faculae are detected</span>
+<span class="sd">    spot_inds: array of indices where sunspots are detected</span>
+<span class="sd">    mu_cutoff: minimum mu cutoff value</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    v_phot: photospheric velocity perturbation (float)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># get good mu values</span>
+    <span class="n">good_mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mu</span> <span class="o">&gt;</span> <span class="n">mu_cutoff</span><span class="p">)</span>
+
+    <span class="c1"># calculate K scaling factor</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">imap</span><span class="o">.</span><span class="n">data</span> <span class="o">*</span> <span class="n">Lij</span> <span class="o">*</span> <span class="n">quiet</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">Lij</span><span class="p">[</span><span class="n">good_mu</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">quiet</span><span class="p">[</span><span class="n">good_mu</span><span class="p">])</span>
+
+    <span class="c1"># calculate photospheric velocity</span>
+    <span class="n">v_phot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">vrot</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">imap</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">K</span> <span class="o">*</span> <span class="n">Lij</span><span class="p">)</span> <span class="o">*</span> <span class="n">active</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">imap</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># faculae driven photospheric velocity</span>
+    <span class="n">vphot_bright</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">vrot</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">imap</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">K</span> <span class="o">*</span> <span class="n">Lij</span><span class="p">)</span> <span class="o">*</span> <span class="n">fac_inds</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">imap</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># sunspots driven photospheric velocity</span>
+    <span class="n">vphot_spot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">vrot</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">imap</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">K</span> <span class="o">*</span> <span class="n">Lij</span><span class="p">)</span> <span class="o">*</span> <span class="n">spot_inds</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">imap</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">v_phot</span><span class="p">,</span> <span class="n">vphot_bright</span><span class="p">,</span> <span class="n">vphot_spot</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="sdo_hmi_rvs.tools.calculation_funcs.v_quiet" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">v_quiet</span><span class="p">(</span><span class="n">map_vel_cor</span><span class="p">,</span> <span class="n">imap</span><span class="p">,</span> <span class="n">quiet</span><span class="p">)</span></code>
+
+
+</h2>
+
+    <div class="doc doc-contents ">
+
+      <p>function to calculate velocity due to convective motion of quiet-Sun</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.v_quiet--parameters">Parameters</h4>
+<p>map_vel_cor: corrected (velocities) Sunpy map object (Dopplergram)
+imap: UNCORRECTED Sunpy map object (Intensitygram)
+quiet: weights array where active pixels have weight = 0</p>
+<h4 id="sdo_hmi_rvs.tools.calculation_funcs.v_quiet--returns">Returns</h4>
+<p>v_quiet: quiet-Sun velocity (float)</p>
+
+        <details class="quote">
+          <summary>Source code in <code>sdo_hmi_rvs/tools/calculation_funcs.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">v_quiet</span><span class="p">(</span><span class="n">map_vel_cor</span><span class="p">,</span> <span class="n">imap</span><span class="p">,</span> <span class="n">quiet</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    function to calculate velocity due to convective motion of quiet-Sun</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    map_vel_cor: corrected (velocities) Sunpy map object (Dopplergram)</span>
+<span class="sd">    imap: UNCORRECTED Sunpy map object (Intensitygram)</span>
+<span class="sd">    quiet: weights array where active pixels have weight = 0</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    v_quiet: quiet-Sun velocity (float)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">v_quiet</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">map_vel_cor</span><span class="o">.</span><span class="n">data</span> <span class="o">*</span> <span class="n">imap</span><span class="o">.</span><span class="n">data</span> <span class="o">*</span> <span class="n">quiet</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span>
+        <span class="n">imap</span><span class="o">.</span><span class="n">data</span> <span class="o">*</span> <span class="n">quiet</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">v_quiet</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../lbc_funcs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Limb-Brightening Correction" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Limb-Brightening Correction
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../rvs/" class="md-footer__link md-footer__link--next" aria-label="Next: RV Calculations" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              RV Calculations
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "header.autohide"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.e99e714c.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c7d1b464.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
