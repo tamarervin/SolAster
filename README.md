@@ -2,13 +2,6 @@
 
 Pipeline to independently derive 'sun-as-a-star' radial velocity variations.
 
-# Installation
-
-* package installation using pip  
-* install pip  
-* install package   
-``pip install sdo_hmi_rvs``
-
 # Documentation
 
 **Documentation Site:**  https://tamarervin.github.io/sdo_hmi_rvs/
@@ -20,8 +13,24 @@ Pipeline to independently derive 'sun-as-a-star' radial velocity variations.
     * ``conda env create -f conda_env.yml``  
 * to add new dependencies, update conda_env.yml [file](conda_env.yml)  
 * run the following from the folder containing the .yml file  
-    * ``conda env update -f conda_env.yml``  
+    * ``conda env update -f conda_env.yml``
+    
+# Installation
+
+* package installation using pip  
+* install pip  
+* install package   
+``pip install sdo_hmi_rvs``  
   
+# References  
+
+* Ervin et al. (2021) - In Preparation  
+* [Milbourne et al. (2019)](https://doi.org/10.3847/1538-4357/ab064a)  
+* [Haywood et al. (2016)](https://doi.org/10.1093/mnras/stw187)  
+* Based on a technique developed by [Meunier, Lagrange & Desort (2010)](https://doi.org/10.1051/0004-6361/200913551) 
+  for SoHO/MDI images.  
+
+
 # Examples
 Examples are hosted [here](https://github.com/tamarervin/sdo_hmi_rvs/tree/main/sdo_hmi_rvs/examples):  
 
@@ -40,3 +49,12 @@ outlines calculation of full model RV from velocity components
 4. [Full Pipeline](https://github.com/tamarervin/sdo_hmi_rvs/blob/main/sdo_hmi_rvs/examples/full_pipeline.ipynb):
 full end-to-end pipeline to calculate 'sun-as-a-star' RVs and magnetic observables 
    
+# Issues or Suggestions
+
+* for any issues or bug fixes, please fill out an issue report on the [GitHub page](https://github.com/tamarervin/sdo_hmi_rvs/issues)  
+
+# Contact
+
+**Tamar Ervin**: <tamar.ervin@nasa.jpl.gov>
+
+**Sam Halverson**: <samuel.halverson@jpl.nasa.gov>
