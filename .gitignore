@@ -1,0 +1,6 @@
+/build/
+cat .gitignore
+*.pyc
+*~
+*.egg-info/
+docs/build
