@@ -1,10 +1,10 @@
 # SDO HMI RVs
 
-Pipeline to independently derive 'sun-as-a-star' radial velocity variations.
+Pipeline to independently derive 'Sun-as-a-star' radial velocity variations.
 
 # Documentation
 
-**Documentation Site:**  https://tamarervin.github.io/sdo_hmi_rvs/
+**Documentation Site:**  https://tamarervin.github.io/SolAster/
 
 # Build conda environment
 
