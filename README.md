@@ -1,10 +1,10 @@
 # SDO HMI RVs
 
-Pipeline to independently derive 'sun-as-a-star' radial velocity variations.
+Pipeline to independently derive 'Sun-as-a-star' radial velocity variations.
 
 # Documentation
 
-**Documentation Site:**  https://tamarervin.github.io/sdo_hmi_rvs/
+**Documentation Site:**  https://tamarervin.github.io/SolAster/
 
 # Build conda environment
 
@@ -51,10 +51,10 @@ full end-to-end pipeline to calculate 'sun-as-a-star' RVs and magnetic observabl
    
 # Issues or Suggestions
 
-* for any issues or bug fixes, please fill out an issue report on the [GitHub page](https://github.com/tamarervin/sdo_hmi_rvs/issues)  
+* for any issues or bug fixes, please fill out an issue report on the [GitHub page](https://github.com/tamarervin/SolAster/issues)  
 
 # Contact
 
-**Tamar Ervin**: <tamar.ervin@nasa.jpl.gov>
+**Tamar Ervin**: <tamarervin@gmail.com>
 
 **Sam Halverson**: <samuel.halverson@jpl.nasa.gov>
