@@ -26,6 +26,6 @@ project and for her papers that outlined the methodology of calculation.
 
 ## Contact
 
-**Tamar Ervin**: <tamar.ervin@nasa.jpl.gov>
+**Tamar Ervin**: <tamarervin@gmail.com>
 
 **Sam Halverson**: <samuel.halverson@jpl.nasa.gov>

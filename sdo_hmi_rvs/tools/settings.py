@@ -39,6 +39,29 @@ class PlotDir:
     MPL = os.path.join(BaseDir.BASE_DIR, 'mplstyle')
 
 
+class Parameters:
+    """
+    Class to hold parameters for RV pipeline calculation.
+    May be updates by the user.
+    """
+    # minimum mu value for 'good' pixels
+    mu_cutoff = 0.3
+
+    # coefficients for differential rotation from Snodgrass & Ulrich (1990).
+    a1 = 14.713
+    a2 = -2.396
+    a3 = -1.787
+
+    # magnetic noise level used to correct for unsigned magnetic field strength
+    B_noise = 8
+
+    # magnetic threshold value (G) from Yeo et. al. 2013 used for identifying magnetic regions
+    Br_cutoff = 24
+
+    # area threshold value between large and small regions (in uHem) based on Milbourne et al. (2019)
+    athresh = 20
+
+
 class Scaling:
     """
     Class that holds scaling coefficients for RV calculations.

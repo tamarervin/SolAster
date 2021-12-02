@@ -20,12 +20,17 @@ import sdo_hmi_rvs.tools.calculation_funcs as sfuncs
 import sdo_hmi_rvs.tools.lbc_funcs as lbfuncs
 import sdo_hmi_rvs.tools.coord_funcs as ctfuncs
 import sdo_hmi_rvs.tools.utilities as utils
-from sdo_hmi_rvs.tools.settings import CsvDir
+from sdo_hmi_rvs.tools.settings import CsvDir, Parameters
+from sdo_hmi_rvs.tools.plotting_funcs import hmi_plot
 
 
-def rvs(start_date, end_date, cadence, csv_name=None):
+def rvs(start_date, end_date, cadence, csv_name=None, diagnostic_plots=False, save_fig=None):
     """
     function to calculate rv components using pipeline functions
+
+    Calculation pipeline described in Ervin et al. (2021) - In Prep. and based on
+    Haywood et al. (2016), Milbourne et al. (2019) using the technique
+    developed by Meunier, Lagrange & Desort (2010) for SoHO/MDI images.
 
     Parameters
     ----------
@@ -37,6 +42,10 @@ def rvs(start_date, end_date, cadence, csv_name=None):
         how often to calculate RV components
     csv_name: str
         name of file to store calculations in
+    diagnostic_plots: bool
+        whether or not to create diagnostic plots showing HMI images and active region detection
+    save_fig: str
+        path to save diagnostic plot or None if not saving
 
     Returns
     -------
@@ -44,19 +53,8 @@ def rvs(start_date, end_date, cadence, csv_name=None):
 
     """
 
-    # check date formats
-    start_date = utils.check_date_format(start_date)
-    end_date = utils.check_date_format(end_date)
-
-    # check cadence format
-    if type(cadence) != int:
-        raise ('Calculation cadence must be an integer value in seconds.')
-
-    # create file names
-    if csv_name is None:
-        csv_name = str(start_date)
-    if type(csv_name) != str:
-        raise ('The csv name must be a string.')
+    # check input formats
+    start_date, end_date, cadence, csv_name = utils.check_inputs(CsvDir.CALC, start_date, end_date, cadence, csv_name)
 
     csv_name = os.path.join(CsvDir.CALC, csv_name + '.csv')
     bad_dates_csv = os.path.join(CsvDir.CALC, csv_name + '_bad_dates.csv')
@@ -148,10 +146,7 @@ def rvs(start_date, end_date, cadence, csv_name=None):
                 vsc = sfuncs.spacecraft_vel(deltaw, deltan, deltar, dij, vmap)
 
                 # optimized solar rotation parameters
-                a1 = 14.713
-                a2 = -2.396
-                a3 = -1.787
-                a_parameters = [a1, a2, a3]
+                a_parameters = [Parameters.a1, Parameters.a2, Parameters.a3]
 
                 # calculation of solar rotation velocity
                 vrot = sfuncs.solar_rot_vel(wij, nij, rij, deltaw, deltan, deltar, dij, vmap, a_parameters)
@@ -161,7 +156,7 @@ def rvs(start_date, end_date, cadence, csv_name=None):
 
                 # corrected velocity maps
                 map_vel_cor = sfuncs.corrected_map(corrected_vel, vmap, map_type='Corrected-Dopplergram',
-                                            frame=frames.HeliographicCarrington)
+                                                   frame=frames.HeliographicCarrington)
 
                 # limb brightening
                 Lij = lbfuncs.limb_polynomial(imap)
@@ -171,27 +166,18 @@ def rvs(start_date, end_date, cadence, csv_name=None):
 
                 # corrected intensity maps
                 map_int_cor = sfuncs.corrected_map(Iflat, imap, map_type='Corrected-Intensitygram',
-                                            frame=frames.HeliographicCarrington)
-
-                # magnetic noise level
-                B_noise = 8
+                                                   frame=frames.HeliographicCarrington)
 
                 # calculate unsigned field strength
-                Bobs, Br = sfuncs.mag_field(mu, mmap, B_noise)
+                Bobs, Br = sfuncs.mag_field(mu, mmap, Parameters.B_noise, mu_cutoff=Parameters.mu_cutoff)
 
                 # corrected observed magnetic data map
                 map_mag_obs = sfuncs.corrected_map(Bobs, mmap, map_type='Corrected-Magnetogram',
-                                            frame=frames.HeliographicCarrington)
-
-
-                ### calculate magnetic threshold
-                # magnetic threshold value (G) from Yeo et. al. 2013
-                Br_cutoff = 24
-                # mu cutoff value
-                mu_cutoff = 0.3
+                                                   frame=frames.HeliographicCarrington)
 
                 # calculate magnetic threshold
-                active, quiet = sfuncs.mag_thresh(mu, mmap, Br_cutoff=Br_cutoff, mu_cutoff=mu_cutoff)
+                active, quiet = sfuncs.mag_thresh(mu, mmap, Br_cutoff=Parameters.Br_cutoff,
+                                                  mu_cutoff=Parameters.mu_cutoff)
 
                 # calculate intensity threshold
                 fac_inds, spot_inds = sfuncs.int_thresh(map_int_cor, active, quiet)
@@ -199,9 +185,10 @@ def rvs(start_date, end_date, cadence, csv_name=None):
                 # create threshold array
                 thresh_arr = sfuncs.thresh_map(fac_inds, spot_inds)
 
-                # full threshold maps
-                map_full_thresh = sfuncs.corrected_map(thresh_arr, mmap, map_type='Threshold',
-                                                frame=frames.HeliographicCarrington)
+                # create diagnostic plots
+                if i == 0:
+                    if diagnostic_plots:
+                        hmi_plot(map_int_cor, map_mag_obs, map_vel_cor, fac_inds, spot_inds, mu, save_fig)
 
                 ### velocity contribution due to convective motion of quiet-Sun
                 v_quiet = v_quiet(map_vel_cor, imap, quiet)
@@ -209,7 +196,7 @@ def rvs(start_date, end_date, cadence, csv_name=None):
                 ### velocity contribution due to rotational Doppler imbalance of active regions (faculae/sunspots)
                 # calculate photospheric velocity
                 v_phot, vphot_bright, vphot_spot = v_phot(quiet, active, Lij, vrot, imap, mu, fac_inds,
-                                                          spot_inds)
+                                                          spot_inds, mu_cutoff=Parameters.mu_cutoff)
 
                 ### velocity contribution due to suppression of convective blueshift by active regions
                 # calculate disc-averaged velocity
@@ -220,7 +207,7 @@ def rvs(start_date, end_date, cadence, csv_name=None):
 
                 ### filling factor
                 # calculate filling factor
-                f_bright, f_spot, f = sfuncs.filling_factor(mu, mmap, active, fac_inds, spot_inds)
+                f_bright, f_spot, f = sfuncs.filling_factor(mu, mmap, active, fac_inds, spot_inds, mu_cutoff=Parameters.mu_cutoff)
 
                 ### unsigned magnetic flux
                 # unsigned observed flux
@@ -229,16 +216,18 @@ def rvs(start_date, end_date, cadence, csv_name=None):
                 ### calculate the area filling factor
                 pixA_hem = ctfuncs.pix_area_hem(wij, nij, rij, vmap)
                 area = sfuncs.area_calc(active, pixA_hem)
-                f_small, f_large, f_network, f_plage, f_nonconv =sfuncs.area_filling_factor(active, area, mu, mmap,
-                                                                                      fac_inds)
+                f_small, f_large, f_network, f_plage, f_nonconv = sfuncs.area_filling_factor(active, area, mu, mmap,
+                                                                                             fac_inds,
+                                                                                             athresh=Parameters.athresh,
+                                                                                             mu_cutoff=Parameters.mu_cutoff)
 
                 ### get the unsigned flux
                 quiet_flux, ar_flux, conv_flux, pol_flux, pol_conv_flux = sfuncs.area_unsigned_flux(map_mag_obs, imap,
-                                                                                             area,
-                                                                                             active)
+                                                                                                    area,
+                                                                                                    active, athresh=Parameters.athresh)
 
                 ### get area weighted convective velocities
-                vconv_quiet, vconv_large, vconv_small = sfuncs.area_vconv(map_vel_cor, imap, active, area)
+                vconv_quiet, vconv_large, vconv_small = sfuncs.area_vconv(map_vel_cor, imap, active, area, athresh=Parameters.athresh)
 
                 # make array of what we want to save
                 save_vals = [v_quiet, v_disc, v_phot, v_conv, f_bright, f_spot, f, unsigned_obs_flux, vphot_bright,

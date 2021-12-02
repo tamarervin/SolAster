@@ -19,6 +19,8 @@ from sunpy.coordinates import frames
 
 from skimage.measure import label, regionprops
 
+from sdo_hmi_rvs.tools.settings import Parameters
+
 
 def map_sequence(dates_list, time_range=datetime.timedelta(seconds=6), instrument=a.Instrument.aia,
                  wavelength=a.Wavelength(171 * u.angstrom)):
@@ -103,6 +105,8 @@ def spacecraft_vel(deltaw, deltan, deltar, dij, vmap):
     """
     function to calculate pixel-wise spacecraft velocities for Sunpy map
 
+    Based on Haywood et al. (2016) and described in Ervin et al. (2021) - In Prep.
+
     Parameters
     ----------
     deltaw: float, array
@@ -133,9 +137,11 @@ def spacecraft_vel(deltaw, deltan, deltar, dij, vmap):
     return vsc
 
 
-def solar_rot_vel(wij, nij, rij, deltaw, deltan, deltar, dij, vmap, a_parameters=[14.713, -2.396, -1.787]):
+def solar_rot_vel(wij, nij, rij, deltaw, deltan, deltar, dij, vmap, a_parameters=[Parameters.a1, Parameters.a2, Parameters.a3]):
     """
     function to calculate pixel-wise velocities due to solar rotation
+
+    Based on Haywood et al. (2016) and described in Ervin et al. (2021) - In Prep.
 
     Parameters
     ----------
@@ -236,9 +242,11 @@ def corrected_map(corrected_data, smap, map_type, frame=frames.HeliographicCarri
     return corr_map
 
 
-def mag_field(mu, mmap, B_noise=8, mu_cutoff=0.3):
+def mag_field(mu, mmap, B_noise=Parameters.B_noise, mu_cutoff=Parameters.mu_cutoff):
     """
     function to correct for unsigned magnetic field strength and magnetic noise
+
+    Based on Haywood et al. (2016) and described in Ervin et al. (2021) - In Prep.
 
     Parameters
     ----------
@@ -273,9 +281,11 @@ def mag_field(mu, mmap, B_noise=8, mu_cutoff=0.3):
     return Bobs, Br
 
 
-def mag_thresh(mu, mmap, Br_cutoff=24, mu_cutoff=0.3):
+def mag_thresh(mu, mmap, Br_cutoff=Parameters.Br_cutoff, mu_cutoff=Parameters.mu_cutoff):
     """
     function to calculate magnetic threshold and differentiate between magnetically active regions and quiet Sun
+
+    Based on Yeo et al. (2013) and described in Ervin et al. (2021) - In Prep.
 
     Parameters
     ----------
@@ -328,6 +338,8 @@ def int_thresh(map_int_cor, active, quiet):
     """
     function to do intensity thresholding and differentiate between faculae (bright) and sunspots (dark)
 
+    Based on Yeo et al. (2013) and described in Ervin et al. (2021) - In Prep.
+
     Parameters
     ----------
     map_int_cor: map
@@ -365,7 +377,7 @@ def int_thresh(map_int_cor, active, quiet):
 
 def thresh_map(fac_inds, spot_inds):
     """
-    function that creates thresholded map of sunspots (1) and faculae (2)
+    function that creates thresholded map of sunspots (-1) and faculae (1)
 
     Parameters
     ----------
@@ -377,12 +389,12 @@ def thresh_map(fac_inds, spot_inds):
     Returns
     -------
     thresh_arr: int, array
-        array of values denoting faculae (1) and sunspots (2)
+        array of values denoting faculae (1) and sunspots (-1)
     """
 
     thresh_arr = np.full(shape=fac_inds.shape, fill_value=np.nan)
     thresh_arr[fac_inds] = 1
-    thresh_arr[spot_inds] = 2
+    thresh_arr[spot_inds] = -1
 
     return thresh_arr
 
@@ -390,6 +402,8 @@ def thresh_map(fac_inds, spot_inds):
 def v_quiet(map_vel_cor, imap, quiet):
     """
     function to calculate velocity due to convective motion of quiet-Sun
+
+    Based on Haywood et al. (2016) and described in Ervin et al. (2021) - In Prep.
 
     Parameters
     ----------
@@ -412,9 +426,11 @@ def v_quiet(map_vel_cor, imap, quiet):
     return v_quiet
 
 
-def v_phot(quiet, active, Lij, vrot, imap, mu, fac_inds, spot_inds, mu_cutoff=0.3):
+def v_phot(quiet, active, Lij, vrot, imap, mu, fac_inds, spot_inds, mu_cutoff=Parameters.mu_cutoff):
     """
     function to calculate photometric velocity due to rotational Doppler variation
+
+    Based on Haywood et al. (2016) and described in Ervin et al. (2021) - In Prep.
 
     Parameters
     ----------
@@ -465,6 +481,8 @@ def v_disc(map_vel_cor, imap):
     """
     function to calculate disc-averaged velocity of Sun
 
+    Based on Haywood et al. (2016) and described in Ervin et al. (2021) - In Prep.
+
     Parameters
     ----------
     map_vel_cor: map
@@ -483,11 +501,13 @@ def v_disc(map_vel_cor, imap):
     return v_disc
 
 
-def filling_factor(mu, mmap, active, fac_inds, spot_inds, mu_cutoff=0.3):
+def filling_factor(mu, mmap, active, fac_inds, spot_inds, mu_cutoff=Parameters.mu_cutoff):
     """
     function to calculate filling factors for faculae, sunspots, and
     total magnetically active regions
     - percentage of magnetically active pixels on the solar surface at any one time
+
+    Based on Haywood et al. (2016) and described in Ervin et al. (2021) - In Prep.
 
     Parameters
     ----------
@@ -540,6 +560,8 @@ def unsigned_flux(map_mag_obs, imap):
     """
     calculate unsigned magnetic flux
 
+    Based on Haywood et al. (2016) and described in Ervin et al. (2021) - In Prep.
+
     Parameters
     ----------
     map_mag_obs: map
@@ -567,6 +589,8 @@ def unsigned_flux(map_mag_obs, imap):
 def area_calc(active, pixA_hem):
     """
     calculate area of active pixels for a thresholded map
+
+    Based on Milbourne et al. (2019) and described in Ervin et al. (2021) - In Prep.
 
     Parameters
     ----------
@@ -596,7 +620,7 @@ def area_calc(active, pixA_hem):
     return area
 
 
-def area_filling_factor(active, area, mu, mmap, fac_inds, athresh=20, mu_cutoff=0.3):
+def area_filling_factor(active, area, mu, mmap, fac_inds, athresh=Parameters.athresh, mu_cutoff=Parameters.mu_cutoff):
     """
     calculate filling factor for regions thresholded by area
     - differentiate between large and small regions
@@ -675,7 +699,7 @@ def area_filling_factor(active, area, mu, mmap, fac_inds, athresh=20, mu_cutoff=
     return f_small, f_large, f_network, f_plage, f_nonconv
 
 
-def area_unsigned_flux(map_mag_obs, imap, area, active, athresh=20):
+def area_unsigned_flux(map_mag_obs, imap, area, active, athresh=Parameters.athresh):
     """
     calculate the magnetic flux for different regions based on area cut
     and magnetic activitiy
@@ -728,7 +752,7 @@ def area_unsigned_flux(map_mag_obs, imap, area, active, athresh=20):
     return quiet_flux, ar_flux, conv_flux, pol_flux, pol_conv_flux
 
 
-def area_vconv(map_vel_cor, imap, active, area, athresh=20):
+def area_vconv(map_vel_cor, imap, active, area, athresh=Parameters.athresh):
     """
     calculate convective velocities for different area thresholds
 

@@ -223,8 +223,10 @@ def check_date_format(date):
     elif isinstance(date, float):
         t = Time(date, format='jd')
         date = t.datetime
+    elif isinstance(date, datetime.datetime):
+        date = date
     else:
-        raise ('The date', date, 'is formatted incorrectly. Should be JD or datetime object in UT.')
+        raise Exception('The date', date, 'is formatted incorrectly. Should be JD or datetime object in UT.')
 
     return date
 
@@ -250,3 +252,25 @@ def check_dir(dir_path):
     if not exist_dir:
         os.makedirs(dir_path)
         print("Created directory", dir_path)
+
+
+def check_inputs(dir_path, start_date, end_date, cadence, csv_name):
+
+    # check directory path
+    check_dir(dir_path)
+
+    # check date formats
+    start_date = check_date_format(start_date)
+    end_date = check_date_format(end_date)
+
+    # check cadence format
+    if type(cadence) != int:
+        raise Exception('Calculation cadence must be an integer value in seconds.')
+
+    # create file names
+    if csv_name is None:
+        csv_name = str(start_date)
+    if type(csv_name) != str:
+        raise Exception('The csv name must be a string.')
+
+    return start_date, end_date, cadence, csv_name

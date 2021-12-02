@@ -26,32 +26,30 @@ import sdo_hmi_rvs.tools.lbc_funcs as lbfuncs
 import sdo_hmi_rvs.tools.coord_funcs as ctfuncs
 import sdo_hmi_rvs.tools.utilities as utils
 from sdo_hmi_rvs.tools.settings import CsvDir
+from sdo_hmi_rvs.tools.plotting_funcs import hmi_plot
 
 start_time = time.time()
 
 # name of csv file to store calculations
-csv_name = os.path.join(CsvDir.CALC, 'csv_name.csv')
-bad_dates_csv = os.path.join(CsvDir.CALC, 'bad_dates_csv.csv')
+csv_name = 'csv_name'
 
 # dates and querying cadence
 cadence = 60*60  # querying cadence in seconds
-start_date = datetime.datetime(2021, 8, 26, 8, 00, 0, pytz.UTC)
-end_date = datetime.datetime(2021, 9, 3, 0, 00, 0, pytz.UTC)
+start_date = datetime.datetime(2021, 8, 26, 8, 00, 0, tzinfo=pytz.UTC)
+end_date = datetime.datetime(2021, 9, 3, 0, 00, 0, tzinfo=pytz.UTC)
+
+# plotting
+diagnostic_plots = True
+# path to save diagnostic figure or none
+save_fig = None
 
 ### ----- do not update anything below ----- ###
-# check date formats
-start_date = utils.check_date_format(start_date)
-end_date = utils.check_date_format(end_date)
-
-# check cadence format
-if type(cadence) != int:
-    raise ('Calculation cadence must be an integer value in seconds.')
+# check input formats
+start_date, end_date, cadence, csv_name = utils.check_inputs(CsvDir.CALC, start_date, end_date, cadence, csv_name)
 
 # create file names
-if csv_name is None:
-    csv_name = str(start_date)
-if type(csv_name) != str:
-    raise ('The csv name must be a string.')
+csv_file = os.path.join(CsvDir.CALC, csv_name+'.csv')
+bad_dates_csv = os.path.join(CsvDir.CALC, csv_name+'_bad_dates.csv')
 
 # print out csv title
 print("Beginning calculation of values for csv file: " + csv_name)
@@ -63,7 +61,9 @@ row_contents = ['date_obs', 'date_jd', 'v_quiet', 'v_disc', 'v_phot', 'v_conv', 
                 'vconv_small']
 
 # Append a list as new line to an old csv file
-utils.append_list_as_row(csv_name, row_contents)
+utils.check_dir(CsvDir.CALC)
+utils.append_list_as_row(csv_file, row_contents)
+
 
 # get hmi data products
 time_range = datetime.timedelta(seconds=22)
@@ -194,6 +194,11 @@ for i, date in enumerate(dates_list):
             # full threshold maps
             map_full_thresh = sfuncs.corrected_map(thresh_arr, mmap, map_type='Threshold',
                                                    frame=frames.HeliographicCarrington)
+
+            # create diagnostic plots
+            if i == 0:
+                if diagnostic_plots:
+                    hmi_plot(map_int_cor, map_mag_obs, map_vel_cor, fac_inds, spot_inds, mu, save_fig=save_fig)
 
             ### velocity contribution due to convective motion of quiet-Sun
             v_quiet = sfuncs.v_quiet(map_vel_cor, imap, quiet)
