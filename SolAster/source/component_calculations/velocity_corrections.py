@@ -20,7 +20,7 @@ from sunpy.net import attrs as a
 from sunpy.coordinates import frames
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '../../../'))
-import sdo_hmi_rvs.tools.coord_funcs as ctfuncs
+import SolAster.tools.coord_funcs as ctfuncs
 
 # get hmi data products
 cadence = a.Sample(24 * u.hour)  # querying cadence

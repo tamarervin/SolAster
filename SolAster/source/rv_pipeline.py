@@ -21,12 +21,12 @@ from sunpy.net import attrs as a
 from sunpy.coordinates import frames
 
 sys.path.append(os.path.join(os.path.dirname(__file__),'../../'))
-import sdo_hmi_rvs.tools.calculation_funcs as sfuncs
-import sdo_hmi_rvs.tools.lbc_funcs as lbfuncs
-import sdo_hmi_rvs.tools.coord_funcs as ctfuncs
-import sdo_hmi_rvs.tools.utilities as utils
-from sdo_hmi_rvs.tools.settings import CsvDir
-from sdo_hmi_rvs.tools.plotting_funcs import hmi_plot
+import SolAster.tools.calculation_funcs as sfuncs
+import SolAster.tools.lbc_funcs as lbfuncs
+import SolAster.tools.coord_funcs as ctfuncs
+import SolAster.tools.utilities as utils
+from SolAster.tools.settings import CsvDir
+from SolAster.tools.plotting_funcs import hmi_plot
 
 start_time = time.time()
 

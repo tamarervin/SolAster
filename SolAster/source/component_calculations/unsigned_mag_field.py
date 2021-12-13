@@ -18,8 +18,8 @@ from sunpy.net import Fido
 from sunpy.net import attrs as a
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '../../../'))
-import sdo_hmi_rvs.tools.calculation_funcs as sfuncs
-import sdo_hmi_rvs.tools.coord_funcs as ctfuncs
+import SolAster.tools.calculation_funcs as sfuncs
+import SolAster.tools.coord_funcs as ctfuncs
 
 # get magnetograms
 cadence = a.Sample(24*u.hour)  # querying cadence

@@ -16,11 +16,11 @@ from sunpy.net import Fido
 from sunpy.net import attrs as a
 from sunpy.coordinates import frames
 
-import sdo_hmi_rvs.tools.calculation_funcs as sfuncs
-import sdo_hmi_rvs.tools.lbc_funcs as lbfuncs
-import sdo_hmi_rvs.tools.coord_funcs as ctfuncs
-import sdo_hmi_rvs.tools.utilities as utils
-from sdo_hmi_rvs.tools.settings import CsvDir
+import SolAster.tools.calculation_funcs as sfuncs
+import SolAster.tools.lbc_funcs as lbfuncs
+import SolAster.tools.coord_funcs as ctfuncs
+import SolAster.tools.utilities as utils
+from SolAster.tools.settings import CsvDir
 
 
 def rvs(start_date, end_date, cadence, csv_name=None):

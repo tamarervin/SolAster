@@ -1,5 +1,5 @@
 # for creation of necessary conda environment
-name: sdo_hmi_rvs  # environment name
+name: solaster  # environment name
 channels:
   - defaults
   - conda-forge

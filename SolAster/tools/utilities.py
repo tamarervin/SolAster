@@ -274,3 +274,62 @@ def check_inputs(dir_path, start_date, end_date, cadence, csv_name):
         raise Exception('The csv name must be a string.')
 
     return start_date, end_date, cadence, csv_name
+
+def read_ccf_csv(csv_file):
+    """
+    function to read in csv file with ccf calculations
+    and return metrics
+    Parameters
+    ----------
+    csv_file: path to csv file to read
+    Returns
+    -------
+    list of CCF derived metrics
+    """
+    fpickle = pd.read_pickle(csv_file)
+    dates = fpickle.dates.values
+    jd_dates = fpickle.jd_dates.values
+
+    inds = np.argsort(jd_dates)
+    rv_sun = fpickle.rv_sun.values[inds] * 1e3
+    rv_error = fpickle.rv_error.values[inds] * 1e3
+
+    non_nan = np.logical_not(np.isnan(rv_sun))
+
+    rv_med = np.nanmedian(np.abs(rv_sun))
+
+    good_sun = np.logical_and(np.abs(rv_sun) > rv_med - 2, np.abs(rv_sun) < rv_med + 2)
+    good_error = np.logical_and(np.abs(rv_error) < .4, np.abs(rv_error) < 0.37)
+    good = np.logical_and(good_sun, good_error)
+
+    good_rvs = np.logical_and(good, non_nan)
+
+    dates = dates[inds][good_rvs]
+    jd_dates = jd_dates[inds][good_rvs]
+    rv_sun = rv_sun[good_rvs]
+    rv_error = rv_error[good_rvs]
+    ccf_list = fpickle.ccf.values[inds][good_rvs]
+    rv_model = fpickle.rv_model.values[inds][good_rvs]
+    gaussian = fpickle.gaussian.values[inds][good_rvs]
+    rv_gauss = fpickle.rv_gauss.values[inds][good_rvs]
+    skew = fpickle.median_skew.values[inds][good_rvs]
+    int_area = fpickle.integrated_area.values[inds][good_rvs]
+    Bobs = fpickle.Bobs.values[inds][good_rvs]
+    v_conv = fpickle.v_conv.values[inds][good_rvs]
+
+    # find bad CCFs -- need to figure out why this is...
+    bad_ccfs = np.array([np.isnan(ccf[0]) for ccf in ccf_list])
+    dates = dates[~bad_ccfs]
+    jd_dates = jd_dates[~bad_ccfs]
+    ccf_list = ccf_list[~bad_ccfs]
+    rv_sun = rv_sun[~bad_ccfs]
+    rv_model = rv_model[~bad_ccfs] * 1e3
+    rv_error = rv_error[~bad_ccfs]
+    gaussian = gaussian[~bad_ccfs]
+    rv_gauss = rv_gauss[~bad_ccfs] * 1e3
+    skew = skew[~bad_ccfs] * 1e3
+    int_area = int_area[~bad_ccfs]
+    Bobs = Bobs[~bad_ccfs]
+    v_conv = v_conv[~bad_ccfs]
+
+    return dates, jd_dates, ccf_list, rv_sun, rv_model, rv_error, gaussian, rv_gauss, skew, int_area, Bobs, v_conv

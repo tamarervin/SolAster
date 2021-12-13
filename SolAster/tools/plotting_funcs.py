@@ -12,7 +12,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 from scipy import stats
-from sdo_hmi_rvs.tools.settings import PlotDir
+from SolAster.tools.settings import PlotDir
 
 
 def scatter_hist(x, y, bins):

@@ -19,7 +19,7 @@ from sunpy.coordinates import frames
 
 from skimage.measure import label, regionprops
 
-from sdo_hmi_rvs.tools.settings import Parameters
+from SolAster.tools.settings import Parameters
 
 
 def map_sequence(dates_list, time_range=datetime.timedelta(seconds=6), instrument=a.Instrument.aia,

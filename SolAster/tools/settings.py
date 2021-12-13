@@ -22,7 +22,19 @@ class CsvDir:
     CSV directories
     """
     CSV_DIR = os.path.join(BaseDir.BASE_DIR, 'csv_files')
-    CALC = os.path.join(CSV_DIR, 'calcs')
+    MILBOURNE = os.path.join(CSV_DIR, 'milbourne')
+    NEID_DATA = os.path.join(CSV_DIR, 'neid', 'data')
+    NEID_CALC = os.path.join(CSV_DIR, 'neid', 'calcs')
+    NEID_BAD_DATES = os.path.join(CSV_DIR, 'neid', 'bad_dates')
+    VENUS = os.path.join(CSV_DIR, 'venus')
+    MERCURY = os.path.join(CSV_DIR, 'mercury')
+    ACTIVE = os.path.join(CSV_DIR, 'active')
+    CCFS = os.path.join(CSV_DIR, 'ccfs')
+    NEID_SOLAR = os.path.join(BaseDir.BASE_DIR, 'mnt', 'grinnell', 'NEID', 'NEIDdata', 'DRPProcessed', 'DRPmaster', 'solar')
+    WEIGHTS = os.path.join(BaseDir.BASE_DIR, 'NEID_Solar_analysis', 'example_notebooks_and_data', 'ord_weights_test.npy')
+    FSR_MASK = os.path.join(BaseDir.BASE_DIR, 'NEID_Solar_analysis', 'NEIDcode', 'masks', 'neidMaster_FSR_Mask20210331_v001.fits')
+    NEID_HOUR = os.path.join(BaseDir.BASE_DIR, 'neid_data')
+    LEVEL0 = os.path.join(BaseDir.BASE_DIR, 'level0')
 
 
 class ImgDir:
@@ -36,7 +48,8 @@ class PlotDir:
     """
     Directories that hold plotting style files
     """
-    MPL = os.path.join(BaseDir.BASE_DIR, 'mplstyle')
+    # MPL = os.path.join(BaseDir.BASE_DIR, 'mplstyle')
+    MPL = '../products/mplystyle/'
 
 
 class Parameters:

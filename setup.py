@@ -1,12 +1,12 @@
 from setuptools import setup
 
 setup(
-    name='sdo_hmi_rvs',
+    name='SolAster',
     version='0.1.3',
-    packages=['sdo_hmi_rvs', 'sdo_hmi_rvs.tools', 'sdo_hmi_rvs.source', 'sdo_hmi_rvs.examples'],
-    url='https://github.com/tamarervin/sdo_hmi_rvs',
+    packages=['SolAster', 'SolAster.tools', 'SolAster.source', 'SolAster.examples'],
+    url='https://github.com/tamarervin/SolAster',
     license='Apache Software License',
     author='Tamar Ervin',
     author_email='tamarervin@gmail.com',
-    description='Python package to calculate \'sun-as-a-star\' RVs.'
+    description='Python package to calculate \'Sun-as-a-star\' RVs.'
 )
