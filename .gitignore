@@ -6,4 +6,4 @@ cat .gitignore
 docs/build
 /SolAster/products/mplstyle/
 SolAster/examples/paper_figures.ipynb
-
+/build/lib/sdo_hmi_rvs/
