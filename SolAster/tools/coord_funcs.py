@@ -148,7 +148,7 @@ def vel_coords(x, y, pd, r, smap):
 
 def fix_mu(mu, smaps, mu_cutoff=0.3):
     """
-    function to remove pixel values where mu is less than 0.1
+    function to remove pixel values where mu is less than a cutoff value
 
     Parameters
     ----------

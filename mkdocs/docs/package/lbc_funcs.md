@@ -5,6 +5,6 @@
 
 [comment]: <> ([...])
 
-[comment]: <> ({{ sdo_hmi_rvs.sdo_hmi_rvs.tools.lbc_funcs }})
+[comment]: <> ({{ SolAster.SolAster.tools.lbc_funcs }})
 
 [comment]: <> ([...])

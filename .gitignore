@@ -4,6 +4,6 @@ cat .gitignore
 *~
 *.egg-info/
 docs/build
-/sdo_hmi_rvs/products/mplstyle/
+/SolAster/products/mplstyle/
 SolAster/examples/paper_figures.ipynb
 

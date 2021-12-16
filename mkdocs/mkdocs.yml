@@ -1,16 +1,17 @@
-site_name: SDO HMI RV Pipeline
-site_description: SDO HMI RV Pipeline Documentation
+site_name: SolAster
+site_description: SolAster Documentation
 authors:
     - Tamar Ervin
 
 # repository information
-repo_url: https://github.com/tamarervin/sdo_hmi_rvs
+repo_url: https://github.com/tamarervin/SolAster
 edit_uri: blob/master/mkdocs/docs/
 
 # site navigation
 nav:
   - Home: index.md
   - About: about.md
+  - Setup: setup.md
   - HMI Data:
     - Aquiring Data: data/data.md
     - Data Corrections: data/corr.md
@@ -26,7 +27,7 @@ nav:
     - Calculation Functions: package/calculation_funcs.md
     - RV Calculations: package/rvs.md
     - Plotting Functions: package/plotting_funcs.md
-    - Settings: package/settings.md
+    # - Settings: package/settings.md
   - Jupyter Examples:
     - Sunpy Basics: examples/docs_sunpy_example.ipynb
     - Component Calculations: examples/docs_solar_corrections.ipynb

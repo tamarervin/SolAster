@@ -1,3 +1,0 @@
-date_obs,date_jd,v_quiet,v_disc,v_phot,v_conv,f_bright,f_spot,f,Bobs,vphot_bright,vphot_spot,f_small,f_large,f_network,f_plage,f_nonconv,quiet_flux,ar_flux,conv_flux,pol_flux,pol_conv_flux,vconv_quiet,vconv_large,vconv_small,rv_model
-2021-08-21T00:00:00,2459447.5,-17.335,-14.005,0.03,3.33,2.044,0.0,2.044,9.179,0.03,0.0,1.81,0.234,1.81,0.234,0.0,7.676,76.017,127.345,0.048,-0.208,0.323,0.33,-0.001,100.414755
-2021-08-22T00:00:00,2459448.5,-19.839,-16.485,0.055,3.354,2.137,0.001,2.137,9.28,0.05,0.005,1.859,0.278,1.859,0.277,0.0,7.689,76.932,131.91,-0.007,6.522,0.405,0.414,-0.0,100.49086

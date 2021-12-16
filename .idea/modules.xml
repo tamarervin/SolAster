@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/sdo_hmi_rvs.iml" filepath="$PROJECT_DIR$/.idea/sdo_hmi_rvs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SolAster.iml" filepath="$PROJECT_DIR$/.idea/SolAster.iml" />
     </modules>
   </component>
 </project>

@@ -7,6 +7,36 @@ Update to work with your system.
 """
 
 import os
+import datetime
+
+
+class Inputs:
+    """
+    Class to hold user specified inputs to run examples.
+    See README or documentation site for additional information.
+
+    """
+
+    # name of csv file to store calculations
+    csv_name = 'paper_test'
+
+    # name of instrument to use for calculation of RV model
+    # choose either 'NEID' or 'HARPS-N'
+    inst = 'NEID'
+
+    # querying cadence in seconds
+    cadence = 24 * 60 * 60
+
+    # start date for calculations
+    start_date = datetime.datetime(2021, 2, 7, 0, 00, 0)
+
+    # end date for calculations
+    end_date = datetime.datetime(2021, 2, 10, 0, 00, 0)
+
+    # True if outputting diagnostic plots
+    diagnostic_plots = True
+    # path to save diagnostic figure or none
+    save_fig = None
 
 
 class BaseDir:
@@ -22,20 +52,7 @@ class CsvDir:
     CSV directories
     """
     CSV_DIR = os.path.join(BaseDir.BASE_DIR, 'csv_files')
-    MILBOURNE = os.path.join(CSV_DIR, 'milbourne')
-    NEID_DATA = os.path.join(CSV_DIR, 'neid', 'data')
-    NEID_CALC = os.path.join(CSV_DIR, 'neid', 'calcs')
-    NEID_BAD_DATES = os.path.join(CSV_DIR, 'neid', 'bad_dates')
-    VENUS = os.path.join(CSV_DIR, 'venus')
-    MERCURY = os.path.join(CSV_DIR, 'mercury')
-    ACTIVE = os.path.join(CSV_DIR, 'active')
-    CCFS = os.path.join(CSV_DIR, 'ccfs')
-    NEID_SOLAR = os.path.join(BaseDir.BASE_DIR, 'mnt', 'grinnell', 'NEID', 'NEIDdata', 'DRPProcessed', 'DRPmaster', 'solar')
-    WEIGHTS = os.path.join(BaseDir.BASE_DIR, 'NEID_Solar_analysis', 'example_notebooks_and_data', 'ord_weights_test.npy')
-    FSR_MASK = os.path.join(BaseDir.BASE_DIR, 'NEID_Solar_analysis', 'NEIDcode', 'masks', 'neidMaster_FSR_Mask20210331_v001.fits')
-    NEID_HOUR = os.path.join(BaseDir.BASE_DIR, 'neid_data')
-    LEVEL0 = os.path.join(BaseDir.BASE_DIR, 'level0')
-
+    CALC = os.path.join(BaseDir.CSV_DIR, 'calcs')
 
 class ImgDir:
     """

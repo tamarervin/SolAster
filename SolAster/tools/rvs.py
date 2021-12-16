@@ -20,15 +20,42 @@ import SolAster.tools.calculation_funcs as sfuncs
 import SolAster.tools.lbc_funcs as lbfuncs
 import SolAster.tools.coord_funcs as ctfuncs
 import SolAster.tools.utilities as utils
-from SolAster.tools.settings import CsvDir, Parameters
+from SolAster.tools.settings import *
 from SolAster.tools.plotting_funcs import hmi_plot
 
 
-def rvs(start_date, end_date, cadence, csv_name=None, diagnostic_plots=False, save_fig=None):
+def calc_model(inst, v_conv, v_phot):
+    """
+    function to calculation model rv variation using components
+
+    scaling coefficients are determined by linear regression
+    :param inst:
+    :param v_conv:
+    :param v_phot:
+    :return:
+    """
+
+    if inst == 'HARPS-N':
+        A = HARPSN.A
+        B = HARPSN.B
+        RV0 = HARPSN.RV0
+    elif inst == 'NEID':
+        A = NEID.A
+        B = NEID.B
+        RV0 = NEID.RV0
+    else:
+        raise Exception('The instrument', inst,
+                        'is not currently supported by SolAster. Choose either \'HARPS-N\', or \'NEID\'.')
+    RV = A * v_phot + B * v_conv + RV0
+
+    return RV
+
+
+def rvs(start_date, end_date, cadence, inst='NEID', csv_name=None, diagnostic_plots=False, save_fig=None):
     """
     function to calculate rv components using pipeline functions
 
-    Calculation pipeline described in Ervin et al. (2021) - In Prep. and based on
+    Calculation pipeline described in Ervin et al. (2021) - Submitted. and based on
     Haywood et al. (2016), Milbourne et al. (2019) using the technique
     developed by Meunier, Lagrange & Desort (2010) for SoHO/MDI images.
 
@@ -40,6 +67,8 @@ def rvs(start_date, end_date, cadence, csv_name=None, diagnostic_plots=False, sa
         end date of RV calculations (datetime object)
     cadence: int
         how often to calculate RV components
+    inst: str
+        instrument to use to fit for RVs ('NEID' or 'HARPS-N')
     csv_name: str
         name of file to store calculations in
     diagnostic_plots: bool
@@ -63,8 +92,8 @@ def rvs(start_date, end_date, cadence, csv_name=None, diagnostic_plots=False, sa
     print("Beginning calculation of values for csv file: " + csv_name)
 
     # List of header strings
-    row_contents = ['date_obs', 'date_jd', 'v_quiet', 'v_disc', 'v_phot', 'v_conv', 'f_bright', 'f_spot', 'f', 'Bobs',
-                    'vphot_bright', 'vphot_spot', 'f_small', 'f_large', 'f_network', 'f_plage', 'f_nonconv',
+    row_contents = ['date_obs', 'date_jd', 'rv_model', 'v_quiet', 'v_disc', 'v_phot', 'v_conv', 'f_bright', 'f_spot',
+                    'f', 'Bobs', 'vphot_bright', 'vphot_spot', 'f_small', 'f_large', 'f_network', 'f_plage',
                     'quiet_flux', 'ar_flux', 'conv_flux', 'pol_flux', 'pol_conv_flux', 'vconv_quiet', 'vconv_large',
                     'vconv_small']
 
@@ -229,9 +258,13 @@ def rvs(start_date, end_date, cadence, csv_name=None, diagnostic_plots=False, sa
                 ### get area weighted convective velocities
                 vconv_quiet, vconv_large, vconv_small = sfuncs.area_vconv(map_vel_cor, imap, active, area, athresh=Parameters.athresh)
 
+                ### calculate model RV
+                rv_model = sfuncs.calc_model(inst, v_conv, v_phot)
+
                 # make array of what we want to save
-                save_vals = [v_quiet, v_disc, v_phot, v_conv, f_bright, f_spot, f, unsigned_obs_flux, vphot_bright,
-                             vphot_spot, f_small, f_large, f_network, f_plage, f_nonconv, quiet_flux, ar_flux,
+                save_vals = [rv_model, v_quiet, v_disc, v_phot, v_conv, f_bright, f_spot, f, unsigned_obs_flux,
+                             vphot_bright,
+                             vphot_spot, f_small, f_large, f_network, f_plage, quiet_flux, ar_flux,
                              conv_flux, pol_flux, pol_conv_flux, vconv_quiet, vconv_large, vconv_small]
 
                 # round stuff

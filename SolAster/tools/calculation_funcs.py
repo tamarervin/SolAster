@@ -690,13 +690,13 @@ def area_filling_factor(active, area, mu, mmap, fac_inds, athresh=Parameters.ath
     plage[plage_inds] = 1.
     f_plage = np.nansum(plage) / npix * 100
 
-    # get filling factor for small, non-convective regions
-    nonconv = np.zeros(mmap.data.shape)
-    nonconv_inds = np.logical_and(quiet > 0.5, small > 0.5)
-    nonconv[nonconv_inds] = 1.
-    f_nonconv = np.nansum(nonconv) / npix * 100
+    # # get filling factor for small, non-convective regions
+    # nonconv = np.zeros(mmap.data.shape)
+    # nonconv_inds = np.logical_and(quiet > 0.5, small > 0.5)
+    # nonconv[nonconv_inds] = 1.
+    # f_nonconv = np.nansum(nonconv) / npix * 100
 
-    return f_small, f_large, f_network, f_plage, f_nonconv
+    return f_small, f_large, f_network, f_plage
 
 
 def area_unsigned_flux(map_mag_obs, imap, area, active, athresh=Parameters.athresh):

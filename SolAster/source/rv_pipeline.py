@@ -11,8 +11,6 @@ import os
 import sys
 
 import time
-import pytz
-import datetime
 import numpy as np
 
 import sunpy.map
@@ -25,27 +23,13 @@ import SolAster.tools.calculation_funcs as sfuncs
 import SolAster.tools.lbc_funcs as lbfuncs
 import SolAster.tools.coord_funcs as ctfuncs
 import SolAster.tools.utilities as utils
-from SolAster.tools.settings import CsvDir
+from SolAster.tools.settings import *
 from SolAster.tools.plotting_funcs import hmi_plot
 
-start_time = time.time()
-
-# name of csv file to store calculations
-csv_name = 'csv_name'
-
-# dates and querying cadence
-cadence = 60*60  # querying cadence in seconds
-start_date = datetime.datetime(2021, 8, 26, 8, 00, 0, tzinfo=pytz.UTC)
-end_date = datetime.datetime(2021, 9, 3, 0, 00, 0, tzinfo=pytz.UTC)
-
-# plotting
-diagnostic_plots = True
-# path to save diagnostic figure or none
-save_fig = None
 
 ### ----- do not update anything below ----- ###
 # check input formats
-start_date, end_date, cadence, csv_name = utils.check_inputs(CsvDir.CALC, start_date, end_date, cadence, csv_name)
+start_date, end_date, cadence, csv_name = utils.check_inputs(CsvDir.CALC, Inputs.start_date,  Inputs.end_date,  Inputs.cadence,  Inputs.csv_name)
 
 # create file names
 csv_file = os.path.join(CsvDir.CALC, csv_name+'.csv')
@@ -55,8 +39,8 @@ bad_dates_csv = os.path.join(CsvDir.CALC, csv_name+'_bad_dates.csv')
 print("Beginning calculation of values for csv file: " + csv_name)
 
 # List of header strings
-row_contents = ['date_obs', 'date_jd', 'v_quiet', 'v_disc', 'v_phot', 'v_conv', 'f_bright', 'f_spot', 'f', 'Bobs',
-                'vphot_bright', 'vphot_spot', 'f_small', 'f_large', 'f_network', 'f_plage', 'f_nonconv',
+row_contents = ['date_obs', 'date_jd', 'rv_model', 'v_quiet', 'v_disc', 'v_phot', 'v_conv', 'f_bright', 'f_spot', 'f',
+                'Bobs', 'vphot_bright', 'vphot_spot', 'f_small', 'f_large', 'f_network', 'f_plage',
                 'quiet_flux', 'ar_flux', 'conv_flux', 'pol_flux', 'pol_conv_flux', 'vconv_quiet', 'vconv_large',
                 'vconv_small']
 
@@ -197,7 +181,7 @@ for i, date in enumerate(dates_list):
 
             # create diagnostic plots
             if i == 0:
-                if diagnostic_plots:
+                if  Inputs.diagnostic_plots:
                     hmi_plot(map_int_cor, map_mag_obs, map_vel_cor, fac_inds, spot_inds, mu, save_fig=save_fig)
 
             ### velocity contribution due to convective motion of quiet-Sun
@@ -225,7 +209,7 @@ for i, date in enumerate(dates_list):
             ### calculate the area filling factor
             pixA_hem = ctfuncs.pix_area_hem(wij, nij, rij, vmap)
             area = sfuncs.area_calc(active, pixA_hem)
-            f_small, f_large, f_network, f_plage, f_nonconv = sfuncs.area_filling_factor(active, area, mu, mmap,
+            f_small, f_large, f_network, f_plage = sfuncs.area_filling_factor(active, area, mu, mmap,
                                                                                          fac_inds)
 
             ### get the unsigned flux
@@ -236,9 +220,12 @@ for i, date in enumerate(dates_list):
             ### get area weighted convective velocities
             vconv_quiet, vconv_large, vconv_small = sfuncs.area_vconv(map_vel_cor, imap, active, area)
 
+            ### calculate model RV
+            rv_model = sfuncs.calc_model( Inputs.inst, v_conv, v_phot)
+
             # make array of what we want to save
-            save_vals = [v_quiet, v_disc, v_phot, v_conv, f_bright, f_spot, f, unsigned_obs_flux, vphot_bright,
-                         vphot_spot, f_small, f_large, f_network, f_plage, f_nonconv, quiet_flux, ar_flux,
+            save_vals = [rv_model, v_quiet, v_disc, v_phot, v_conv, f_bright, f_spot, f, unsigned_obs_flux, vphot_bright,
+                         vphot_spot, f_small, f_large, f_network, f_plage, quiet_flux, ar_flux,
                          conv_flux, pol_flux, pol_conv_flux, vconv_quiet, vconv_large, vconv_small]
 
             # round stuff
@@ -248,12 +235,9 @@ for i, date in enumerate(dates_list):
                 round_vals.append(val)
 
             # append these values to the csv file
-            utils.append_list_as_row(csv_name, round_vals)
+            utils.append_list_as_row(csv_file, round_vals)
 
             # print that the date is completed
             print('\nCalculations and save to file complete for ' + date_str + ' index: ' + str(i))
 
-# print elapsed time
-end_time = time.time()
 
-print((end_time - start_time) / 60)

@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='SolAster',
-    version='0.1.3',
+    version='1.0.0',
     packages=['SolAster', 'SolAster.tools', 'SolAster.source', 'SolAster.examples'],
     url='https://github.com/tamarervin/SolAster',
     license='Apache Software License',
