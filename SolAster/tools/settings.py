@@ -52,7 +52,7 @@ class CsvDir:
     CSV directories
     """
     CSV_DIR = os.path.join(BaseDir.BASE_DIR, 'csv_files')
-    CALC = os.path.join(BaseDir.CSV_DIR, 'calcs')
+    CALC = os.path.join(CSV_DIR, 'calcs')
 
 class ImgDir:
     """

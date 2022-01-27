@@ -1,4 +1,4 @@
 # Settings Module
-::: sdo_hmi_rvs.tools.settings
+::: SolAster.tools.settings
     selection:  
         docstring_style: numpy

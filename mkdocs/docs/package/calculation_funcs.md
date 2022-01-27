@@ -1,3 +1,3 @@
 # Calculation Functions Module
-::: sdo_hmi_rvs.tools.calculation_funcs
+::: SolAster.tools.calculation_funcs
 
