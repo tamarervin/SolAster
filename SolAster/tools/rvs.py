@@ -26,13 +26,21 @@ from SolAster.tools.plotting_funcs import hmi_plot
 
 def calc_model(inst, v_conv, v_phot):
     """
-    function to calculation model rv variation using components
+    
+    Parameters
+    ----------
+    inst: str 
+        instrument for ground-based RVs
+    v_conv: arr, float
+        convective velocity values
+    v_phot: arr, float
+        photometric velocity values
 
-    scaling coefficients are determined by linear regression
-    :param inst:
-    :param v_conv:
-    :param v_phot:
-    :return:
+    Returns
+    -------
+    RV: arr, float
+        model RV values 
+        
     """
 
     if inst == 'HARPS-N':
@@ -51,7 +59,7 @@ def calc_model(inst, v_conv, v_phot):
     return RV
 
 
-def rvs(start_date, end_date, cadence, inst='NEID', csv_name=None, diagnostic_plots=False, save_fig=None):
+def calc_rvs(start_date, end_date, cadence, inst='NEID', csv_name=None, diagnostic_plots=False, save_fig=None):
     """
     function to calculate rv components using pipeline functions
 
