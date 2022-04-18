@@ -14,7 +14,7 @@ project and for her papers that outlined the methodology of calculation.
 
 ## References  
 
-* Ervin et al. (2021) - Submitted  
+* Ervin et al. (2021) - Accepted  
 * [Milbourne et al. (2019)](https://doi.org/10.3847/1538-4357/ab064a)  
 * [Haywood et al. (2016)](https://doi.org/10.1093/mnras/stw187)  
 * Based on a technique developed by [Meunier, Lagrange & Desort (2010)](https://doi.org/10.1051/0004-6361/200913551) 

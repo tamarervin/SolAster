@@ -174,7 +174,7 @@ def calc_rvs(start_date, end_date, cadence, inst='NEID', csv_name=None, diagnost
                 wij, nij, rij = ctfuncs.vel_coords(x, y, pd, r, vmap)
 
                 # remove bad mu values
-                vmap, mmap, imap = ctfuncs.fix_mu(mu, [vmap, mmap, imap])
+                vmap, mmap, imap = ctfuncs.fix_mu(mu, [vmap, mmap, imap], mu_cutoff=Parameters.mu_cutoff)
 
                 # calculate relative positions
                 deltaw, deltan, deltar, dij = sfuncs.rel_positions(wij, nij, rij, vmap)
@@ -219,13 +219,9 @@ def calc_rvs(start_date, end_date, cadence, inst='NEID', csv_name=None, diagnost
                 # calculate intensity threshold
                 fac_inds, spot_inds = sfuncs.int_thresh(map_int_cor, active, quiet)
 
-                # create threshold array
-                thresh_arr = sfuncs.thresh_map(fac_inds, spot_inds)
-
                 # create diagnostic plots
-                if i == 0:
-                    if diagnostic_plots:
-                        hmi_plot(map_int_cor, map_mag_obs, map_vel_cor, fac_inds, spot_inds, mu, save_fig)
+                if i == 0 and Inputs.diagnostic_plots:
+                    hmi_plot(map_int_cor, map_mag_obs, map_vel_cor, fac_inds, spot_inds, mu, save_fig)
 
                 ### velocity contribution due to convective motion of quiet-Sun
                 v_quiet = v_quiet(map_vel_cor, imap, quiet)
@@ -244,7 +240,8 @@ def calc_rvs(start_date, end_date, cadence, inst='NEID', csv_name=None, diagnost
 
                 ### filling factor
                 # calculate filling factor
-                f_bright, f_spot, f = sfuncs.filling_factor(mu, mmap, active, fac_inds, spot_inds, mu_cutoff=Parameters.mu_cutoff)
+                f_bright, f_spot, f = sfuncs.filling_factor(mu, mmap, active, fac_inds, spot_inds,
+                                                            mu_cutoff=Parameters.mu_cutoff)
 
                 ### unsigned magnetic flux
                 # unsigned observed flux
@@ -261,13 +258,15 @@ def calc_rvs(start_date, end_date, cadence, inst='NEID', csv_name=None, diagnost
                 ### get the unsigned flux
                 quiet_flux, ar_flux, conv_flux, pol_flux, pol_conv_flux = sfuncs.area_unsigned_flux(map_mag_obs, imap,
                                                                                                     area,
-                                                                                                    active, athresh=Parameters.athresh)
+                                                                                                    active,
+                                                                                                    athresh=Parameters.athresh)
 
                 ### get area weighted convective velocities
-                vconv_quiet, vconv_large, vconv_small = sfuncs.area_vconv(map_vel_cor, imap, active, area, athresh=Parameters.athresh)
+                vconv_quiet, vconv_large, vconv_small = sfuncs.area_vconv(map_vel_cor, imap, active, area,
+                                                                          athresh=Parameters.athresh)
 
                 ### calculate model RV
-                rv_model = sfuncs.calc_model(inst, v_conv, v_phot)
+                rv_model = rvs.calc_model(inst, v_conv, v_phot)
 
                 # make array of what we want to save
                 save_vals = [rv_model, v_quiet, v_disc, v_phot, v_conv, f_bright, f_spot, f, unsigned_obs_flux,

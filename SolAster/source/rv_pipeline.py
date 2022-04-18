@@ -6,11 +6,9 @@ Date: July 7, 2021
 RV calculations for date range
 """
 
-
 import os
 import sys
 
-import time
 import numpy as np
 
 import sunpy.map
@@ -18,7 +16,8 @@ from sunpy.net import Fido
 from sunpy.net import attrs as a
 from sunpy.coordinates import frames
 
-sys.path.append(os.path.join(os.path.dirname(__file__),'../../'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../'))
+import SolAster.tools.rvs as rvs
 import SolAster.tools.calculation_funcs as sfuncs
 import SolAster.tools.lbc_funcs as lbfuncs
 import SolAster.tools.coord_funcs as ctfuncs
@@ -26,14 +25,14 @@ import SolAster.tools.utilities as utils
 from SolAster.tools.settings import *
 from SolAster.tools.plotting_funcs import hmi_plot
 
-
 ### ----- do not update anything below ----- ###
 # check input formats
-start_date, end_date, cadence, csv_name = utils.check_inputs(CsvDir.CALC, Inputs.start_date,  Inputs.end_date,  Inputs.cadence,  Inputs.csv_name)
+start_date, end_date, cadence, csv_name = utils.check_inputs(CsvDir.CALC, Inputs.start_date, Inputs.end_date,
+                                                             Inputs.cadence, Inputs.csv_name)
 
 # create file names
-csv_file = os.path.join(CsvDir.CALC, csv_name+'.csv')
-bad_dates_csv = os.path.join(CsvDir.CALC, csv_name+'_bad_dates.csv')
+csv_file = os.path.join(CsvDir.CALC, csv_name + '.csv')
+bad_dates_csv = os.path.join(CsvDir.CALC, csv_name + '_bad_dates.csv')
 
 # print out csv title
 print("Beginning calculation of values for csv file: " + csv_name)
@@ -48,14 +47,13 @@ row_contents = ['date_obs', 'date_jd', 'rv_model', 'v_quiet', 'v_disc', 'v_phot'
 utils.check_dir(CsvDir.CALC)
 utils.append_list_as_row(csv_file, row_contents)
 
-
 # get hmi data products
 time_range = datetime.timedelta(seconds=22)
 physobs_list = [a.Physobs.los_velocity, a.Physobs.los_magnetic_field, a.Physobs.intensity]
 
 # get dates list
 xy = (end_date - start_date).seconds + (end_date - start_date).days * 24 * 3600
-dates_list = [start_date + datetime.timedelta(seconds=cadence*x) for x in range(0, int(xy/cadence))]
+dates_list = [start_date + datetime.timedelta(seconds=cadence * x) for x in range(0, int(xy / cadence))]
 
 for i, date in enumerate(dates_list):
     # convert the date to a string -- required for use in csv file
@@ -146,11 +144,8 @@ for i, date in enumerate(dates_list):
             map_int_cor = sfuncs.corrected_map(Iflat, imap, map_type='Corrected-Intensitygram',
                                                frame=frames.HeliographicCarrington)
 
-            # magnetic noise level
-            B_noise = 8
-
             # calculate unsigned field strength
-            Bobs, Br = sfuncs.mag_field(mu, mmap, B_noise)
+            Bobs, Br = sfuncs.mag_field(mu, mmap, Parameters.B_noise)
 
             # corrected observed magnetic data map
             map_mag_obs = sfuncs.corrected_map(Bobs, mmap, map_type='Corrected-Magnetogram',
@@ -161,13 +156,7 @@ for i, date in enumerate(dates_list):
                                                frame=frames.HeliographicCarrington)
 
             ### calculate magnetic threshold
-            # magnetic threshold value (G) from Yeo et. al. 2013
-            Br_cutoff = 24
-            # mu cutoff value
-            mu_cutoff = 0.3
-
-            # calculate magnetic threshold
-            active, quiet = sfuncs.mag_thresh(mu, mmap, Br_cutoff=Br_cutoff, mu_cutoff=mu_cutoff)
+            active, quiet = sfuncs.mag_thresh(mu, mmap, Br_cutoff=Parameters.Br_cutoff, mu_cutoff=Parameters.mu_cutoff)
 
             # calculate intensity threshold
             fac_inds, spot_inds = sfuncs.int_thresh(map_int_cor, active, quiet)
@@ -180,9 +169,8 @@ for i, date in enumerate(dates_list):
                                                    frame=frames.HeliographicCarrington)
 
             # create diagnostic plots
-            if i == 0:
-                if  Inputs.diagnostic_plots:
-                    hmi_plot(map_int_cor, map_mag_obs, map_vel_cor, fac_inds, spot_inds, mu, save_fig=save_fig)
+            if i == 0 and Inputs.diagnostic_plots == True:
+                hmi_plot(map_int_cor, map_mag_obs, map_vel_cor, fac_inds, spot_inds, mu, save_fig=Inputs.save_fig)
 
             ### velocity contribution due to convective motion of quiet-Sun
             v_quiet = sfuncs.v_quiet(map_vel_cor, imap, quiet)
@@ -209,8 +197,7 @@ for i, date in enumerate(dates_list):
             ### calculate the area filling factor
             pixA_hem = ctfuncs.pix_area_hem(wij, nij, rij, vmap)
             area = sfuncs.area_calc(active, pixA_hem)
-            f_small, f_large, f_network, f_plage = sfuncs.area_filling_factor(active, area, mu, mmap,
-                                                                                         fac_inds)
+            f_small, f_large, f_network, f_plage = sfuncs.area_filling_factor(active, area, mu, mmap, fac_inds)
 
             ### get the unsigned flux
             quiet_flux, ar_flux, conv_flux, pol_flux, pol_conv_flux = sfuncs.area_unsigned_flux(map_mag_obs, imap,
@@ -221,10 +208,11 @@ for i, date in enumerate(dates_list):
             vconv_quiet, vconv_large, vconv_small = sfuncs.area_vconv(map_vel_cor, imap, active, area)
 
             ### calculate model RV
-            rv_model = sfuncs.calc_model( Inputs.inst, v_conv, v_phot)
+            rv_model = rvs.calc_model(Inputs.inst, v_conv, v_phot)
 
             # make array of what we want to save
-            save_vals = [rv_model, v_quiet, v_disc, v_phot, v_conv, f_bright, f_spot, f, unsigned_obs_flux, vphot_bright,
+            save_vals = [rv_model, v_quiet, v_disc, v_phot, v_conv, f_bright, f_spot, f, unsigned_obs_flux,
+                         vphot_bright,
                          vphot_spot, f_small, f_large, f_network, f_plage, quiet_flux, ar_flux,
                          conv_flux, pol_flux, pol_conv_flux, vconv_quiet, vconv_large, vconv_small]
 
@@ -239,5 +227,3 @@ for i, date in enumerate(dates_list):
 
             # print that the date is completed
             print('\nCalculations and save to file complete for ' + date_str + ' index: ' + str(i))
-
-

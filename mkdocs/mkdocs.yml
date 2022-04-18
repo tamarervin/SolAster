@@ -11,6 +11,7 @@ edit_uri: blob/master/mkdocs/docs/
 nav:
   - Home: index.md
   - About: about.md
+  - Install: install.md
   - Setup: setup.md
   - HMI Data:
     - Aquiring Data: data/data.md
@@ -59,7 +60,6 @@ plugins:
       ignore_h1_titles: True
   - mkdocstrings:
       docstring_style: numpy
-#  - numkdoc
 
 # extensions
 markdown_extensions:
