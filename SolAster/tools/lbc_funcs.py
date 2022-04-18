@@ -17,13 +17,13 @@ def get_u(ll):
 
     Parameters
     ----------
-    ll : float
+    ll: float
         wavelength
 
     Returns
     -------
-    vl : float
-        coefficient v based on wavelength
+    ul: float
+        coefficient u based on wavelength
 
     """
 
@@ -45,12 +45,12 @@ def get_v(ll):
 
     Parameters
     ----------
-    ll : float
+    ll: float
         wavelength
 
     Returns
     -------
-    vl : float
+    vl: float
         coefficient v based on wavelength
 
     """
@@ -69,20 +69,19 @@ def get_v(ll):
 
 def limb_polynomial(imap):
     """
-    function to calculate limb darkening correction polynomial based on IDl function:
-    https://hesperia.gsfc.nasa.gov/ssw/gen/idl/solar/darklimb_correct.pro
+        function to calculate limb darkening correction polynomial based on IDl function:
+           https://hesperia.gsfc.nasa.gov/ssw/gen/idl/solar/darklimb_correct.pro
+       Parameters
+       ----------
+       imap: map type
+            UNCORRECTED Sunpy map object (Intensitygram)
 
-    Parameters
-    ----------
-    imap
-        UNCORRECTED Sunpy map object (Intensitygram)
 
-    Returns
-    -------
-    Lij : array_like
-        limb-darkening polynomial array
-
-    """
+       Returns
+       -------
+        Lij: array_like
+            limb-darkening polynomial array
+       """
 
     # get data
     data = imap.data

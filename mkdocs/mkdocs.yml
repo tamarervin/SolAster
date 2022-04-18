@@ -60,6 +60,8 @@ plugins:
       ignore_h1_titles: True
   - mkdocstrings:
       docstring_style: numpy
+#      watch:
+#        - SolAster/SolAster
 
 # extensions
 markdown_extensions:

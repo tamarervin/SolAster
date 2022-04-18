@@ -8,7 +8,7 @@ from SolAster.tools.coord_funcs import get_map_scales, coordinates, vel_coords, 
 
 from SolAster.tools.lbc_funcs import get_u, get_v, limb_polynomial
 
-from SolAster.tools.rvs import rvs
+from SolAster.tools.rvs import *
 
 from SolAster.tools.settings import BaseDir, CsvDir, ImgDir, Scaling, HARPSN, NEID
 
