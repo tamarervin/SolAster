@@ -26,7 +26,7 @@ nav:
     - Coordinate Transformations: package/coord_funcs.md
     - Limb-Brightening Correction: package/lbc_funcs.md
     - Calculation Functions: package/calculation_funcs.md
-    - RV Calculations: package/rvs.md
+    - RV Calculations: package/rv_funcs.md
     - Plotting Functions: package/plotting_funcs.md
     # - Settings: package/settings.md
   - Jupyter Examples:
