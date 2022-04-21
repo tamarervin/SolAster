@@ -10,35 +10,6 @@ import os
 import datetime
 
 
-class Inputs:
-    """
-    Class to hold user specified inputs to run examples.
-    See README or documentation site for additional information.
-
-    """
-
-    # name of csv file to store calculations
-    csv_name = 'paper_test'
-
-    # name of instrument to use for calculation of RV model
-    # choose either 'NEID' or 'HARPS-N'
-    inst = 'NEID'
-
-    # querying cadence in seconds
-    cadence = 24 * 60 * 60
-
-    # start date for calculations
-    start_date = datetime.datetime(2021, 2, 7, 0, 00, 0)
-
-    # end date for calculations
-    end_date = datetime.datetime(2021, 2, 10, 0, 00, 0)
-
-    # True if outputting diagnostic plots
-    diagnostic_plots = True
-    # path to save diagnostic figure or none
-    save_fig = None
-
-
 class BaseDir:
     """
     Base directory.

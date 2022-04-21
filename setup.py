@@ -2,8 +2,9 @@ from setuptools import setup
 
 setup(
     name='SolAster',
-    version='1.0.0',
+    version='1.0.2',
     packages=['SolAster', 'SolAster.tools', 'SolAster.source', 'SolAster.examples'],
+    install_requires=['astropy', 'sunpy', 'scikit-image'],
     url='https://github.com/tamarervin/SolAster',
     license='Apache Software License',
     author='Tamar Ervin',

@@ -15,8 +15,8 @@ from SolAster.tools.settings import Inputs
 
 def hmi_plot(int_map, mag_map, vel_map, fac_inds, spot_inds, mu, save_fig=Inputs.save_fig):
     """
-    fucntion to plot diagnostic plots showing HMI images and thresholded maps
-    Identical to Figure 1 in Ervin et al. (2021) - In prep.
+    function to plot diagnostic plots showing HMI images and thresholded maps
+    Identical to Figure 1 in Ervin et al. (2022) - Accepted.
 
     Parameters
     ----------
