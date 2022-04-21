@@ -220,7 +220,7 @@ def calc_rvs(start_date, end_date, cadence, inst='NEID', csv_name=None, diagnost
                 fac_inds, spot_inds = sfuncs.int_thresh(map_int_cor, active, quiet)
 
                 # create diagnostic plots
-                if i == 0 and Inputs.diagnostic_plots:
+                if i == 0 and diagnostic_plots:
                     hmi_plot(map_int_cor, map_mag_obs, map_vel_cor, fac_inds, spot_inds, mu, save_fig)
 
                 ### velocity contribution due to convective motion of quiet-Sun
