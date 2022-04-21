@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installation" class="md-skip">
+        <a href="#usage" class="md-skip">
           Skip to content
         </a>
       
@@ -247,9 +247,54 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Install
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Install
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cloning-through-github" class="md-nav__link">
+    Cloning through GitHub
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#package-installation-pip" class="md-nav__link">
+    Package Installation (Pip)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-conda-environment" class="md-nav__link">
+    Build conda environment
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -636,6 +681,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cloning-through-github" class="md-nav__link">
+    Cloning through GitHub
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#package-installation-pip" class="md-nav__link">
+    Package Installation (Pip)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-conda-environment" class="md-nav__link">
+    Build conda environment
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -652,8 +726,24 @@
 
 
 
-<h1 id="installation">Installation</h1>
-<h1 id="build-conda-environment">Build conda environment</h1>
+<h1 id="usage">Usage</h1>
+<p>Pipeline can either be used via scripts located in the <a href="ttps://github.com/tamarervin/SolAster/tree/main/SolAster/examples">examples</a> 
+folder or solely via installation.  </p>
+<p>First, download the GitHub repository to use the example scripts and notebooks.</p>
+<p>Second, install the package via pip.  </p>
+<p>There is a premade conda environment that can be installed as well, however 
+all package dependencies are included in the installation. </p>
+<h2 id="cloning-through-github">Cloning through GitHub</h2>
+<p>We welcome users to directly download this package either as a zip
+or by cloning the repository.  </p>
+<p>To clone: <code>git clone [repository url]</code>  </p>
+<h2 id="package-installation-pip">Package Installation (Pip)</h2>
+<ul>
+<li><a href="https://pip.pypa.io/en/stable/installation/">install pip</a>  </li>
+<li>install package <br />
+<code>pip install SolAster</code> </li>
+</ul>
+<h2 id="build-conda-environment">Build conda environment</h2>
 <ul>
 <li>update dependencies in conda_env.yml <a href="../conda_env.yml">file</a>   </li>
 <li>run the following from the folder containing the .yml file<ul>
@@ -665,19 +755,6 @@
 <li><code>conda env update -f conda_env.yml</code></li>
 </ul>
 </li>
-</ul>
-<h1 id="usage">Usage</h1>
-<p>Pipeline can either be used via scripts located in the <a href="ttps://github.com/tamarervin/SolAster/tree/main/SolAster/examples">examples</a> 
-folder or via installation.</p>
-<h2 id="cloning-through-github">Cloning through GitHub</h2>
-<p>We welcome users to directly download this package either as a zip
-or by cloning the repository.  </p>
-<p>To clone: <code>git clone [repository url]</code>  </p>
-<h2 id="package-installation-pip">Package Installation (Pip)</h2>
-<ul>
-<li><a href="https://pip.pypa.io/en/stable/installation/">install pip</a>  </li>
-<li>install package <br />
-<code>pip install SolAster</code> </li>
 </ul>
 
               

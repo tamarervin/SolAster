@@ -653,11 +653,9 @@
 
 
 <h1 id="setup">Setup</h1>
-<p>In order to run examples and scripts from SolAster, the settings file
-must be configured to adjust to the user required specifications of time
-frame and calculation cadence.  </p>
-<p>Update the <a href="https://github.com/tamarervin/SolAster/tree/main/SolAster/tools/settings.py">Inputs</a> class to include the correct date
-frame, cadence, and instrument for your calculations.  </p>
+<p>In order to run examples and scripts from SolAster, the Inputs class must be updated. The inputs
+class includes information about the instrument for comparison, date frame, and calculation cadence. This class
+is included at the start of each example script and includes all required user inputs.  </p>
 <ul>
 <li>csv_name: name of the CSV file to store calculations (str)  </li>
 <li>inst: name of instrument to use for calcuations of RV model (str: either NEID' or 'HARPS-N')  </li>
@@ -667,8 +665,35 @@ frame, cadence, and instrument for your calculations.  </p>
 <li>diagnostic_plots: whether you would like to plot diagnostic plots (bool)  </li>
 <li>save_fig: path to save figures if diagnostic_plots is True (str)  </li>
 </ul>
-<p>Additionally, users can update paths to store CSV files in settings. The current paths are setup to save directly to the downloaded
-repository but can be changed for different systems.  </p>
+<p>Additionally, users can update paths to store CSV files in settings. The current paths are setup to save directly to the downloaded repository but can be changed for different systems if needed.  </p>
+<p>The input class looks like this:  </p>
+<pre><code>class Inputs:
+    &quot;&quot;&quot;
+    Class to hold user specified inputs to run examples.
+    See README or documentation site for additional information.
+    &quot;&quot;&quot;
+
+    # name of csv file to store calculations
+    csv_name = 'example.csv'
+
+    # name of instrument to use for calculation of RV model
+    # choose either 'NEID' or 'HARPS-N'
+    inst = 'NEID'
+
+    # querying cadence in seconds
+    cadence = 24 * 60 * 60
+
+    # start date for calculationsx
+    start_date = datetime.datetime(2021, 2, 10, 0, 0, 0)
+
+    # end date for calculations
+    end_date = datetime.datetime(2021, 2, 14, 0, 0, 0)
+
+    # True if outputting diagnostic plots
+    diagnostic_plots = True
+    # path to save diagnostic figure or none
+    save_fig = None
+</code></pre>
 <h1 id="outputted-results">Outputted results</h1>
 <p>Our package produces a CSV or pickle file which includes calculation results of velocity components, model RV variations, and 
 various solar observables. These results are stored as follows.</p>
