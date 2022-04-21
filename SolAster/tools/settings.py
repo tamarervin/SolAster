@@ -15,7 +15,7 @@ class BaseDir:
     Base directory.
     Update this if you want to save the files outside the repo and follow same file structure and all will be well :)
     """
-    BASE_DIR = os.path.realpath('../products/')
+    BASE_DIR = os.path.realpath('../../products/')
 
 
 class CsvDir:
